@@ -1,4 +1,4 @@
 {
-	"default": "en",
-	"supported": [ "es" ]
+	"default_lang": "en",
+	"locales": [ "es" ]
 }
