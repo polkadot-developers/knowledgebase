@@ -13,6 +13,7 @@ assumes the decoding context has all type knowledge about the encoded data.
 ## SCALE for Substrate
 
 Substrate uses the
+[`parity-scale-codec`](https://github.com/paritytech/parity-scale-codec), a Rust
 implementation of the SCALE Codec. This library and the SCALE codec are
 advantageous for Substrate and blockchain systems because:
 
