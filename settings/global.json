@@ -1,13 +1,5 @@
 {
-	"languages": [
-		{
-			"en": "en"
-		},
-		{
-			"zh": "中文"
-		}
-	],
-
+	"languages": [ "en", "zh" ],
 	"docs": {
 		"en": "Docs",
 		"zh": "单据"
