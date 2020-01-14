@@ -1,0 +1,25 @@
+{
+	"languages": {
+		"en": "en",
+		"zh": "中文"
+	},
+	"docs": {
+		"en": "Docs",
+		"zh": "单据"
+	},
+	"get_started": {
+		"en": "Get Started"
+	},
+	"builders_program": {
+		"en": "Builders Program"
+	},
+	"collective": {
+		"en": "Collective"
+	},
+	"features": {
+		"en": "Features"
+	},
+	"tutorials": {
+		"en": "Tutorials"
+	}
+}
