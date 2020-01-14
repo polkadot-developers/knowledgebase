@@ -1,5 +1,7 @@
 {
-	"docs": {
+	"version": "pre-2.0",
+	"release_url": "https://github.com/paritytech/substrate/tree/3e651110aa06aa835790df63410a29676243fc54",
+	"sidebar": {
 		"Overview": [ "Overview", "Getting Started", "FRAME", "Glossary" ],
 		"Substrate Core": [ "SCALE Codec", "Consensus", "Executor", "Off-Chain Workers", "Storage" ],
 		"Substrate Nodes": [ "Extrinsics" ],
