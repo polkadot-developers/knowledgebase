@@ -1,5 +1,6 @@
 ---
 title: Overview
+lang: zh
 ---
 
 This page is the top level entry point into the Substrate documentation.
