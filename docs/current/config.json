@@ -5,7 +5,7 @@
 	"sidebar": [
 		{
 			"title": "Overview",
-			"menu_items": [ { "title": "Overview", "slug": "index" }, "Getting Started", "FRAME", "Glossary" ]
+			"menu_items": [ "Overview", "Getting Started", "FRAME", "Glossary" ]
 		}
 	]
 }
