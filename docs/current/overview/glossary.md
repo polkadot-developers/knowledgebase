@@ -1,5 +1,6 @@
 ---
-title: "Glossary"
+title: Glossary
+lang: en
 ---
 Glossary (alphabetical) of terms and lingo used in the Substrate and Polkadot codebases, as well as architecture.
 

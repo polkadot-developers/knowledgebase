@@ -1,6 +1,6 @@
 ---
-id: getting-started
 title: Getting Started
+lang: en
 ---
 
 This page has everything you need to get started building with Substrate.
