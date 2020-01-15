@@ -1,5 +1,5 @@
 ---
-title: "Help Translate"
+title: Help Translate
 lang: en
 ---
 
