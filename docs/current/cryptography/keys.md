@@ -1,5 +1,6 @@
 ---
 title: Substrate Keys
+lang: en
 ---
 
 Substrate uses multiple sets of public/private key pairs to represent participants of the network.

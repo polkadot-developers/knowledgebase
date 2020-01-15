@@ -1,5 +1,6 @@
 ---
 title: "Help Translate"
+lang: en
 ---
 
 Substrate is an open source Blockchain framework that is meant to be used by developers around the world. We need **your** help to make this website more friendly for developers of all languages.

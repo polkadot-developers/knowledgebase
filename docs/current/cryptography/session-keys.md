@@ -1,5 +1,6 @@
 ---
 title: Session Keys
+lang: en
 ---
 
 Session keys are used by validators to sign consensus-related messages. `SessionKeys` is a generic, indexable type that is made concrete in the runtime.

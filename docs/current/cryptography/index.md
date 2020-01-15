@@ -1,5 +1,6 @@
 ---
 title: Cryptography
+lang: en
 ---
 
 This document offers a conceptual overview of the cryptography used in Substrate.
