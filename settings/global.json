@@ -6,19 +6,24 @@
 			"zh": "单据"
 		},
 		"get_started": {
-			"en": "Get Started"
+			"en": "Get Started",
+			"zh": "开始吧"
 		},
 		"builders_program": {
-			"en": "Builders Program"
+			"en": "Builders Program",
+			"zh": "建筑商计划"
 		},
 		"collective": {
-			"en": "Collective"
+			"en": "Collective",
+			"zh": "集体"
 		},
 		"features": {
-			"en": "Features"
+			"en": "Features",
+			"zh": "特征"
 		},
 		"tutorials": {
-			"en": "Tutorials"
+			"en": "Tutorials",
+			"zh": "讲解"
 		}
 	}
 }
