@@ -1,6 +1,7 @@
 ---
-title: 概貌
+slug: index
 lang: zh
+title: 概貌
 ---
 
 This page is the top level entry point into the Substrate documentation.

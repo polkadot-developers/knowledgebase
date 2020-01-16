@@ -1,6 +1,7 @@
 ---
-title: Runtime Events
+slug: runtime-events
 lang: en
+title: Runtime Events
 ---
 
 A Substrate runtime module can emit events when it wants to notify external entities about changes or conditions in the runtime to external entities like users, chain explorers, or dApps.

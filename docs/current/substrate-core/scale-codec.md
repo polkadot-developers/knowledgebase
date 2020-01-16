@@ -1,6 +1,7 @@
 ---
-title: SCALE Codec
+slug: scale-codec
 lang: en
+title: SCALE Codec
 ---
 
 The SCALE (Simple Concatenated Aggregate Little-Endian) Codec is a lightweight,

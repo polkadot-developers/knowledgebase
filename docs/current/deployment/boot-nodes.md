@@ -1,6 +1,7 @@
 ---
-title: Boot Nodes
+slug: boot-nodes
 lang: en
+title: Boot Nodes
 ---
 
 * What is a boot node?

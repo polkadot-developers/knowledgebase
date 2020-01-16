@@ -1,6 +1,7 @@
 ---
-title: Chain Specification
+slug: chain-specification
 lang: en
+title: Chain Specification
 ---
 
 A chain specification, or "chain spec", is a collection of configuration information that dictates

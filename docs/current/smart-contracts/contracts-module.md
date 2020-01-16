@@ -1,6 +1,7 @@
 ---
-title: Contracts Module
+slug: contracts-module
 lang: en
+title: Contracts Module
 ---
 
 The [SRML Contracts module](https://substrate.dev/rustdocs/master/pallet_contracts/index.html)

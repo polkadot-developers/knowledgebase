@@ -1,6 +1,7 @@
 ---
-title: Substrate Keys
+slug: substrate-keys
 lang: en
+title: Substrate Keys
 ---
 
 Substrate uses multiple sets of public/private key pairs to represent participants of the network.

@@ -1,6 +1,7 @@
 ---
-title: Storage
+slug: storage
 lang: en
+title: Storage
 ---
 
 Substrate uses a simple key-value data store implemented as a database-backed,

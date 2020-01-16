@@ -1,6 +1,7 @@
 ---
-title: Extrinsics
+slug: extrinsics
 lang: en
+title: Extrinsics
 ---
 
 An extrinsic is a piece of information that comes from outside the chain and is included in a 

@@ -1,6 +1,7 @@
 ---
-title: ink! Concepts
+slug: ink-concepts
 lang: en
+title: ink! Concepts
 ---
 
 ink! is a [Rust](https://www.rust-lang.org/)-based embedded domain specific language

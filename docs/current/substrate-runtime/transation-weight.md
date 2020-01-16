@@ -1,6 +1,7 @@
 ---
-title: Transaction Weight
+slug: transaction-weight
 lang: en
+title: Transaction Weight
 ---
 
 A number of resources in any chain can be limited, such as storage or computation. Weights exist to

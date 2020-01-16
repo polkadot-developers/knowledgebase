@@ -1,6 +1,7 @@
 ---
-title: Account Prefix
+slug: account-prefix
 lang: en
+title: Account Prefix
 ---
 
 * What is an Account Prefix?

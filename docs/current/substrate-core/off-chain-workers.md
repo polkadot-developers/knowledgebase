@@ -1,6 +1,7 @@
 ---
-title: Off-Chain Workers
+slug: off-chain-workers
 lang: en
+title: Off-Chain Workers
 ---
 
 ## Overview

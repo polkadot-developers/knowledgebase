@@ -1,6 +1,7 @@
 ---
-title: EVM Module
+slug: evm-module
 lang: en
+title: EVM Module
 ---
 
 The SRML provides an EVM execution module that allows unmodified EVM code to be executed in a

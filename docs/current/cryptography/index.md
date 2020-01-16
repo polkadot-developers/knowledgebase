@@ -1,6 +1,7 @@
 ---
-title: Cryptography
+slug: index
 lang: en
+title: Cryptography
 ---
 
 This document offers a conceptual overview of the cryptography used in Substrate.

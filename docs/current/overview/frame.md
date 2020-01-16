@@ -1,6 +1,7 @@
 ---
-title: FRAME
+slug: frame
 lang: en
+title: FRAME
 ---
 
 The __Framework for Runtime Aggregation of Modularized Entities (FRAME)__ is a set of modules (called pallets) and support libraries that simplify runtime development. Pallets are individual modules within FRAME that host domain-specific logic.

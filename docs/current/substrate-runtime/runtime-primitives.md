@@ -1,6 +1,7 @@
 ---
-title: Runtime Primitives
+slug: runtime-primitives
 lang: en
+title: Runtime Primitives
 ---
 
 The Substrate runtime is composed with a set of primitive types that are expected by the rest of the

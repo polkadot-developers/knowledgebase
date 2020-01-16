@@ -1,6 +1,7 @@
 ---
-title: Executor
+slug: executor
 lang: en
+title: Executor
 ---
 
 The executor is responsible for dispatching and executing calls into the

@@ -1,6 +1,7 @@
 ---
-title: Polkadot-JS
+slug: polkadot-js
 lang: en
+title: Polkadot-JS
 ---
 
 The Polkadot-JS project is a collection of tools, interfaces, and libraries around Polkadot and Substrate.

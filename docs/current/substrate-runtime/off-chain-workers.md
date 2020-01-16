@@ -1,6 +1,7 @@
 ---
-title: Off-Chain Workers
+slug: off-chain-workers
 lang: en
+title: Off-Chain Workers
 ---
 
 This article covers the technical aspects of using off-chain workers in a Substrate runtime. For a

@@ -1,6 +1,7 @@
 ---
-title: Runtime Tests
+slug: runtime-tests
 lang: en
+title: Runtime Tests
 ---
 
 Runtime tests allow you to verify the logic in your runtime module by mocking a Substrate runtime environment.

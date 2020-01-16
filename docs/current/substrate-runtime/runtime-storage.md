@@ -1,6 +1,7 @@
 ---
-title: Runtime Storage
+slug: runtime-storage
 lang: en
+title: Runtime Storage
 ---
 
 Runtime storage allows you to store data in your blockchain which can be accessed from your runtime logic and persists between blocks.

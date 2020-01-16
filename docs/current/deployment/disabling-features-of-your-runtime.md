@@ -1,6 +1,7 @@
 ---
-title: Disabling Features of Your Runtime
+slug: disabling-features-of-your-runtime
 lang: en
+title: Disabling Features of Your Runtime
 ---
 
 * Why would I want to initially disable some features of my runtime?

@@ -1,6 +1,7 @@
 ---
-title: Runtime Execution
+slug: runtime-execution
 lang: en
+title: Runtime Execution
 ---
 
 The execution of the Substrate runtime is orchestrated by the Executive module in the Substrate Runtime Module Library (SRML).

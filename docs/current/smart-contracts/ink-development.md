@@ -1,6 +1,7 @@
 ---
-title: ink! Development
+slug: ink-development
 lang: en
+title: ink! Development
 ---
 
 ink! is a [Rust](https://www.rust-lang.org/)-based embedded domain specific language

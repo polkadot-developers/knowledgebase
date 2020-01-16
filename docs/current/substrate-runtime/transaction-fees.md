@@ -1,6 +1,7 @@
 ---
-title: Transaction Fees
+slug: transaction-fees
 lang: en
+title: Transaction Fees
 ---
 
 When transactions are submitted to a blockchain, they are executed by the nodes in the network. To

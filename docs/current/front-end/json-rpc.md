@@ -1,6 +1,7 @@
 ---
-title: JSON RPC
+slug: json-rpc
 lang: en
+title: JSON RPC
 ---
 
 * How to I interact with Substrate from the JSON RPC?

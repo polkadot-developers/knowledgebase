@@ -1,6 +1,7 @@
 ---
-title: Consensus
+slug: consensus
 lang: en
+title: Consensus
 ---
 
 Blockchain nodes use consensus engines to agree on the blockchain's state. This article covers the

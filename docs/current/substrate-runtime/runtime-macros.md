@@ -1,6 +1,7 @@
 ---
-title: Runtime Macros
+slug: runtime-macros
 lang: en
+title: Runtime Macros
 ---
 
 The Substrate runtime macros are a set of utilities which make the development of runtime modules simpler for you.
