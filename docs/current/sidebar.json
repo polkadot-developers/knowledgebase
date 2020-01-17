@@ -4,7 +4,7 @@
 	"menu": [
 		{
 			"title": "Overview",
-			"slug:": "overview",
+			"slug": "overview",
 			"menu_items": [
 				{ "title": "Overview", "slug": "index" },
 				{ "title": "Getting Started", "slug": "getting-started" },
@@ -14,7 +14,7 @@
 		},
 		{
 			"title": "Substrate Core",
-			"slug:": "substrate-core",
+			"slug": "substrate-core",
 			"menu_items": [
 				{ "title": "SCALE Codec", "slug": "scale-codec" },
 				{ "title": "Consensus", "slug": "consensus" },
