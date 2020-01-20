@@ -1,5 +1,7 @@
 ---
 title: Introduction
+slug: index
+lang: en
 ---
 
 In this tutorial, you will learn to create a custom ["Proof Of

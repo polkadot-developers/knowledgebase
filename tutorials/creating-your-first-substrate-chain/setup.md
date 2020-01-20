@@ -1,5 +1,7 @@
 ---
 title: Set Up Your Computer
+slug: setup
+lang: en
 ---
 
 Normally we would teach you more about the Substrate blockchain development framework and the Proof

@@ -1,5 +1,7 @@
 ---
 title: Interacting with Your Node
+slug: interact
+lang: en
 ---
 
 Now that your node has finished compiling, let's show you how everything works out of the box.

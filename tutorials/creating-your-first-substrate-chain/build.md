@@ -1,5 +1,7 @@
 ---
 title: Building a Custom Pallet
+slug: build
+lang: en
 ---
 
 We will now modify the `substrate-node-template` to introduce the basic functionality of a Proof Of

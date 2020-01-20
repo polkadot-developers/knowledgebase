@@ -1,5 +1,7 @@
 ---
 title: Background Information
+slug: learn
+lang: en
 ---
 
 In this section we will teach you about the Substrate blockchain development framework.

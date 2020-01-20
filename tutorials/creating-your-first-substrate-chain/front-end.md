@@ -1,5 +1,7 @@
 ---
 title: Building a Custom Front End
+slug: front-end
+lang: en
 ---
 
 This tutorial is not really about writing user interfaces, but we do want to show you how easy it
