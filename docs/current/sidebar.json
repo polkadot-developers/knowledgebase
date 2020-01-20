@@ -3,14 +3,18 @@
 	"slug": "sidebar",
 	"menu": [
 		{
-			"title": "Overview",
-			"slug": "overview",
+			"title": "Getting Started",
+			"slug": "getting-started",
 			"menu_items": [
 				{ "title": "Overview", "slug": "index" },
-				{ "title": "Getting Started", "slug": "getting-started" },
 				{ "title": "FRAME", "slug": "frame" },
 				{ "title": "Glossary", "slug": "glossary" }
 			]
+		},
+		{
+			"title": "Frame",
+			"slug": "frame",
+			"menu_items": [ { "title": "FRAME", "slug": "frame" } ]
 		},
 		{
 			"title": "Substrate Core",
