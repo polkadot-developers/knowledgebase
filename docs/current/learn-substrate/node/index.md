@@ -1,5 +1,5 @@
 ---
-slug: extrinsics
+slug: index
 lang: en
 title: Extrinsics
 ---
