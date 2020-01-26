@@ -16,8 +16,7 @@
 			"menu_items": [
 				{ "title": "Node", "slug": "node" },
 				{ "title": "Runtime", "slug": "runtime" },
-				{ "title": "Smart Contracts", "slug": "smart-contracts" },
-				{ "title": "Core", "slug": "core" }
+				{ "title": "Smart Contracts", "slug": "smart-contracts" }
 			]
 		},
 		{
