@@ -1,4 +1,6 @@
 ---
+lang: en
+slug: compile
 title: Compiling the Tools
 ---
 

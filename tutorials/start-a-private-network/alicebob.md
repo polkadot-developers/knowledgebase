@@ -1,5 +1,8 @@
 ---
+lang: en
+slug: alicebob
 title: Alice and Bob Start Blockchain
+
 ---
 
 Before we generate our own keys, and start a truly unique Substrate network, let's learn the fundamentals by starting with a pre-defined network specification called `local` with two pre-defined (and definitely not private!) keys known as Alice and Bob.

@@ -1,4 +1,6 @@
 ---
+lang: en
+slug: customchain
 title: Creating Your Private Network
 ---
 Now that each participant has their own keys generated, you're ready to start your own custom chain.

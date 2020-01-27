@@ -1,5 +1,7 @@
 ---
-title: "Start a Private Network"
+lang: en
+slug: index
+title: Start a Private Network
 ---
 
 In this tutorial we will learn and practice how to start a blockchain network with a validator/authority set of your choosing using Substrate.

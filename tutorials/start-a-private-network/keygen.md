@@ -1,4 +1,6 @@
 ---
+lang: en
+slug: keygen
 title: Generate Your Own Keys
 ---
 
