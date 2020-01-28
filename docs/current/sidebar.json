@@ -34,11 +34,6 @@
 				{ "title": "Off-Chain Workers", "slug": "off-chain-workers" },
 				{ "title": "Storage", "slug": "storage" }
 			]
-		},
-		{
-			"title": "Contribute",
-			"slug": "contribute",
-			"menu_items": [ { "title": "Help Translate", "slug": "help-translate" } ]
 		}
 	]
 }
