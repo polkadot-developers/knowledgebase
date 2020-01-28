@@ -1,6 +1,10 @@
 {
 	"languages": [ "en", "zh" ],
 	"strings": {
+		"home": {
+			"en": "Home",
+			"zh": "家"
+		},
 		"docs": {
 			"en": "Docs",
 			"zh": "单据"
