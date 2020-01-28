@@ -1,8 +1,10 @@
 ---
 slug: index
 lang: en
-title: Extrinsics
+title: Node
 ---
+
+## Extrinsics
 
 An extrinsic is a piece of information that comes from outside the chain and is included in a 
 block. Extrinsics fall into three categories: inherents, signed transactions, and unsigned 
