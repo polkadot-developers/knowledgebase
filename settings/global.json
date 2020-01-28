@@ -1,33 +1,33 @@
 {
 	"languages": [ "en", "zh" ],
-	"strings": {
-		"home": {
-			"en": "Home",
-			"zh": "家"
+	"strings": [
+		{
+			"string": "Home",
+			"translations": [ { "lang": "zh", "string": "家" } ]
 		},
-		"docs": {
-			"en": "Docs",
-			"zh": "单据"
+		{
+			"string": "Docs",
+			"translations": [ { "lang": "zh", "string": "单据" } ]
 		},
-		"get_started": {
-			"en": "Get Started",
-			"zh": "开始吧"
+		{
+			"string": "Get Started",
+			"translations": [ { "lang": "zh", "string": "开始吧" } ]
 		},
-		"builders_program": {
-			"en": "Builders Program",
-			"zh": "建筑商计划"
+		{
+			"string": "Builders Program",
+			"translations": [ { "lang": "zh", "string": "建筑商计划" } ]
 		},
-		"collective": {
-			"en": "Collective",
-			"zh": "集体"
+		{
+			"string": "Collective",
+			"translations": [ { "lang": "zh", "string": "集体" } ]
 		},
-		"features": {
-			"en": "Features",
-			"zh": "特征"
+		{
+			"string": "Features",
+			"translations": [ { "lang": "zh", "string": "特征" } ]
 		},
-		"tutorials": {
-			"en": "Tutorials",
-			"zh": "讲解"
+		{
+			"string": "Tutorials",
+			"translations": [ { "lang": "zh", "string": "讲解" } ]
 		}
-	}
+	]
 }
