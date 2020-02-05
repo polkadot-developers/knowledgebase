@@ -28,6 +28,10 @@
 		{
 			"string": "Tutorials",
 			"translations": [ { "lang": "zh", "string": "讲解" } ]
+		},
+		{
+			"string": "Marketplace",
+			"translations": [ { "lang": "zh", "string": "市场" } ]
 		}
 	]
 }
