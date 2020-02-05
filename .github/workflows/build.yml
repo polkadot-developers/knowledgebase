@@ -1,0 +1,20 @@
+name: Build App
+
+on: 
+  push:
+    branches: 
+      - master
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Run a one-line script
+      uses: peter-evans/repository-dispatch@v1
+      with:
+        token: ${{ secrets.ACCESS_TOKEN }}
+        repository: substrate-developer-hub/substrate.io
+        event-type: content-update
+        client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
