@@ -1,4 +1,12 @@
 {
 	"lang": "en",
-	"items": [ "creating-your-first-substrate-chain", "start-a-private-network" ]
+	"slug": "videos",
+	"items": [
+		{
+			"title": "My Video",
+			"slug": "my-video",
+			"url": "https://www.youtube.com/watch?v=tRiQd1tcSy4",
+			"description": "Welcome to Blue. This performance uses samples from the Moog One and Prophet X recorded to cassette tape. On top of that, I'm playing the Korg Minilogue XD for the bass and poly synth melodies. Hope you like the vibe! Let me know if you have any questions. Using Ableton Live and a Native Instruments Maschine MK3 controller."
+		}
+	]
 }
