@@ -24,9 +24,9 @@ Install the [Homebrew package manager](https://brew.sh/), then run:
 brew install openssl cmake llvm
 ```
 
-## Install
+## Install Dependencies
 
-Install Substrate and all it's required dependencies with a single command. (Be patient, this can take up to 30 minutes)
+Install all the required dependencies with a single command. (Be patient, this can take up to 30 minutes)
 
 ```bash
 curl https://getsubstrate.io -sSf | bash -s -- --fast
