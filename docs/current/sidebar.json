@@ -25,8 +25,8 @@
 			"menu_items": [ { "title": "Tools", "slug": "tools" }, { "title": "Front End", "slug": "front-end" } ]
 		},
 		{
-			"title": "Substrate Core",
-			"slug": "substrate-core",
+			"title": "Advanced",
+			"slug": "advanced",
 			"menu_items": [
 				{ "title": "SCALE Codec", "slug": "scale-codec" },
 				{ "title": "Consensus", "slug": "consensus" },
