@@ -15,6 +15,6 @@ jobs:
       uses: peter-evans/repository-dispatch@v1
       with:
         token: ${{ secrets.ACCESS_TOKEN }}
-        repository: substrate-developer-hub/substrate.io
+        repository: paritytech/substrate.io
         event-type: content-update
         client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
