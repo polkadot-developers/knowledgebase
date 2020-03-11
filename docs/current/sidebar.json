@@ -18,7 +18,8 @@
 				{ "title": "Runtime", "slug": "runtime" },
 				{ "title": "Smart Contracts", "slug": "smart-contracts" },
 				{ "title": "Crypotography", "slug": "cryptography" },
-				{ "title": "Deployment", "slug": "deplopyment" }
+				{ "title": "Deployment", "slug": "deployment" },
+				{ "title": "Glossary", "slug": "glossary" }
 			]
 		},
 		{
