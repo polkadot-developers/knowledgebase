@@ -4,7 +4,6 @@ lang: en
 title: Getting Started on Windows
 ---
 
-
 If you are trying to set up a Windows computer to build Substrate, do the following:
 
 1. Download and install "Build Tools for Visual Studio:"
