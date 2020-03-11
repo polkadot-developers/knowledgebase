@@ -1,7 +1,7 @@
 ---
 slug: glossary
 lang: en
-title: Glossary
+title: Different name
 ---
 Glossary (alphabetical) of terms and lingo used in the Substrate and Polkadot codebases, as well as architecture.
 
