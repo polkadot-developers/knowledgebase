@@ -1,0 +1,15 @@
+{
+	"lang": "en",
+	"slug": "menu",
+	"title": "Front End",
+	"menu": [
+		{
+			"title": "Front End",
+			"slug": "index"
+		},
+		{
+			"title": "JSON RPC",
+			"slug": "json-prc"
+		}
+	]
+}
