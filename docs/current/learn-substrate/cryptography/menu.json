@@ -1,0 +1,23 @@
+{
+  "lang": "en",
+  "slug": "menu",
+  "title": "Cryptography",
+  "menu": [
+    {
+      "title": "Overview",
+      "slug": "index"
+    },
+    {
+      "title": "Substrate Keys",
+      "slug": "substrate-keys"
+    },
+    {
+      "title": "Session Keys",
+      "slug": "session-keys"
+    },
+    {
+      "title": "SS58 Address Format",
+      "slug": "address-format"
+    }
+  ]
+}
