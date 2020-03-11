@@ -38,6 +38,10 @@
 		{
 			"title": "Tests",
 			"slug": "runtime-tests"
+		},
+		{
+			"title": "Frame",
+			"slug": "frame"
 		}
 	]
 }
