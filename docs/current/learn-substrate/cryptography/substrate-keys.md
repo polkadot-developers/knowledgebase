@@ -104,7 +104,7 @@ security.
 
 ### Learn More
 
-* Learn about the [cryptography used within Substrate](conceptual/cryptography/index.md).
+* Learn about the [cryptography used within Substrate](docs/pre-2.0/learn-substrate/cryptography/index).
 
 ### Examples
 

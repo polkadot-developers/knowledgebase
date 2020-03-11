@@ -8,6 +8,4 @@ SS58 is a simple address format designed for Substrate based chains. There's no 
 
 The basic idea is a base-58 encoded value that can identify a specific account on the Substrate chain. Different chains have different means of identifying accounts. SS58 is designed to be extensible for this reason.
 
-The living specification for the SS-58 address format can be found on the Substrate GitHub wiki:
-
-https://github.com/paritytech/substrate/wiki/External-Address-Format-(SS58)
+The living specification for the SS-58 address format can be found on [this Substrate GitHub wiki](https://github.com/paritytech/substrate/wiki/External-Address-Format-(SS58)).
