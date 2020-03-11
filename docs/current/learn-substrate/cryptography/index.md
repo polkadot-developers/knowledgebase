@@ -80,7 +80,7 @@ but only ECDSA signatures communicate their public key.
 
 ### Learn More
 
-* Learn about the [Substrate keys](learn-substrate/cryptography/substrate-keys).
+* Learn about the [Substrate keys](cryptography/substrate-keys).
 
 * For more detailed descriptions, please see the more advanced [research
   wiki](https://research.web3.foundation).
