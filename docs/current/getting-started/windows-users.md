@@ -33,15 +33,9 @@ If you are trying to set up a Windows computer to build Substrate, do the follow
     rustup target add wasm32-unknown-unknown --toolchain nightly
     ```
 
-4. Install `wasm-gc`, which is used to slim down Wasm files:
+4. Install LLVM: https://releases.llvm.org/download.html
 
-    ```bash
-    cargo install --git https://github.com/alexcrichton/wasm-gc --force
-    ```
-
-5. Install LLVM: https://releases.llvm.org/download.html
-
-6. Install OpenSSL with `vcpkg`:
+5. Install OpenSSL with `vcpkg`:
 
     ```bash
     mkdir C:\Tools
@@ -52,7 +46,7 @@ If you are trying to set up a Windows computer to build Substrate, do the follow
     .\vcpkg.exe install openssl:x64-windows-static
     ```
 
-7. Add OpenSSL to your System Variables using PowerShell:
+6. Add OpenSSL to your System Variables using PowerShell:
 
     ```powershell
     $env:OPENSSL_DIR = 'C:\Tools\vcpkg\installed\x64-windows-static'
@@ -61,6 +55,6 @@ If you are trying to set up a Windows computer to build Substrate, do the follow
     [System.Environment]::SetEnvironmentVariable('OPENSSL_STATIC', $env:OPENSSL_STATIC, [System.EnvironmentVariableTarget]::User)
     ```
 
-8. Finally, install `cmake`: https://cmake.org/download/
+7. Finally, install `cmake`: https://cmake.org/download/
 
 You can now jump back to [Get the Source](#get-the-source) to learn how to download and compile Substrate!
