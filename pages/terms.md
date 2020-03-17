@@ -108,32 +108,32 @@ You may use our site only for lawful purposes and in accordance with the terms a
 
 You agree:
 
-        - not to use our site in any unlawful manner, for any unlawful purpose or in any manner inconsistent with these terms of use;
-        - not to infringe our intellectual property rights or those of any third party in relation to your use of our site or any part of it (to the extent that such use is not licensed under these terms);
-        - not to transmit any material that is defamatory, offensive or otherwise objectionable in relation to your use of our site;
-        - not to use our site by automated means or otherwise for the purposes of scraping, extracting or otherwise obtaining any material from our site for use within a third party website or application; 
-        - not to collect or harvest any information or data from our systems or attempt to decipher any transmission to or from the servers running our site;
-        - not to copy, or otherwise reproduce or re-sell any part of our site unless expressly permitted to do so in these terms; 
-        - not to access, query or search our site with any automated system, other than through our published interfaces and pursuant to their applicable terms; and
-        - not to create multiple accounts to evade punishment or avoid restrictions.
+- not to use our site in any unlawful manner, for any unlawful purpose or in any manner inconsistent with these terms of use;
+- not to infringe our intellectual property rights or those of any third party in relation to your use of our site or any part of it (to the extent that such use is not licensed under these terms);
+- not to transmit any material that is defamatory, offensive or otherwise objectionable in relation to your use of our site;
+- not to use our site by automated means or otherwise for the purposes of scraping, extracting or otherwise obtaining any material from our site for use within a third party website or application; 
+- not to collect or harvest any information or data from our systems or attempt to decipher any transmission to or from the servers running our site;
+- not to copy, or otherwise reproduce or re-sell any part of our site unless expressly permitted to do so in these terms; 
+- not to access, query or search our site with any automated system, other than through our published interfaces and pursuant to their applicable terms; and
+- not to create multiple accounts to evade punishment or avoid restrictions.
 
 User Generated Content
 
 If it is the case that you supply/upload any user generated content to our site – whether it be pictures, text, sound recordings or whatever – the content you supply must comply with the following rules:
 
-        - it must not be obscene, abusive, offensive or racist and it must not promote or propose hatred or physical harm against anyone;
-        - it must not harass, bully, insult or intimidate another person;
-        - it must be true and honest so far as you know;
-        - it must not constitute pornography or be sexual or sexually suggestive involving minors;
-        - it must not be defamatory of anyone;
-        - it must not use the material or content or infringe the rights or privacy of anyone else; for example you should not use images of well-known characters, footage or music (unless it is your own or you have demonstrable legal rights to do so);
-        - it must not contain someone else’s personal details or confidential information relating to other people; 
-        - it must not promote discrimination, whether based on race, sex, religion, nationality, disability, sexual orientation or age;
-        - it must not promote or condone terrorism, violence or illegal behaviour;
-        - it must not be harmful to minors in any way;
-        - it must not promote any illegal activity or otherwise be unlawful;
-        - it must not impersonate any person, or misrepresent your identity or affiliation with any person; and
-        - it must not give the impression that it emanates from or is endorsed by Parity, if this is not the case.
+- it must not be obscene, abusive, offensive or racist and it must not promote or propose hatred or physical harm against anyone;
+- it must not harass, bully, insult or intimidate another person;
+- it must be true and honest so far as you know;
+- it must not constitute pornography or be sexual or sexually suggestive involving minors;
+- it must not be defamatory of anyone;
+- it must not use the material or content or infringe the rights or privacy of anyone else; for example you should not use images of well-known characters, footage or music (unless it is your own or you have demonstrable legal rights to do so);
+- it must not contain someone else’s personal details or confidential information relating to other people; 
+- it must not promote discrimination, whether based on race, sex, religion, nationality, disability, sexual orientation or age;
+- it must not promote or condone terrorism, violence or illegal behaviour;
+- it must not be harmful to minors in any way;
+- it must not promote any illegal activity or otherwise be unlawful;
+- it must not impersonate any person, or misrepresent your identity or affiliation with any person; and
+- it must not give the impression that it emanates from or is endorsed by Parity, if this is not the case.
 
 We reserve the right to refuse to accept or refuse or cease to use any user generated content supplied by any person that we think contravenes these terms or otherwise may create liability for Parity. 
 
@@ -177,9 +177,9 @@ We have no control over the contents of those sites or resources and suggest tha
 
 Nothing in these terms excludes or limits our liability for:
 
-        - death or personal injury caused by our negligence;
-        - fraud or fraudulent misrepresentation; and
-        - any matter in respect of which it would be unlawful for us to exclude or restrict our liability.
+- death or personal injury caused by our negligence;
+- fraud or fraudulent misrepresentation; and
+- any matter in respect of which it would be unlawful for us to exclude or restrict our liability.
     - We assume no responsibility for the content of websites, web applications or mobile applications linked to from our site (including links to any third party browser extensions providing voting functionality or notification facilities or links to our commercial sponsors and partners). Such links should not be interpreted as endorsement by us of those linked websites or mobile applications. We will not be liable for any loss or damage that may arise from your use of them.
     - We make no representations about the reliability, availability, timeliness or accuracy of the content included on our site and we exclude all conditions, warranties, or other terms which may apply to our sites or any content on them, whether express or implied.
     - We will not be liable for any loss or damage caused by a virus, distributed denial-of-service attack, or other technologically harmful material that may infect your computer equipment, computer programs, data or other proprietary material due to your use of our sites or to your downloading of any content on them, or on any website linked to them.
@@ -189,9 +189,8 @@ Nothing in these terms excludes or limits our liability for:
 
 If you are acting for purposes relating to your trade, business, craft or profession, then:
 
-        - you agree to use our site for internal purposes only and in no event shall we be liable to you for any loss of profits, loss of revenue, loss of contracts, failure to realise anticipated savings or for any indirect or consequential loss, whether arising from negligence, breach of contract or otherwise; and
-        - our total liability to you for any loss or damage arising out of or in connection with these terms, whether in contract (including under any indemnity), tort (including negligence) or otherwise shall be limited to £100. 
-        - 
+- you agree to use our site for internal purposes only and in no event shall we be liable to you for any loss of profits, loss of revenue, loss of contracts, failure to realise anticipated savings or for any indirect or consequential loss, whether arising from negligence, breach of contract or otherwise; and
+- our total liability to you for any loss or damage arising out of or in connection with these terms, whether in contract (including under any indemnity), tort (including negligence) or otherwise shall be limited to £100. 
 
 You shall indemnify and hold us harmless against any losses, costs, liabilities and expenses suffered or incurred by us and/or our affiliates as a result of any breach of these terms. 
 
@@ -200,10 +199,10 @@ You shall indemnify and hold us harmless against any losses, costs, liabilities 
 
 If you are acting for purposes that are wholly or mainly outside your trade, business, craft or profession then
 
-        - If we fail to comply with these terms, we are responsible for loss or damage you suffer that is a foreseeable result of our breach of these terms  or our negligence, but we are not responsible for any loss or damage that is not foreseeable. Loss or damage is foreseeable if it was an obvious consequence of our breach or if it was contemplated by you and us at the time that you accessed our site.
-        - Our total liability to you for any loss or damage arising out of or in connection with these terms, whether in contract (including under any indemnity), tort (including negligence) or otherwise shall be limited to £100. 
-        - Nothing in these terms affects your statutory rights. Advice about your statutory rights is available from your local Citizens' Advice Bureau or Trading Standards Office.
-        - You agree not to use our site, or any content on our site, for any commercial or business purposes and we have no liability to you for any loss of profit, loss of business, business interruption, or loss of business opportunity.
+- If we fail to comply with these terms, we are responsible for loss or damage you suffer that is a foreseeable result of our breach of these terms  or our negligence, but we are not responsible for any loss or damage that is not foreseeable. Loss or damage is foreseeable if it was an obvious consequence of our breach or if it was contemplated by you and us at the time that you accessed our site.
+- Our total liability to you for any loss or damage arising out of or in connection with these terms, whether in contract (including under any indemnity), tort (including negligence) or otherwise shall be limited to £100. 
+- Nothing in these terms affects your statutory rights. Advice about your statutory rights is available from your local Citizens' Advice Bureau or Trading Standards Office.
+- You agree not to use our site, or any content on our site, for any commercial or business purposes and we have no liability to you for any loss of profit, loss of business, business interruption, or loss of business opportunity.
 
 
 ## Applicable law
@@ -214,12 +213,14 @@ If you are a business, these terms of use, its subject matter and its formation 
 
 
 ----------
+
 ## Contact us
 
 To contact us, please email admin@parity.io.
 
 
 ----------
+
 ## Statutory information
 
 Statutory information about Parity Technologies Limited:
