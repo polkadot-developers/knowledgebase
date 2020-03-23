@@ -1,0 +1,19 @@
+{
+	"lang": "en",
+	"slug": "menu",
+	"title": "Front End",
+	"menu": [
+		{
+			"title": "Front-End Template",
+			"slug": "index"
+		},
+		{
+			"title": "Polkadot JS",
+			"slug": "polkadot-js"
+		},
+		{
+			"title": "JSON RPC",
+			"slug": "json-prc"
+		}
+	]
+}

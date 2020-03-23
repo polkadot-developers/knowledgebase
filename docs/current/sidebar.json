@@ -1,0 +1,43 @@
+{
+	"lang": "en",
+	"slug": "sidebar",
+	"menu": [
+		{
+			"title": "Getting Started",
+			"slug": "getting-started",
+			"menu_items": [
+				{ "title": "Installation", "slug": "index" },
+				{ "title": "Windows Users", "slug": "windows-users" }
+			]
+		},
+		{
+			"title": "Learn Substrate",
+			"slug": "learn-substrate",
+			"menu_items": [
+				{ "title": "Node", "slug": "node" },
+				{ "title": "Runtime", "slug": "runtime" },
+				{ "title": "Smart Contracts", "slug": "smart-contracts" },
+				{ "title": "Cryptography", "slug": "cryptography" },
+				{ "title": "Deployment", "slug": "deployment" },
+				{ "title": "Glossary", "slug": "glossary" }
+			]
+		},
+		{
+			"title": "Integrate",
+			"slug": "integrate",
+			"menu_items": [ { "title": "Tools", "slug": "tools" }, { "title": "Front End", "slug": "front-end" } ]
+		},
+		{
+			"title": "Advanced",
+			"slug": "advanced",
+			"menu_items": [
+				{ "title": "SCALE Codec", "slug": "scale-codec" },
+				{ "title": "Consensus", "slug": "consensus" },
+				{ "title": "Executor", "slug": "executor" },
+				{ "title": "Off-Chain Workers", "slug": "off-chain-workers" },
+				{ "title": "Storage", "slug": "storage" },
+				{ "title": "TX Pool", "slug": "tx-pool" }
+			]
+		}
+	]
+}
