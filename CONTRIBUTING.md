@@ -5,8 +5,6 @@ guidelines.
 
 * [PR Checklist](#pr-checklist)
 * [Documentation Standards](#documentation-standards)
-* [Documentation Types](#documentation-types)
-* [Documentation Comments](#documentation-comments)
 * [Documentation Style](#documentation-style)
 
 ## PR Checklist
