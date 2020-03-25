@@ -40,6 +40,10 @@
 			"slug": "runtime-tests"
 		},
 		{
+			"title": "Debugging",
+			"slug": "debugging"
+		},
+		{
 			"title": "Frame",
 			"slug": "frame"
 		}
