@@ -12,14 +12,14 @@ guidelines.
 - [ ] Are the audience and objective of the document clear? E.g. a document for developers that 
   should teach them about transaction fees.
 - [ ] Is the writing:
-  - **Clear**: No jargon
+  - **Clear**: All jargon defined, explained, or linked to. Best to avoid it.
   - **Precise**: No ambiguous meanings
   - **Concise**: Free of superfluous detail
 - [ ] Does it follow our [style guide](#documentation-style)?
 - [ ] If this is a new page, does the PR include the appropriate infrastructure, e.g. adding the
   page to a sidebar?
 - [ ] Build the page. Does it render properly? E.g. no funny lists or formatting.
-- [ ] Do links go to rustdocs or devhub articles rather than code?
+- [ ] Links should go to rustdocs or devhub articles, not source code.
 - [ ] If this PR addresses an issue in the queue, have you referenced it in the description?
 
 ## Documentation Standards
@@ -47,7 +47,7 @@ specific activities, such as testing, getting started, or by workflow topic.
 Document protocols, introduce essential concepts, and explain how everything fits together.
 
 - Conventions: e.g. this document about documentation, code style
-- System Design: e.g. network stack, consensus, runtime, assumptions
+- System Design: e.g. subsystems, consensus, runtime, block format, assumptions
 - APIs: e.g. JSON-RPC, runtime functions
 - Protocols: e.g. schemas, encodings, configuration files
 - Tools: e.g. `subkey`, `build-spec`, `purge-chain`
@@ -80,11 +80,11 @@ to be clear and concise while allowing users to easily find necessary informatio
 
 These are general style guidelines that can help create clearer documentation:
 
-- **Write in plain U.S. English.** You should write in plain U.S. English and try to avoid over-complicated words when you describe something.
+- **Write in plain U.S. English.** You should write in plain U.S. English and try to avoid 
+  complicated words when you describe something.
 
 - **Avoid using pronouns such as "I" or "we".** These can be quite ambiguous when someone reads the
-  documentation. It is better to say "You should do…." instead of "We recommend that you do….". It
-  is OK to use "you" as this allows the documentation to speak to a user.
+  documentation. It is OK to use "you" as this allows the documentation to speak to a user.
 
 - **Know your relative pronouns.**
 
@@ -155,7 +155,7 @@ These are general style guidelines that can help create clearer documentation:
   the side of re-writing the noun. Example: "The cat crept down the stairs towards the mouse, and 
   it shrieked." The cat or the mouse?
 
-- **Keep sentences fairly short and concrete.** Using punctuation allows your reader to follow
+- **Keep sentences short and concrete.** Using punctuation allows your reader to follow
   instructions or concepts. If by the time you read the last word of your sentence, you can't
   remember how the sentence started, it is probably too long. Also, short sentences are much easier
   to translate correctly.
