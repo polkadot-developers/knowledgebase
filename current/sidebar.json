@@ -25,7 +25,10 @@
 		{
 			"title": "Integrate",
 			"slug": "integrate",
-			"menu_items": [ { "title": "Tools", "slug": "tools" }, { "title": "Front End", "slug": "front-end" } ]
+			"menu_items": [
+				{ "title": "Tools", "slug": "tools" },
+				{ "title": "Front End", "slug": "front-end" }
+			]
 		},
 		{
 			"title": "Advanced",
