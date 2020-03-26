@@ -2,16 +2,14 @@
 title: Runtime Execution
 ---
 
-The execution of the Substrate runtime is orchestrated by the Executive module in the Substrate Runtime Module Library (SRML).
+The execution of the Substrate runtime is orchestrated by the Executive module.
 
-Unlike the other modules in the SRML, this is not a _runtime_ module, but just a normal Rust module which calls into the various runtime modules included in your blockchain.
+Unlike the other modules within FRAME, this is not a _runtime_ module, but just a normal Rust module that calls into the various runtime modules included in your blockchain.
 
 The Executive module exposes the `execute_block` function that:
 
 * [Initializes the block](#initializing-a-block).
-
 * [Executes extrinsics](#executing-extrinsics).
-
 * [Finalizes the block](#finalizing-a-block).
 
 ## Validating Transactions

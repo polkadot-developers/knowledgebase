@@ -9,11 +9,8 @@ Runtime storage allows you to store data in your blockchain which can be accesse
 Your runtime module has access to Substrate storage APIs which allows you to easily store common storage items:
 
 * [Storage Value](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageValue.html) - A single value.
-
 * [Storage Map](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageMap.html) - A key-value hash map.
-
 * [Storage Linked Map](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageLinkedMap.html) - Similar to a storage map, but allows enumeration of the stored elements.
-
 * [Storage Double Map](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageDoubleMap.html) - An implementation of a map with two keys.
 
 Any value which can be encoded by the [Parity SCALE codec](conceptual/core/codec.md) is supported by these storage APIs.

@@ -1,12 +1,12 @@
 ---
-title: Overview
+title: Pallets
 ---
 
 This document is a top-level entry point to documentation related to developing runtime modules for Substrate.
 
 These documents are written for a technical audience, who is familiar with the Rust programming language.
 
-If you are getting started with Substrate runtime development for the first time, we suggest you try our introductory tutorial for [creating your first Substrate chain]( TODO ).
+If you are getting started with Substrate runtime development for the first time, we suggest you try our introductory tutorial for [creating your first Substrate chain](https://substrate.dev/docs/en/next/tutorials/creating-your-first-substrate-chain/).
 
 ## What is a Pallet?
 
