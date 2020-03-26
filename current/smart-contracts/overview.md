@@ -13,13 +13,13 @@ be added to your Substrate runtime.
 
 ### Contracts Module
 
-The [SRML Contracts module](conceptual/runtime/contracts/contracts_module.md) provides functionality
+The [SRML Contracts module](/current/smart-contracts/contracts-pallet.md) provides functionality
 for the runtime to deploy and execute WebAssembly smart-contracts. It is designed to iterate on the
 design of modern smart contract platforms.
 
 ### EVM Module
 
-The [SRML EVM module](conceptual/runtime/contracts/evm_module.md) provides an EVM execution
+The [SRML EVM module](/current/smart-contracts/evm-pallet.md) provides an EVM execution
 environment that allows unmodified EVM code to be executed in a Substrate-based blockchain. It is
 designed to most closely emulate the functionality of executing contracts on the Ethereum mainnet
 within the Substrate runtime.
@@ -36,9 +36,7 @@ existing systems to work on a Substrate based chain.
 
 ### ink!
 
-[ink!](conceptual/runtime/contracts/ink.md) is a Rust-based eDSL for writing Wasm smart contracts
-specifically for the [SRML Contracts module](#contracts-module). It is designed for correctness, conciseness and
-efficiency.
+[ink!](/current/smart-contracts/ink-fundamentals.md) is a Rust-based eDSL for writing Wasm smart contracts specifically for the [Contracts module](#contracts-module). It is designed for correctness, conciseness and efficiency.
 
 ## Smart Contracts vs Runtime Modules
 
@@ -175,23 +173,21 @@ influence your decision on the kinds of situations you may want to use these dif
 
 ### Learn More
 
-- See how Substrate is iterating on smart contract blockchains with the [SRML Contracts
-  module](conceptual/runtime/contracts/contracts_module.md).
-- Investigate the [SRML EVM module](conceptual/runtime/contracts/evm_module.md) to see if it is what
+- See how Substrate is iterating on smart contract blockchains with the [Contracts
+  pallet](/current/smart-contracts/contracts-pallet.md).
+- Investigate the [EVM pallet](/current/smart-contracts/evm-pallet.md) to see if it is what
   you need for your next project.
-- Read about the [ink! smart contract language](conceptual/runtime/contracts/ink.md).
+- Read about the [ink! smart contract language](/current/smart-contracts/ink-fundamentals.md).
 
 ### Examples
 
 - Follow a [tutorial to add a runtime module to your Substrate
   runtime](tutorials/adding-a-module-to-your-runtime.md).
 - Learn how to [start developing with the SRML Contracts module and
-  ink!](development/contracts/ink.md).
+  ink!](/current/smart-contracts/ink-development.md).
 
 ### References
 
-- Visit the reference docs for the [Contracts module](https://substrate.dev/rustdocs/master/pallet_contracts/index.html).
-
-- Visit the reference docs for the [EVM module](https://substrate.dev/rustdocs/master/pallet_evm/index.html).
-
+- Visit the reference docs for the [Contracts pallet](https://substrate.dev/rustdocs/master/pallet_contracts/index.html).
+- Visit the reference docs for the [EVM pallet](https://substrate.dev/rustdocs/master/pallet_evm/index.html).
 - Take a look at the [repository for ink!](https://github.com/paritytech/ink).

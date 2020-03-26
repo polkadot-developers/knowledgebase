@@ -36,17 +36,20 @@ However, if you are interested in learning more details about what exactly the m
 
 ### Learn More
 
-* Learn how to use the [`decl_module` macro](development/module/declaration.md).
-* Learn how to use the [`decl_storage` macro](development/module/storage.md).
-* Learn how to use the [`decl_event` macro](development/module/events.md).
+* Learn how to use the [`decl_storage` macro](/current/runtime/storage.md).
+* Learn how to use the [`decl_event` macro](/current/runtime/events.md).
 
 ### Examples
 
-View our most [simple Substrate runtime](development/module/index.md) to see all these macros interact with one another.
+View our most [simple Substrate runtime](/current/runtime/index.md) to see all these macros interact with one another.
 
 ### References
 
-* Visit the reference docs for the [`decl_module!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.decl_module.html).
-* Visit the reference docs for the [`decl_event!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.decl_event.html).
-* Visit the reference docs for the [`decl_storage!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.decl_storage.html).
-* Visit the reference docs for the [`construct_runtime!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.construct_runtime.html).
+* Visit the reference docs for the [`decl_module!` 
+macro](https://substrate.dev/rustdocs/master/frame_support/macro.decl_module.html).
+* Visit the reference docs for the [`decl_event!` 
+macro](https://substrate.dev/rustdocs/master/frame_support/macro.decl_event.html).
+* Visit the reference docs for the [`decl_storage!` 
+macro](https://substrate.dev/rustdocs/master/frame_support/macro.decl_storage.html).
+* Visit the reference docs for the [`construct_runtime!` 
+macro](https://substrate.dev/rustdocs/master/frame_support/macro.construct_runtime.html).

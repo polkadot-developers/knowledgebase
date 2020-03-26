@@ -48,9 +48,11 @@ The Polkadot-JS Extension is a simple proof-of-concept for managing accounts in 
 
 ## Next Steps
 
+<!--
 ### Learn More
 
-* Learn how to interact with a Substrate node via [JSON RPC](development/front-end/json-rpc.md).
+* Learn how to interact with a Substrate node via [JSON RPC](TODO).
+-->
 
 ### Examples
 

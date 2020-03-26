@@ -104,13 +104,12 @@ security.
 
 ### Learn More
 
-* Learn about the [cryptography used within Substrate](conceptual/cryptography/index.md).
+* Learn about the [cryptography used within Substrate](current/advanced/cryptography.md).
 
 ### Examples
 
-* Take a look at this [recipe to introduce new session keys to your custom Substrate runtime](TODO).
-
-* Follow our [tutorial to create a local network and generate keys](TODO).
+* Follow our [tutorial to create a local network and generate 
+keys](https://substrate.dev/docs/en/next/tutorials/start-a-private-network/).
 
 ### References
 

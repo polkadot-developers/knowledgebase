@@ -63,7 +63,7 @@ There are an additional set of primitives that are assumed about a runtime built
 
 ### Learn More
 
-- Learn about the [Substrate FRAME](conceptual/runtime/frame.md).
+- Learn about the [Substrate FRAME](/current/runtime/frame.md).
 
 ### Examples
 

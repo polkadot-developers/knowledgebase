@@ -67,10 +67,8 @@ EdDSA scheme.
 Schnorr signatures bring some noticeable features over the [ECDSA](#ecdsa)/EdDSA schemes:
 
 * It is better for hierarchical deterministic key derivations.
-
 * It allows for native multi-signature through [signature
   aggregation](https://bitcoincore.org/en/2017/03/23/schnorr-signature-aggregation/).
-
 * It is generally more resistant to misuse.
 
 One sacrifice that is made when using Schnorr signatures over ECDSA is that both require 64 bytes,
@@ -80,8 +78,7 @@ but only ECDSA signatures communicate their public key.
 
 ### Learn More
 
-* Learn about the [Substrate keys](conceptual/cryptography/keys.md).
-
+* Learn about the [Substrate account abstractions](/current/learn-substrate/account-abstractions.md).
 * For more detailed descriptions, please see the more advanced [research
   wiki](https://research.web3.foundation).
 
@@ -95,7 +92,6 @@ but only ECDSA signatures communicate their public key.
 * Take a look at the
   [`Hash`](https://substrate.dev/rustdocs/master/sp_runtime/traits/trait.Hash.html) trait needed
   for implementing new hashing algorithms.
-
 * Take a look at the
   [`Pair`](https://substrate.dev/rustdocs/master/sp_core/crypto/trait.Pair.html) trait
   needed for implementing new cryptographic schemes.

@@ -109,19 +109,17 @@ blockchain.
 ### Learn More
 
 - Learn about [ink!, a Rust based embedded domain specific
-  language](conceptual/runtime/contracts/ink.md) for developing smart contracts for the SRML
+  language](/current/smart-contracts/index.md) for developing smart contracts for the SRML
   Contracts module.
 
 ### Examples
 
-- Follow a [tutorial to add this Contracts module to your Substrate
-  runtime](tutorials/adding-a-module-to-your-runtime.md).
+- Follow a [tutorial to add this Contracts pallet to your Substrate
+  runtime](https://substrate.dev/docs/en/tutorials/adding-a-module-to-your-runtime/).
 
 ### References
 
 - Visit the reference docs for the [Contracts
   module](https://substrate.dev/rustdocs/master/pallet_contracts/index.html).
-
 - Take a look at the [repository for `wasmi`](https://github.com/paritytech/wasmi).
-
 - Take a look at the [repository for ink!](https://github.com/paritytech/ink).

@@ -49,4 +49,6 @@ cargo test
 
 ### How do I add the Contracts module to my custom chain?
 
-You can follow [our guide here](tutorials/adding-a-module-to-your-runtime.md) for instructions to add the Contracts module and other SRML modules to your blockchain runtime.
+You can follow [our guide 
+here](https://substrate.dev/docs/en/tutorials/adding-a-module-to-your-runtime/) 
+for instructions to add the Contracts module and other SRML modules to your blockchain runtime.

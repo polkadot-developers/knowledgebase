@@ -9,8 +9,8 @@ be economically sustainable, nodes charge a fee to execute a transaction. This f
 by the sender of the transaction. The cost to execute transactions can vary, so Substrate provides a
 flexible mechanism to characterize the minimum cost to include a transaction in a block.
 
-The fee system is heavily linked to the [weight system](conceptual/runtime/weight.md). Make sure to
-understand weights before reading this document.
+The fee system is heavily linked to the [weight system](/current/learn-substrate/weight.md). Make 
+sure to understand weights before reading this document.
 
 ## Default Fees
 
@@ -279,7 +279,7 @@ payment module drawing inspiration from Transaction Payment.
 
 ### Learn More
 
-- Dedicated [weight documentation](conceptual/runtime/weight.md)
+- Dedicated [weight documentation](/current/learn-substrate/weight.md)
 - [Example module](https://github.com/paritytech/substrate/blob/master/frame/example/src/lib.rs)
 - [SignedExtension](https://substrate.dev/rustdocs/master/sp_runtime/traits/trait.SignedExtension.html)
 

@@ -83,7 +83,7 @@ chain spec, and then use it.
 ### Developing a Runtime
 
 Nearly every Substrate runtime will have storage items that need to be configured at genesis. When
-developing with [FRAME](../../conceptual/runtime/frame.md), any storage item that is declared with
+developing with [FRAME](current/runtime/frame.md), any storage item that is declared with
 the `config()` option requires configuration at genesis. It is the job of the chain spec,
 specifically the genesis portion, to configure such storage values.
 
@@ -121,7 +121,7 @@ Substrate node's chainspec json.
 ```
 
 Before this spec can be used to initialize a node's genesis storage, the human-readable keys must be
-transformed into actual storage keys for the [storage trie](../../conceptual/core/storage). This
+transformed into actual storage keys for the [storage trie](/current/advanced/storage). This
 transformation is straight-forward, but it requires that the node's runtime be able to understand
 the chain spec.
 
@@ -147,10 +147,10 @@ After the conversion process, the above snippet looks like this:
 
 ### Learn More
 
-* Rustdocs for the [`ChainSpec` struct]( https://substrate.dev/rustdocs/master/sc_service/struct.ChainSpec.html)
+* Rustdocs for the [`ChainSpec` struct](https://substrate.dev/rustdocs/master/sc_service/struct.ChainSpec.html)
 * Rustdocs for the [`ProtocolId` struct](https://substrate.dev/rustdocs/master/sc_network/config/struct.ProtocolId.html)
 
 ### Examples
 
-* Gain hands-on experience with chain specs by [starting a private network](../../tutorials/start-a-private-network).
+* Gain hands-on experience with chain specs by [starting a private network](https://substrate.dev/docs/en/next/tutorials/start-a-private-network/).
 * The [Node Template's Chainspec](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/src/chain_spec.rs) stored as rust code.

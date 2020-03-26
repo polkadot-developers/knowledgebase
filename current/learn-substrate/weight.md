@@ -9,7 +9,7 @@ prevent individual components of the chain from consuming too much of any resour
 
 NOTE: Weights are not used to restrict access to other resources, such as storage itself or memory footprint. Other mechanisms must be used for this.
 
-The amount of weight a block may contain is limited, and optional weight consumption (i.e. weight that is not required to be deployed as part of the block's initialization or finalization phases nor used in mandatory inherent extrinsics) will generally be limited through economic measures---or in simple terms, through transaction fees. The fee implications of the weight system are covered in the [Fee Developer document](development/module/fees.md).
+The amount of weight a block may contain is limited, and optional weight consumption (i.e. weight that is not required to be deployed as part of the block's initialization or finalization phases nor used in mandatory inherent extrinsics) will generally be limited through economic measures---or in simple terms, through transaction fees. The fee implications of the weight system are covered in the [Fee Developer document](/current/runtime/fees.md).
 
 ## Weight Fundamentals
 

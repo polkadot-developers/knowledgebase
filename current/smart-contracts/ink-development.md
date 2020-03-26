@@ -7,7 +7,7 @@ title: ink! Development
 ink! is a [Rust](https://www.rust-lang.org/)-based embedded domain specific language
 ([eDSL](https://wiki.haskell.org/Embedded_domain_specific_language)) for writing
 [WebAssembly](https://webassembly.org/) smart contracts specifically for the [SRML Contracts
-module](conceptual/runtime/contracts/contracts_module.md).
+module](/current/smart-contracts/contracts-pallet.md).
 
 ink! is still under development, so the documentation for using it is sparse. However, on this page
 you will find the best resources to get you started building ink! contracts right away.
@@ -100,20 +100,17 @@ Join the growing community of ink! smart contract developers:
 ### Learn More
 
 * Learn more about the design philosophy of [ink! in our conceptual
-  documentation](conceptual/runtime/contracts/ink.md).
-
-* Learn more about the [SRML Contracts module](conceptual/runtime/contracts/contracts_module.md).
+  documentation](/current/smart-contracts/ink-fundamentals.md).
+* Learn more about the [Contracts module](/current/smart-contracts/contracts-pallet.md).
 
 ### Examples
 
 * Follow a [tutorial to add this SRML Contracts module to your Substrate
-  runtime](tutorials/adding-a-module-to-your-runtime.md).
+  runtime](https://substrate.dev/docs/en/tutorials/adding-a-module-to-your-runtime/).
 
 ### References
 
 - Visit the [ink! repository for additional docs and to look at the
   source](https://github.com/paritytech/ink).
-
 - Visit the reference docs for the [ink! abi](https://paritytech.github.io/ink/ink_abi/).
-
 - Visit the reference docs for the [ink! core](https://paritytech.github.io/ink/ink_core/).

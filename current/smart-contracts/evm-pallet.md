@@ -47,13 +47,13 @@ to support earlier hard fork configurations.
 
 ### Learn More
 
-- Learn about our [Contracts module](conceptual/runtime/contracts/contracts_module.md), which
+- Learn about our [Contracts module](/current/smart-contracts/contracts-pallet.md), which
   supports deployment and execution of Wasm smart contracts.
 
 ### Examples
 
 - Follow a [tutorial to add a runtime module to your Substrate
-  runtime](tutorials/adding-a-module-to-your-runtime.md).
+  runtime](https://substrate.dev/docs/en/tutorials/adding-a-module-to-your-runtime/).
 
 ### References
 

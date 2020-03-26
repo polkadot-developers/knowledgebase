@@ -287,12 +287,12 @@ a structure for making spending proposals from this pot.
 
 ### Learn More
 
-- Learn how to [develop custom Substrate pallets](development/module/index.md).
+- Learn how to [develop custom Substrate pallets](/current/runtime/pallet.md).
 
 ### Examples
 
 - Follow a [tutorial to add a pallet to your Substrate
-  runtime](tutorials/adding-a-module-to-your-runtime.md).
+  runtime](https://substrate.dev/docs/en/tutorials/adding-a-module-to-your-runtime/).
 
 ### References
 

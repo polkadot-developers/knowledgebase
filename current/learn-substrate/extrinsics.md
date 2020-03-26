@@ -8,7 +8,7 @@ An extrinsic is a piece of information that comes from outside the chain and is 
 block. Extrinsics fall into three categories: inherents, signed transactions, and unsigned 
 transactions.
 
-Note that [events](development/module/events.md) are not extrinsics. The chain emits events for 
+Note that [events](/current/runtime/events.md) are not extrinsics. The chain emits events for 
 pieces of information that are intrinsic to the chain itself. For example, staking rewards are 
 events, not extrinsics, because the reward is triggered by circumstances intrinsic to the chain's 
 logic.
@@ -66,7 +66,7 @@ some form of spam prevention based on a custom implementation of
 [signed extension](#signed-extension), which can exist on unsigned transactions.
 
 An example of unsigned transactions in Substrate is the 
-[I'm Online](../runtime/frame.md#im-online) 
+[I'm Online](/current/runtime/frame.md#im-online) 
 heartbeat transaction sent by authorities. The transaction includes a signature from a Session key, 
 which does not control funds and therefore cannot pay a fee. The transaction pool controls spam 
 by checking if a heartbeat has already been submitted in the session.
@@ -93,6 +93,6 @@ protection logic that is needed by the transaction pool.
 ## Further Reading
 
 - [Reference Documentation](https://substrate.dev/rustdocs/master/sp_runtime/traits/trait.Extrinsic.html)
-- [Runtime Execution](development/module/execution.md)
-- [Transaction Fees](development/module/fees.md)
-<!-- TODO - [Transaction Pool](conceptual/node/tx-pool.md) -->
+- [Runtime Execution](current/runtime/execution.md)
+- [Transaction Fees](current/runtime/fees.md)
+- [Transaction Pool](current/learn-substrate/tx-pool.md)

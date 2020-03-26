@@ -42,20 +42,16 @@ Then, final checks take place where the digest and storage root in the block hea
 
 ### Learn More
 
-* Look at the documentation for [Declaring a Module](development/module/declaration.md) to see how you can define `on_initialize` and `on_finalize` logic for your runtime module.
-
-* Learn how how you can simulate the orchestration of the Executive module in your [runtime tests](development/module/tests.md).
-
-### Examples
-
-TODO
+* Learn how how you can simulate the orchestration of the Executive module in your [runtime 
+tests](/current/runtime/tests.md).
 
 ### References
 
-* Visit the reference docs for the [Executive module](https://substrate.dev/rustdocs/master/frame_executive/index.html).
-
-* Visit the reference docs for the [`decl_event!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.decl_event.html).
-
-* Visit the reference docs for the [`decl_storage!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.decl_storage.html).
-
-* Visit the reference docs for the [`construct_runtime!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.construct_runtime.html).
+* Visit the reference docs for the [Executive 
+module](https://substrate.dev/rustdocs/master/frame_executive/index.html).
+* Visit the reference docs for the [`decl_event!` 
+macro](https://substrate.dev/rustdocs/master/frame_support/macro.decl_event.html).
+* Visit the reference docs for the [`decl_storage!` 
+macro](https://substrate.dev/rustdocs/master/frame_support/macro.decl_storage.html).
+* Visit the reference docs for the [`construct_runtime!` 
+macro](https://substrate.dev/rustdocs/master/frame_support/macro.construct_runtime.html).

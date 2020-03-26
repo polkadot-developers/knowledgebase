@@ -9,7 +9,7 @@ efficient, binary serialization and deserialization codec.
 
 It is designed for high-performance, copy-free encoding and decoding of data in
 resource-constrained execution contexts, like the [Substrate
-runtime](conceptual/runtime/index.md). It is not self-describing in any way and
+runtime](/current/runtime/index.md). It is not self-describing in any way and
 assumes the decoding context has all type knowledge about the encoded data.
 
 ## SCALE for Substrate
