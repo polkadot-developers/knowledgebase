@@ -70,7 +70,7 @@ Use the rust-docs to link to specific parts of the Substrate source code, for ex
 
 DO NOT link to specific lines of code -- Substrate changes often and links that reference specific locations in the code become inaccurate fast and are not easily maintainable.
 
-**Showing code can make an abstract idea concrete. It is now, however, a shortcut to writing a 
+**Showing code can make an abstract idea concrete. It is not, however, a shortcut to writing a 
 clear explanation about how something works.**
 
 ## Documentation Style
