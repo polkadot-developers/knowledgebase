@@ -1,4 +1,6 @@
 ---
+slug: index
+lang: en
 title: Runtime Overview
 ---
 

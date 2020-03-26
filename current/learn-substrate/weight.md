@@ -1,4 +1,6 @@
 ---
+slug: weight
+lang: en
 title: Transaction Weight
 ---
 

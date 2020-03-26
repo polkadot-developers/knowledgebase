@@ -1,4 +1,6 @@
 ---
+slug: cryptography
+lang: en
 title: Cryptography
 ---
 

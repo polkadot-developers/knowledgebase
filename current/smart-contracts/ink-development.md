@@ -1,4 +1,6 @@
 ---
+slug: ink-development
+lang: en
 title: ink! Development
 ---
 

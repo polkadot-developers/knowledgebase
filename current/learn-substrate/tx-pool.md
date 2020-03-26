@@ -1,4 +1,6 @@
 ---
+slug: tx-pool
+lang: en
 title: Transaction Pool
 ---
 

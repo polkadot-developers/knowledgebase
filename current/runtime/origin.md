@@ -1,4 +1,6 @@
 ---
+slug: origin
+lang: en
 title: Runtime Origin
 ---
 

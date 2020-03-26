@@ -1,4 +1,6 @@
 ---
+slug: chain-spec
+lang: en
 title: Chain Specification
 ---
 

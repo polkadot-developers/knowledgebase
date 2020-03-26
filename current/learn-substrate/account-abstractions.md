@@ -1,5 +1,7 @@
 ---
-title: Substrate Keys
+slug: account-abstractions
+lang: en
+title: Account Abstractions
 ---
 
 Substrate uses multiple sets of public/private key pairs to represent participants of the network.

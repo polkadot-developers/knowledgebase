@@ -1,20 +1,22 @@
 ---
-title: Contracts Module
+slug: contracts-pallet
+lang: en
+title: Contracts Pallet
 ---
 
-The [SRML Contracts module](https://substrate.dev/rustdocs/master/pallet_contracts/index.html)
+The [Contracts pallet](https://substrate.dev/rustdocs/master/pallet_contracts/index.html)
 provides the ability for the runtime to deploy and execute [WebAssembly
 (Wasm)](https://webassembly.org/) smart contracts.
 
 ## Wasm Engine
 
-The SRML Contracts module depends on a Wasm sandboxing interface defining the Wasm execution engine
+The Contracts pallet depends on a Wasm sandboxing interface defining the Wasm execution engine
 available within the runtime. This is currently implemented with
 [`wasmi`](https://github.com/paritytech/wasmi), a Wasm interpreter.
 
 ## Features
 
-The SRML Contracts module has a number of familiar and new features for the deployment and execution
+The Contracts module has a number of familiar and new features for the deployment and execution
 of smart contracts.
 
 ### Account Based
@@ -80,7 +82,7 @@ alive.
 
 ## Contracts Module vs EVM
 
-The SRML Contracts module iterates on existing ideas in the smart contract ecosystem, particularly
+The Contracts module iterates on existing ideas in the smart contract ecosystem, particularly
 Ethereum and the EVM.
 
 The most obvious difference between the Contracts module and the EVM is the underlying execution
@@ -92,7 +94,7 @@ network.
 
 The EVM charges for storage fees only at the time of storage. This one-time cost results in some
 permanent amount of storage being used on the blockchain, _forever_, which is economically unsound.
-The SRML Contracts module attempts to repair this through [storage rent](#storage-rent) which
+The Contracts module attempts to repair this through [storage rent](#storage-rent) which
 ensures that any data that persists on the blockchain is appropriately charged for those resources.
 
 The Contracts module chooses to approach contract creation using a [two-step
@@ -112,12 +114,12 @@ blockchain.
 
 ### Examples
 
-- Follow a [tutorial to add this SRML Contracts module to your Substrate
+- Follow a [tutorial to add this Contracts module to your Substrate
   runtime](tutorials/adding-a-module-to-your-runtime.md).
 
 ### References
 
-- Visit the reference docs for the [SRML Contracts
+- Visit the reference docs for the [Contracts
   module](https://substrate.dev/rustdocs/master/pallet_contracts/index.html).
 
 - Take a look at the [repository for `wasmi`](https://github.com/paritytech/wasmi).

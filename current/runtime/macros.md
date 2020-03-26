@@ -1,4 +1,6 @@
 ---
+slug: macros
+lang: en
 title: Runtime Macros
 ---
 

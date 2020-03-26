@@ -1,4 +1,6 @@
 ---
+slug: polkadot-js
+lang: en
 title: Polkadot-JS
 ---
 

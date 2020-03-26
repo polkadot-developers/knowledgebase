@@ -1,4 +1,6 @@
 ---
+slug: codec
+lang: en
 title: SCALE Codec
 ---
 

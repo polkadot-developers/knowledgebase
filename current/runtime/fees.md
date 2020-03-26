@@ -1,4 +1,6 @@
 ---
+slug: fees
+lang: en
 title: Transaction Fees
 ---
 

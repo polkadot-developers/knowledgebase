@@ -1,4 +1,6 @@
 ---
+slug: executor
+lang: en
 title: Executor
 ---
 

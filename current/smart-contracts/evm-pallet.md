@@ -1,13 +1,15 @@
 ---
-title: EVM Module
+slug: evm-pallet
+lang: en
+title: EVM Pallet
 ---
 
-The SRML provides an EVM execution module that allows unmodified EVM code to be executed in a
+FRAME provides an EVM execution module that allows unmodified EVM code to be executed in a
 Substrate-based blockchain.
 
 ## EVM Engine
 
-The SRML EVM module uses [SputnikVM](https://github.com/sorpaas/rust-evm) as the underlying EVM engine. The engine is
+The EVM module uses [SputnikVM](https://github.com/sorpaas/rust-evm) as the underlying EVM engine. The engine is
 overhauled so that it's [modular](https://github.com/corepaper/evm). In the future, we will want to
 allow users to swap out components like gasometer, and inject their own customized ones.
 
@@ -45,7 +47,7 @@ to support earlier hard fork configurations.
 
 ### Learn More
 
-- Learn about our [SRML Contracts module](conceptual/runtime/contracts/contracts_module.md), which
+- Learn about our [Contracts module](conceptual/runtime/contracts/contracts_module.md), which
   supports deployment and execution of Wasm smart contracts.
 
 ### Examples

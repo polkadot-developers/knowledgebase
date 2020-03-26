@@ -1,4 +1,6 @@
 ---
+slug: frame
+lang: en
 title: FRAME
 ---
 

@@ -1,4 +1,6 @@
 ---
+slug: primitives
+lang: en
 title: Runtime Primitives
 ---
 

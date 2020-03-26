@@ -1,10 +1,12 @@
 ---
-title: "ink! FAQ"
+slug: faq
+lang: en
+title: ink! F.A.Q.
 ---
 
 This page will answer a number of common questions you may have when starting to build smart contracts for Substrate.
 
-## ink! FAQ
+## ink! F.A.Q.
 
 ### How do I use `env` in non-message functions?
 

@@ -1,4 +1,6 @@
 ---
+slug: subkey
+lang: en
 title: The subkey Tool
 ---
 

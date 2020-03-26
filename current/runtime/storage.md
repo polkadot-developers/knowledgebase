@@ -1,4 +1,6 @@
 ---
+slug: storage
+lang: en
 title: Runtime Storage
 ---
 

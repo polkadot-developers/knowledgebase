@@ -1,5 +1,7 @@
 ---
-title: "Overview"
+slug: overview
+lang: en
+title: Overview
 ---
 
 This page is an overview on the state of smart contracts in Substrate.

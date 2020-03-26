@@ -1,4 +1,6 @@
 ---
+slug: consensus
+lang: en
 title: Consensus
 ---
 

@@ -1,4 +1,6 @@
 ---
+slug: pallets
+lang: en
 title: Pallets
 ---
 

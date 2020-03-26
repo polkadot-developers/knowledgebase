@@ -1,4 +1,6 @@
 ---
+slug: extrinsics
+lang: en
 title: Extrinsics
 ---
 

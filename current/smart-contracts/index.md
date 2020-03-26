@@ -1,5 +1,7 @@
 ---
-title: "ink! Smart Contracts"
+slug: index
+lang: en
+title: ink! Smart Contracts
 ---
 
 Welcome to the smart contracts section of the Developer Hub!

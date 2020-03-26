@@ -1,4 +1,6 @@
 ---
+slug: events
+lang: en
 title: Runtime Events
 ---
 

@@ -1,4 +1,6 @@
 ---
+slug: ss58-address-format
+lang: en
 title: SS58 Address Format
 ---
 

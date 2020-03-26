@@ -1,4 +1,6 @@
 ---
+slug: session-keys
+lang: en
 title: Session Keys
 ---
 

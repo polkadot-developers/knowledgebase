@@ -1,5 +1,7 @@
 ---
-title: "Smart Contract Runtime Environment Types"
+slug: env-types
+lang: en
+title: Smart Contract Runtime Environment Types
 ---
 
 `ink!` provides a set of types for interacting with the runtime environment (currently:`AccountId`, `Balance`, `Hash`, `Moment`).

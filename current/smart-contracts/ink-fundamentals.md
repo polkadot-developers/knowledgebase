@@ -1,4 +1,6 @@
 ---
+slug: ink-fundamentals
+lang: en
 title: ink! Concepts
 ---
 

@@ -1,4 +1,6 @@
 ---
+slug: tests
+lang: en
 title: Runtime Tests
 ---
 
