@@ -29,6 +29,7 @@ Install the [Homebrew package manager](https://brew.sh/), then run:
 ```bash
 brew install openssl cmake llvm
 ```
+
 ## Rust Developer Environment
 
 Substrate uses the Rust programming language. You should [install Rust](https://www.rust-lang.org/tools/install) using `rustup`:

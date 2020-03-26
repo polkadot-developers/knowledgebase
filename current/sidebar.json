@@ -7,27 +7,62 @@
 			"slug": "getting-started",
 			"menu_items": [
 				{ "title": "Installation", "slug": "index" },
-				{ "title": "Windows Users", "slug": "windows-users" }
+				{ "title": "Windows Users", "slug": "windows-users" },
+				{ "title": "Glossary", "slug": "glossary" }
 			]
 		},
 		{
 			"title": "Learn Substrate",
 			"slug": "learn-substrate",
 			"menu_items": [
-				{ "title": "Node", "slug": "node" },
-				{ "title": "Runtime", "slug": "runtime" },
-				{ "title": "Smart Contracts", "slug": "smart-contracts" },
-				{ "title": "Cryptography", "slug": "cryptography" },
-				{ "title": "Deployment", "slug": "deployment" },
-				{ "title": "Glossary", "slug": "glossary" }
+				{ "title": "Learn Substrate", "slug": "index" },
+				{ "title": "Extrinsics", "slug": "extrinsics" },
+				{ "title": "Transaction Queue", "slug": "tx-pool" },
+				{ "title": "Account Abstractions", "slug": "account-abstractions" },
+				{ "title": "Session Keys", "slug": "session-keys" },
+				{ "title": "Weight", "slug": "weight" },
+				{ "title": "Off Chain Workers", "slug": "off-chain-workers" }
+			]
+		},
+		{
+			"title": "Runtime",
+			"slug": "runtime",
+			"menu_items": [
+				{ "title": "Runtime", "slug": "index" },
+				{ "title": "Primitives", "slug": "primitives" },
+				{ "title": "FRAME", "slug": "frame" },
+				{ "title": "Pallets", "slug": "pallets" },
+				{ "title": "Macros", "slug": "macros" },
+				{ "title": "Storage", "slug": "storage" },
+				{ "title": "Origin", "slug": "origin" },
+				{ "title": "Execution", "slug": "execution" },
+				{ "title": "Events", "slug": "events" },
+				{ "title": "Fees", "slug": "fees" },
+				{ "title": "Off Chain Workers", "slug": "off-chain-workers" },
+				{ "title": "Tests", "slug": "tests" }
+			]
+		},
+		{
+			"title": "Smart Contracts",
+			"slug": "smart-contracts",
+			"menu_items": [
+				{ "title": "Smart Contracts", "slug": "index" },
+				{ "title": "Overview", "slug": "overview" },
+				{ "title": "Ink! Fundamentals", "slug": "ink-fundamentals" },
+				{ "title": "Environment Types", "slug": "env-types" },
+				{ "title": "Ink! Development", "slug": "ink-development" },
+				{ "title": "Contracts Pallet", "slug": "contracts-pallet" },
+				{ "title": "EVM Pallet", "slug": "evm-pallet" },
+				{ "title": "FAQ", "slug": "faq" }
 			]
 		},
 		{
 			"title": "Integrate",
 			"slug": "integrate",
 			"menu_items": [
-				{ "title": "Tools", "slug": "tools" },
-				{ "title": "Front End", "slug": "front-end" }
+				{ "title": "Front End", "slug": "polkadot-js" },
+				{ "title": "Chain Specs", "slug": "chain-spec" },
+				{ "title": "Subkey", "slug": "subkey" }
 			]
 		},
 		{
@@ -37,9 +72,9 @@
 				{ "title": "SCALE Codec", "slug": "scale-codec" },
 				{ "title": "Consensus", "slug": "consensus" },
 				{ "title": "Executor", "slug": "executor" },
-				{ "title": "Off-Chain Workers", "slug": "off-chain-workers" },
+				{ "title": "Cryptography", "slug": "cryptography" },
 				{ "title": "Storage", "slug": "storage" },
-				{ "title": "TX Pool", "slug": "tx-pool" }
+				{ "title": "SS58 Address Format", "slug": "ss58-address-format" }
 			]
 		}
 	]
