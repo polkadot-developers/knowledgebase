@@ -24,7 +24,7 @@ separation of concerns is to make sure that the block production is not impacted
 tasks. However, as the off-chain workers are declared in the same code as the runtime, they can
 easily access on-chain state for their computations.
 
-![Off-chain Workers](/docs/assets/off-chain-workers-v2.png)
+![Off-chain Workers](/assets/off-chain-workers-v2.png)
 
 ## APIs
 

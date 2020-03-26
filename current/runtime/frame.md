@@ -12,7 +12,7 @@ FRAME provides some helper modules to interact with Substrate Primitives, which 
 
 The following diagram shows the architectural overview of FRAME and its support libraries:
 
-![frame-arch](/docs/assets/frame-arch.png)
+![frame-arch](/assets/frame-arch.png)
 
 ### Pallets
 
