@@ -41,6 +41,7 @@
 				{ "title": "Events", "slug": "events" },
 				{ "title": "Fees", "slug": "fees" },
 				{ "title": "Off Chain Workers", "slug": "off-chain-workers" },
+				{ "title": "Debugging", "slug": "debugging" },
 				{ "title": "Tests", "slug": "tests" }
 			]
 		},
