@@ -1,7 +1,7 @@
 ---
 slug: index
 lang: en
-title: Learn Substrate
+title: Overview
 ---
 
 This page is the top level entry point into the Substrate documentation.

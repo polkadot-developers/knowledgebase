@@ -17,7 +17,7 @@
 			"title": "Learn Substrate",
 			"slug": "learn-substrate",
 			"menu_items": [
-				{ "title": "Learn Substrate", "slug": "index" },
+				{ "title": "Overview", "slug": "index" },
 				{ "title": "Extrinsics", "slug": "extrinsics" },
 				{ "title": "Transaction Queue", "slug": "tx-pool" },
 				{ "title": "Account Abstractions", "slug": "account-abstractions" },
@@ -30,7 +30,7 @@
 			"title": "Runtime",
 			"slug": "runtime",
 			"menu_items": [
-				{ "title": "Runtime", "slug": "index" },
+				{ "title": "Overview", "slug": "index" },
 				{ "title": "Primitives", "slug": "primitives" },
 				{ "title": "FRAME", "slug": "frame" },
 				{ "title": "Pallets", "slug": "pallets" },
@@ -48,7 +48,7 @@
 			"title": "Smart Contracts",
 			"slug": "smart-contracts",
 			"menu_items": [
-				{ "title": "Smart Contracts", "slug": "index" },
+				{ "title": "Ink! Smart Contracts", "slug": "index" },
 				{ "title": "Overview", "slug": "overview" },
 				{ "title": "Ink! Fundamentals", "slug": "ink-fundamentals" },
 				{ "title": "Environment Types", "slug": "env-types" },
