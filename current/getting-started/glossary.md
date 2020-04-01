@@ -1,5 +1,5 @@
 ---
-slug: codec
+slug: glossary
 lang: en
 title: Glossary
 ---
