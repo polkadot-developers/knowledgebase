@@ -1,7 +1,7 @@
 ---
 slug: index
 lang: en
-title: Runtime Overview
+title: Overview
 ---
 
 ## Substrate Runtime

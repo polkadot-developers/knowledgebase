@@ -1,7 +1,7 @@
 ---
 slug: index
 lang: en
-title: Getting Started
+title: Installation
 ---
 
 ## Fast Installation
