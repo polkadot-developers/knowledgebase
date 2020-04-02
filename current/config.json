@@ -72,7 +72,7 @@
 			"title": "Advanced",
 			"slug": "advanced",
 			"menu_items": [
-				{ "title": "SCALE Codec", "slug": "scale-codec" },
+				{ "title": "SCALE Codec", "slug": "codec" },
 				{ "title": "Consensus", "slug": "consensus" },
 				{ "title": "Executor", "slug": "executor" },
 				{ "title": "Cryptography", "slug": "cryptography" },
