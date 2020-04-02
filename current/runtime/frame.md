@@ -12,7 +12,7 @@ FRAME provides some helper modules to interact with Substrate Primitives, which 
 
 The following diagram shows the architectural overview of FRAME and its support libraries:
 
-![frame-arch](/assets/frame-arch.png)
+![frame-arch](../../assets/frame-arch.png)
 
 ### Pallets
 
@@ -74,7 +74,7 @@ Some pallets will be sufficiently general-purpose to be reused in many blockchai
 The Assets pallet is a simple, secure module for dealing with fungible assets.
 
 * [Docs](https://substrate.dev/rustdocs/master/pallet_assets/index.html)
-* [Source](https://github.com/paritytech/substrate/blob/master/frame/assets/src/lib.rs)
+* [Source](https://github.com/paritytech/substrate/blob/master/frame../../assets/src/lib.rs)
 
 ### Aura
 
