@@ -1,8 +1,8 @@
 {
 	"lang": "en",
 	"slug": "config",
-	"version": "pre-v2.0-3e65111",
-	"release_url": "https://github.com/paritytech/substrate/tree/3e651110aa06aa835790df63410a29676243fc54",
+	"version": "v2.0.0-alpha.5",
+	"release_url": "https://github.com/paritytech/substrate/",
 	"menu": [
 		{
 			"title": "Getting Started",
