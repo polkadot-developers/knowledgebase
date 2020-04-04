@@ -4,13 +4,22 @@ lang: en
 title: The subkey Tool
 ---
 
-Subkey is a key-generation utility that is developed alongside Substrate. Its main features are generating key pairs (currently supporting [sr25519](https://wiki.polkadot.network/docs/en/learn-cryptography), [ed25519](https://en.wikipedia.org/wiki/EdDSA#Ed25519), and [secp256k1](https://en.bitcoin.it/wiki/Secp256k1)), encoding SS58 addresses, and restoring keys from mnemonics and raw seeds. It can also create and verify signatures on a message, including encoded transactions.
+Subkey is a key-generation utility that is developed alongside Substrate. Its main features are
+generating key pairs (currently supporting
+[sr25519](https://wiki.polkadot.network/docs/en/learn-cryptography),
+[ed25519](https://en.wikipedia.org/wiki/EdDSA#Ed25519), and
+[secp256k1](https://en.bitcoin.it/wiki/Secp256k1)), encoding SS58 addresses, and restoring keys
+from mnemonics and raw seeds. It can also create and verify signatures on a message, including
+encoded transactions.
 
 ## Installation
 
 ### Build from Source
 
-The Subkey binary, `subkey`, is also installed along with [Substrate](https://substrate.dev/docs/en/overview/getting-started#unix-based-operating-systems). If you want to play with just Subkey (and not Substrate), you will need to have the Substrate dependencies. Use the following two commands to install the dependencies and Subkey, respectively:
+The Subkey binary, `subkey`, is also installed along with
+[Substrate](https://substrate.dev/docs/en/overview/getting-started#unix-based-operating-systems).
+If you want to play with just Subkey (and not Substrate), you will need to have the Substrate
+dependencies. Use the following two commands to install the dependencies and Subkey, respectively:
 
 ```bash
 $ curl https://getsubstrate.io -sSf | bash -s -- --fast
@@ -19,7 +28,8 @@ $ cargo install --force --git https://github.com/paritytech/substrate subkey
 
 ### Compiling with Cargo
 
-If you already have the [Substrate repository](https://github.com/paritytech/substrate), you can build Subkey with:
+If you already have the [Substrate repository](https://github.com/paritytech/substrate), you can
+build Subkey with:
 
 ```bash
 $ cargo build -p subkey --release
@@ -52,7 +62,8 @@ Secret phrase `enroll toss harvest pilot size end skin clog city knock bar cousi
   SS58 Address:     5GYTgcrom3pxWyHCcPPZX6iBB8xWJPARgLAng7MK4ZFaBAza
 ```
 
-Subkey encodes the address depending on the network. You can use the `-n` or `--network` flag to change this. See `subkey help` for supported networks.
+Subkey encodes the address depending on the network. You can use the `-n` or `--network` flag to
+change this. See `subkey help` for supported networks.
 
 To generate an ed25519 key, pass the `-e` or `--ed25519` flag:
 
@@ -67,8 +78,12 @@ Secret phrase `security snow crunch treat tone skill develop nominee hat slim om
 
 The output gives us the following information about our key:
 
-- **Secret phrase** (aka "mnemonic phrase") - A series of English words that encodes the seed in a more human-friendly way. Mnemonic phrases were first introduced in Bitcoin (see [BIP39](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki)) and make it much easier to write down your key by hand.
-- **Secret Seed** (aka "Private Key" or "Raw Seed") - The minimum necessary information to restore the key pair. All other information is calculated from the seed.
+- **Secret phrase** (aka "mnemonic phrase") - A series of English words that encodes the seed in a
+  more human-friendly way. Mnemonic phrases were first introduced in Bitcoin (see
+  [BIP39](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki)) and make it much easier
+  to write down your key by hand.
+- **Secret Seed** (aka "Private Key" or "Raw Seed") - The minimum necessary information to restore
+  the key pair. All other information is calculated from the seed.
 - **Public Key** (aka "Account ID") - The public half of the cryptographic key pair in hexadecimal.
 - **SS58 Address** (aka "Public Address") - An SS58-encoded address based on the public key.
 
@@ -78,9 +93,11 @@ Currently `subkey` supports the following cryptographic key pairs and signing al
 - `-e`, `--ed25519`: ed25519
 - `-k`, `--secp256k1`: ECDSA signatures on secp256k1
 
-Note that the address for a secp256k1 key is the SS58 encoding of the hash of the public key in order to reduce the public key from 33 bytes to 32 bytes.
+Note that the address for a secp256k1 key is the SS58 encoding of the hash of the public key in
+order to reduce the public key from 33 bytes to 32 bytes.
 
-You can also create a vanity address, meaning an address that contains a specified sub-string. But you will not receive a mnemonic phrase for this address.
+You can also create a vanity address, meaning an address that contains a specified sub-string. But
+you will not receive a mnemonic phrase for this address.
 
 ```bash
 $ subkey vanity joe  --number 1
@@ -96,13 +113,16 @@ Secret Key URI `0x380ba96e07933b89c2b3b6d3fa98b695aab99070b8982817b74044c6fa6a37
   SS58 Address:     5DjoeJSa7m4EsuSKwDN1GkrMtTiWwSMGxESQ6KSNPETPaPna
 ```
 
-Notice the SS58 Address 5D**joe**JSa7m4EsuSKwDN1GkrMtTiWwSMGxESQ6KSNPETPaPna contains the string `joe`.
+Notice the SS58 Address 5D**joe**JSa7m4EsuSKwDN1GkrMtTiWwSMGxESQ6KSNPETPaPna contains the string
+`joe`.
 
-`--number` is for legacy purpose, so it will generate one vanity address no matter what value is passed in.
+`--number` is for legacy purpose, so it will generate one vanity address no matter what value is
+passed in.
 
 ## Password Protected Keys
 
-To generate a key that is password protected, use the `-p <password>` or `--password <password>` flag:
+To generate a key that is password protected, use the `-p <password>` or `--password <password>`
+flag:
 
 ```bash
 $ subkey --password "pencil laptop kitchen cutter" generate
@@ -113,11 +133,13 @@ Secret phrase `image stomach entry drink rice hen abstract moment nature broken 
   SS58 Address:     5CZtJLXtVzrBJq1fMWfywDa6XuRwXekGdShPR4b8i9GWSbzB
 ```
 
-Note that the "Secret seed" is _not_ password protected and can still recover the account. The "Secret phrase" however, is not sufficient to recover the account without the password.
+Note that the "Secret seed" is _not_ password protected and can still recover the account. The
+"Secret phrase" however, is not sufficient to recover the account without the password.
 
 ## Inspecting Keys
 
-The `inspect` command recalculates a key pair's public key and public address given its secret seed. This shows that it is sufficient to back up the seed alone.
+The `inspect` command recalculates a key pair's public key and public address given its secret
+seed. This shows that it is sufficient to back up the seed alone.
 
 ```bash
 $ subkey inspect 0x554b6fc625fbea8f56eb56262d92ccb083fd6eaaf5ee9a966eaab4db2062f4d0
@@ -139,7 +161,8 @@ Secret phrase `spend report solution aspect tilt omit market cancel what type ca
   SS58 Address:     5CXFinBHRrArHzmC6iYVHSSgY1wMQEdL2AiL6RmSEsFvWezd
 ```
 
-You can inspect password-protected keys either by passing the `--password` flag or using `///` at the end of the mnemonic:
+You can inspect password-protected keys either by passing the `--password` flag or using `///` at
+the end of the mnemonic:
 
 ```bash
 $ subkey -p "pencil laptop kitchen cutter" inspect "image stomach entry drink rice hen abstract moment nature broken gadget flash"
@@ -157,7 +180,9 @@ Secret Key URI `image stomach entry drink rice hen abstract moment nature broken
   SS58 Address:     5CZtJLXtVzrBJq1fMWfywDa6XuRwXekGdShPR4b8i9GWSbzB
 ```
 
-Let's say you want to use the same private key on Kusama network. Use `-n` to get your address formatted for Kusama. Notice that the public key is the same, but the address has a different format.
+Let's say you want to use the same private key on Kusama network. Use `-n` to get your address
+formatted for Kusama. Notice that the public key is the same, but the address has a different
+format.
 
 ```bash
 $ subkey -n kusama inspect "spend report solution aspect tilt omit market cancel what type cave author"
@@ -186,7 +211,10 @@ $ subkey insert 0x554b6fc625fbea8f56eb56262d92ccb083fd6eaaf5ee9a966eaab4db2062f4
 
 ## HD Derivation
 
-Subkey supports hard and soft hierarchical deterministic (HD) key derivation compliant with [BIP32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki). HD keys allow you to have a master seed and define a tree with a key pair at each leaf. The tree has a similar structure to a filesystem and can have any depth you want.
+Subkey supports hard and soft hierarchical deterministic (HD) key derivation compliant with
+[BIP32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki). HD keys allow you to have
+a master seed and define a tree with a key pair at each leaf. The tree has a similar structure to a
+filesystem and can have any depth you want.
 
 Hard and soft key derivation both support:
 
@@ -223,7 +251,9 @@ Secret Key URI `spend report solution aspect tilt omit market cancel what type c
   SS58 Address:     5CCrqJffST8uh8RLn2sFJwg1JWs4HkKL88xmdZRdnHt8GDyA
 ```
 
-Recall the SS58 address from the same seed phrase, `5CXFinBHRrArHzmC6iYVHSSgY1wMQEdL2AiL6RmSEsFvWezd`. We can use that to derive the same child address.
+Recall the SS58 address from the same seed phrase,
+`5CXFinBHRrArHzmC6iYVHSSgY1wMQEdL2AiL6RmSEsFvWezd`. We can use that to derive the same child
+address.
 
 ```bash
 $ subkey inspect "5CXFinBHRrArHzmC6iYVHSSgY1wMQEdL2AiL6RmSEsFvWezd/joe/polkadot/0"
@@ -238,7 +268,8 @@ Note that the two addresses here match. This is not the case in hard key derivat
 
 ### Putting it All Together
 
-You can mix and match hard and soft key paths (although it doesn't make much sense to have hard paths as children of soft paths). For example:
+You can mix and match hard and soft key paths (although it doesn't make much sense to have hard
+paths as children of soft paths). For example:
 
 ```bash
 $ subkey inspect "spend report solution aspect tilt omit market cancel what type cave author//joe//polkadot/0"
@@ -273,11 +304,16 @@ Public Key URI `5CZtJLXtVzrBJq1fMWfywDa6XuRwXekGdShPR4b8i9GWSbzB/joe/polkadot/0`
   SS58 Address:       5GZ4srnepXvdsuNVoxCGyVZd8ScDm4gkGLTKuaGARy9akjTa
 ```
 
-Notice that the "SS58-address plus derivation path" produces the same address as the "mnemonic phrase plus derivation path plus password." As such, you can reveal your parent address and derivation paths without revealing your mnemonic phrase or password, retaining control of all derived addresses.
+Notice that the "SS58-address plus derivation path" produces the same address as the "mnemonic
+phrase plus derivation path plus password." As such, you can reveal your parent address and
+derivation paths without revealing your mnemonic phrase or password, retaining control of all
+derived addresses.
 
 ## Well-Known Keys
 
-If you've worked with Substrate previously, you have likely encountered the ubiquitous accounts for Alice, Bob, and their friends. These keys are not at all private, but are useful for playing with Substrate without always generating new key pairs. You can inspect these "well-known" keys as well.
+If you've worked with Substrate previously, you have likely encountered the ubiquitous accounts for
+Alice, Bob, and their friends. These keys are not at all private, but are useful for playing with
+Substrate without always generating new key pairs. You can inspect these "well-known" keys as well.
 
 ```bash
 $ subkey inspect //Alice
@@ -288,7 +324,8 @@ Secret Key URI `//Alice` is account:
   SS58 Address:     5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY
 ```
 
-There is nothing special about the name Alice. You can do the same trick with your own name. But remember that keys like these are _not_ secure, and are only useful for experimenting.
+There is nothing special about the name Alice. You can do the same trick with your own name. But
+remember that keys like these are _not_ secure, and are only useful for experimenting.
 
 ```bash
 $ subkey inspect //Jimmy
@@ -303,7 +340,8 @@ Secret Key URI `//Jimmy` is account:
 
 ### Signing
 
-You can sign a message by passing the message to Subkey on STDIN. You can sign with either your seed or mnemonic phrase.
+You can sign a message by passing the message to Subkey on STDIN. You can sign with either your
+seed or mnemonic phrase.
 
 ```bash
 # Usage
@@ -351,6 +389,9 @@ The peer ID is displayed on screen and the actual key is saved in the `<output-f
 
 ## More Subkey to Explore
 
-* Learn more by running `subkey help` or see the [README](https://github.com/paritytech/substrate/tree/master/bin/utils/subkey).
-* Key pairs can also be generated in the [PolkadotJS Apps UI](https://polkadot.js.org/apps/). Try creating keys with the UI and restoring them with `subkey` or vice versa.
-* Learn more about [different cryptographies and choosing between them](https://wiki.polkadot.network/docs/en/learn-cryptography).
+* Learn more by running `subkey help` or see the
+  [README](https://github.com/paritytech/substrate/tree/master/bin/utils/subkey).
+* Key pairs can also be generated in the [PolkadotJS Apps UI](https://polkadot.js.org/apps/). Try
+  creating keys with the UI and restoring them with `subkey` or vice versa.
+* Learn more about [different cryptographies and choosing between
+  them](https://wiki.polkadot.network/docs/en/learn-cryptography).
