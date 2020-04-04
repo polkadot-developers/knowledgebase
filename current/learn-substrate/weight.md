@@ -59,8 +59,8 @@ can fill the first 800 kilobytes of the block while the last 200 can only be fil
 operational class.
 
 There is also a `Mandatory` dispatch class that can be used to ensure a transaction is always
-included in a block regardless of its impact on the block length or weight limits. Please refer to
-the [Transaction Fees document](/current/runtime/fees.md) to learn more about the different dispatch
+included in a block regardless of its impact on block weight. Please refer to the
+[Transaction Fees document](/current/runtime/fees.md) to learn more about the different dispatch
 classes and when to use them.
 
 ## Next Steps
