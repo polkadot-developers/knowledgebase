@@ -58,7 +58,7 @@ For example, if the block length limit is 1 megabyte and the ratio is set to 80%
 can fill the first 800 kilobytes of the block while the last 200 can only be filled by the
 operational class.
 
-There is also a `Mandatory` dispatch class that can be used to ensure a transaction is always
+There is also a `Mandatory` dispatch class that can be used to ensure an extrinsic is always
 included in a block regardless of its impact on block weight. Please refer to the
 [Transaction Fees document](/current/runtime/fees.md) to learn more about the different dispatch
 classes and when to use them.

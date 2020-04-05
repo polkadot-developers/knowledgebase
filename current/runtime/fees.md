@@ -4,148 +4,54 @@ lang: en
 title: Transaction Fees
 ---
 
-When transactions (extrinsics) are submitted to a blockchain, they are executed (dispatched) by the
-nodes in the network. To be economically sustainable, nodes charge a fee to dispatch a transaction.
-This fee must be covered by the sender of the transaction. The cost to dispatch transactions can
-vary, so Substrate provides a flexible mechanism called "weights" to characterize the minimum cost to
-include a transaction in a block.
+When transactions or other extrinsics are submitted to a blockchain, they are dispatched (invoked)
+by the nodes in the network. To be economically sustainable, nodes charge a fee to dispatch an
+extrinsic. This fee must be covered by the sender of the extrinsic. Since the resources needed to
+execute an extrinsic can vary, Substrate provides a flexible mechanism called "weights" to
+characterize the _time_ it takes to execute an extrinsic.
 
-The fee system is heavily linked to the [weight system](/current/learn-substrate/weight.md). Make 
-sure to understand weights before reading this document.
+Although an extrinsic's weight is only one component of the fee charged to its sender, it is
+recommended to understand the [weight system](/current/learn-substrate/weight.md) before reading
+this document.
 
-## Inclusion Fee
+## Fee Calculation
 
-A transaction fee consists of three parts:
+The final fee of a dispatch is calculated using the weight of the dispatchable function and a number
+of configurable parameters.
 
-* `base_fee`: A fixed fee that is applied to every transaction. See
+### Inclusion Fee
+
+An extrinsic fee consists of three parts:
+
+* `base_fee`: A fixed fee that is applied to every extrinsic. See
   [`TransactionBaseFee`](https://substrate.dev/rustdocs/master/pallet_transaction_payment/trait.Trait.html#associatedtype.TransactionBaseFee).
-* `length_fee`: A per-byte fee that is multiplied by the number of bytes in the encoded transaction. See
+* `length_fee`: A per-byte fee that is multiplied by the number of bytes in the encoded extrinsic. See
   [`TransactionByteFee`](https://substrate.dev/rustdocs/master/pallet_transaction_payment/trait.Trait.html#associatedtype.TransactionByteFee).
-* `weight_fee`: A per-weight-unit fee that is multiplied by the weight of the transaction. The
+* `weight_fee`: A per-weight-unit fee that is multiplied by the weight of the extrinsic. The
   weight of each dispatch is denoted via the flexible `#[weight]` annotation. The weight must be
   converted to the `Currency` type. For this, each runtime must define a
   [`WeightToFee`](https://substrate.dev/rustdocs/master/pallet_transaction_payment/trait.Trait.html#associatedtype.WeightToFee)
   type that makes the conversion. `WeightToFee` must be a struct that implements [`Convert<Weight,
   Balance>`](https://substrate.dev/rustdocs/master/sp_runtime/traits/trait.Convert.html).
 
-The sum of the three transaction fee components (i.e. `base_fee + length_fee + weight_fee`) is known
-as the _inclusion fee_. Even if a transaction fails, the signer must pay the inclusion fee.
+Based on the above, the final fee of a dispatchable is:
 
-## Default Weight Fees
-
-The default fee system uses _fixed_ weights, which means that the arguments to a dispatch do not
-affect its weight. The tiers in this system are represented by the following enum:
-
-```rust
-pub enum SimpleDispatchInfo {
-    FixedNormal(Weight),
-    MaxNormal,
-    InsecureFreeNormal,
-    FixedOperational(Weight),
-    MaxOperational,
-    FixedMandatory(Weight),
-}
+```
+fee =
+  base_fee +
+  len(tx) * length_fee +
+  WeightToFee(weight)
 ```
 
-In order to delineate their purposes, the enums in this group are separated into _dispatch classes_,
-which are also defined by an enum:
-
-```rust
-pub enum DispatchClass {
-    Normal,
-    Operational,
-    Mandatory,
-}
-```
-
-### Normal Dispatches
-
-Dispatches in this class represent normal user-triggered transactions. These types of dispatches may
-only consume a portion of a block's total weight limit; this portion can be found by examining the
-[`AvailableBlockRatio`](https://substrate.dev/rustdocs/master/frame_system/trait.Trait.html#associatedtype.AvailableBlockRatio).
-Normal dispatches are assigned a priority that is proportional to their weight.
-
-#### `FixedNormal`
-
-Describes a normal function that will always have the specified weight.
-
-```rust
-#[weight = SimpleDispatchInfo::FixedNormal(10)]
-pub fn some_normal_function_heavy() { some_computation(); }
-```
-
-#### `MaxNormal`
-
-This is equivalent to `SimpleDispatchInfo::FixedNormal(Weight::max_value())`.
-
-#### `InsecureFreeNormal`
-
-This means that the function has no weight; it will not contribute to block fullness at all and no
-weight-fee is applied. Although the `base_fee` and `length_fee` still need to be paid, as the name
-indicates a lack of weight fees also implies a lack of security, so dispatches of this type should
-be used with care.
-
-```rust
-#[weight = SimpleDispatchInfo::InsecureFreeNormal]
-pub fn some_normal_function_light() { noop(); }
-```
-
-### Operational Dispatches
-
-Operational dispatches are those that go beyond user-triggered transactions; they are dispatches
-that are necessary to provide network capabilities. These types of dispatches are not bound by the
-[`AvailableBlockRatio`](https://substrate.dev/rustdocs/master/frame_system/trait.Trait.html#associatedtype.AvailableBlockRatio),
-which means they may consume a block's entire weight limit. Dispatches in this class are given maximum
-priority and are exempt from paying the `base_fee` and `length_fee`.
-
-#### `FixedOperational`
-
-Describes a function that will have a fixed weight and can consume the reserved operational portion
-as well.
-
-```rust
-#[weight = SimpleDispatchInfo::FixedOperational(20)]
-pub fn mission_critical_function() { some_sudo_op(); }
-```
-
-#### `MaxOperational`
-
-This is equivalent to `SimpleDispatchInfo::FixedOperational(Weight::max_value())`.
-
-### Mandatory Dispatches
-
-The most critical dispatches are classified as mandatory and represent dispatches that are part of
-the block validation process; they must be inherent, meaning they may not be signed. Mandatory
-dispatches will be included even if they cause a block to surpass the weight limit, so it is vital
-to ensure that they are validated separately. This can typically be accomplished by ensuring that
-the operation can only be included once in a block and that it is always very light. In order to
-make it more difficult for malicious validators to abuse these types of dispatches they may not be
-included in blocks that return errors. This dispatch class exists to serve the assumption that it is
-better to allow an overweight block to be created than to not allow any block to be created at all.
-
-#### `FixedMandatory`
-
-This function will have a fixed weight and be allowed in a block even if it makes it overweight.
-
-```rust
-#[weight = SimpleDispatchInfo::FixedMandatory(20)]
-pub fn block_validation_critical_function() { block_validation_op(); }
-```
-
-> **Note:** Be careful! Functions that do not specify a dispatch type will get the default value of
-> `FixedNormal(10_000)`. This is due to how things work in `substrate-node` and the desired
-> granularity of Substrate. Even if you want to use the `SimpleDispatchInfo`, it is very likely that
-> you would want it to have a different default.
-
-## Fee Calculation
-
-The final fee of a dispatch is calculated using the inclusion fee and a number of configurable
-parameters.
+This `fee` is known as the "inclusion fee". Note that the extrinsic sender is charged the inclusion
+fee _prior_ to the actual invocation of the extrinsic, so its cost will still be incurred if execution
+fails. In the event that an account does not have a sufficient balance to pay the fee (i.e. existential
+deposit + extrinsic fee), the account will be unable to submit the extrinsic to the blockchain network.
 
 ### Fee Multiplier
 
-The inclusion fee is always the same for the same input. However, weight can be dynamic and, based
-on how
+The above formula gives a fee that is always the same for the same input. However, weight can be
+dynamic and, based on how
 [`WeightToFee`](https://substrate.dev/rustdocs/master/pallet_transaction_payment/trait.Trait.html#associatedtype.WeightToFee)
 is defined, the final fee can include some degree of variability. To fulfill this requirement,
 Substrate provides:
@@ -192,6 +98,113 @@ Balances module, for example, takes a fixed fee for transferring tokens.
 
 It is important to note that if you query the chain for a transaction fee, it will only return the
 inclusion fee.
+
+## Default Weight Fees
+
+All dispatchable functions in Substrate must specify a weight. Substrate provides flexible mechanisms
+for defining custom weight logic as well as a default weight system that uses _fixed_ weights, which
+means that the arguments to a dispatch do not affect its weight. The tiers in the default system are
+represented by the following enum:
+
+```rust
+pub enum SimpleDispatchInfo {
+    FixedNormal(Weight),
+    MaxNormal,
+    InsecureFreeNormal,
+    FixedOperational(Weight),
+    MaxOperational,
+    FixedMandatory(Weight),
+}
+```
+
+In order to delineate their purposes, the enums in this group are separated into _dispatch classes_,
+which are also defined by an enum:
+
+```rust
+pub enum DispatchClass {
+    Normal,
+    Operational,
+    Mandatory,
+}
+```
+
+### Normal Dispatches
+
+Dispatches in this class represent normal user-triggered transactions. These types of dispatches may
+only consume a portion of a block's total weight limit; this portion can be found by examining the
+[`AvailableBlockRatio`](https://substrate.dev/rustdocs/master/frame_system/trait.Trait.html#associatedtype.AvailableBlockRatio).
+Normal dispatches are sent to the [transaction pool](/current/learn-substrate/tx-pool).
+
+#### `FixedNormal`
+
+Describes a normal function that will always have the specified weight.
+
+```rust
+#[weight = SimpleDispatchInfo::FixedNormal(10)]
+pub fn some_normal_function_heavy() { some_computation(); }
+```
+
+#### `MaxNormal`
+
+This is equivalent to `SimpleDispatchInfo::FixedNormal(Weight::max_value())`.
+
+#### `InsecureFreeNormal`
+
+This means that the function has no weight; it will not contribute to block fullness at all, and no
+weight fee is applied. Although the `base_fee` and `length_fee` still need to be paid, as the name
+indicates a lack of weight fees also implies a lack of security, so developers should use care when
+when adding dispatches of this type to their runtime.
+
+```rust
+#[weight = SimpleDispatchInfo::InsecureFreeNormal]
+pub fn some_normal_function_light() { noop(); }
+```
+
+### Operational Dispatches
+
+As opposed to normal dispatches, which represent _usage_ of network capabilities, operational dispatches
+are those that _provide_ network capabilities. These types of dispatches may consume the entire weight
+limit of a block, which is to say that they are not bound by the
+[`AvailableBlockRatio`](https://substrate.dev/rustdocs/master/frame_system/trait.Trait.html#associatedtype.AvailableBlockRatio).
+Dispatches in this class are given maximum priority and are exempt from paying the `base_fee` and
+`length_fee`.
+
+#### `FixedOperational`
+
+Describes a function that will have a fixed weight and can consume the reserved operational portion
+as well.
+
+```rust
+#[weight = SimpleDispatchInfo::FixedOperational(20)]
+pub fn mission_critical_function() { some_sudo_op(); }
+```
+
+#### `MaxOperational`
+
+This is equivalent to `SimpleDispatchInfo::FixedOperational(Weight::max_value())`.
+
+### Mandatory Dispatches
+
+Mandatory dispatches will be included in a block even if they cause the block to surpass its weight
+limit. This dispatch class may only be applied to
+[inherents](/current/learn-substrate/extrinsics#Inherents) and is intended to represent functions
+that are part of the block validation process. Since these kinds of dispatches are always included
+in a block regardless of their weight, it is critical that their validation process prevents malicious
+validators from using them to craft blocks that are valid but impossibly heavy. This can typically
+be accomplished by ensuring that the operation is always very light and can only be included in a
+block once. In order to make it more difficult for malicious validators to abuse these types of
+dispatches, they may not be included in blocks that return errors. This dispatch class exists to
+serve the assumption that it is better to allow an overweight block to be created than to not allow
+any block to be created at all.
+
+#### `FixedMandatory`
+
+This function will have a fixed weight and be allowed in a block even if it makes it overweight.
+
+```rust
+#[weight = SimpleDispatchInfo::FixedMandatory(20)]
+pub fn block_validation_critical_function() { block_validation_op(); }
+```
 
 ## Custom Fees
 
