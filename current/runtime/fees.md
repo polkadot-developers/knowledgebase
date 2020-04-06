@@ -4,11 +4,12 @@ lang: en
 title: Transaction Fees
 ---
 
-When transactions or other extrinsics are submitted to a blockchain, they are dispatched (invoked)
-by the nodes in the network. To be economically sustainable, nodes charge a fee to dispatch an
-extrinsic. This fee must be covered by the sender of the extrinsic. Since the resources needed to
-execute an extrinsic can vary, Substrate provides a flexible mechanism called "weights" to
-characterize the _time_ it takes to execute an extrinsic.
+When a block author constructs a block, it must limit the block's execution time. A block body
+consists of a series of [extrinsics](/current/learn-substrate/extrinsics.md). Since the resources
+needed to execute an extrinsic can vary, Substrate provides a flexible mechanism called "weights"
+to characterize the _time_ it takes to execute an extrinsic. To be economically sustainable and to
+limit spam, some transactions --- primarily those dispatched by users --- require a fee prior to
+transaction execution.
 
 Although an extrinsic's weight is only one component of the fee charged to its sender, it is
 recommended to understand the [weight system](/current/learn-substrate/weight.md) before reading
