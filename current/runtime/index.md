@@ -19,7 +19,7 @@ of other pallets.
 The entire set of pallets and support libraries is called _FRAME._ FRAME interacts with the client
 by implementing the traits in _primitives._
 
-![Runtime Composition](../../assets/runtime.png)
+![Runtime Composition](../assets/runtime.png)
 
 For example, if you want to add smart contract functionality to your blockchain, you simply need to 
 include the [Contracts](https://substrate.dev/rustdocs/master/pallet_contracts/index.html) pallet.
