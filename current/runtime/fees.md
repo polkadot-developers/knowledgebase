@@ -46,8 +46,10 @@ fee =
 
 This `fee` is known as the "inclusion fee". Note that the extrinsic sender is charged the inclusion
 fee _prior_ to the actual invocation of the extrinsic, so its cost will still be incurred if execution
-fails. In the event that an account does not have a sufficient balance to pay the fee (i.e. existential
-deposit + extrinsic fee), the account will be unable to submit the extrinsic to the blockchain network.
+fails. In the event that an account does not have a sufficient balance to pay the fee and remain
+alive (i.e. existential deposit + inclusion fee), no fee will be deducted and the transaction will
+not begin execution. This latter case should be rare as the transaction queue and block construction
+logic perform checks prior to adding an extrinsic to a block.
 
 ### Fee Multiplier
 
