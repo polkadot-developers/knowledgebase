@@ -136,7 +136,7 @@ pub enum DispatchClass {
 Dispatches in this class represent normal user-triggered transactions. These types of dispatches may
 only consume a portion of a block's total weight limit; this portion can be found by examining the
 [`AvailableBlockRatio`](https://substrate.dev/rustdocs/master/frame_system/trait.Trait.html#associatedtype.AvailableBlockRatio).
-Normal dispatches are sent to the [transaction pool](/current/learn-substrate/tx-pool).
+Normal dispatches are sent to the [transaction pool](/current/learn-substrate/tx-pool.md).
 
 #### `FixedNormal`
 
