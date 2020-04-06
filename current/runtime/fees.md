@@ -190,7 +190,7 @@ This is equivalent to `SimpleDispatchInfo::FixedOperational(Weight::max_value())
 
 Mandatory dispatches will be included in a block even if they cause the block to surpass its weight
 limit. This dispatch class may only be applied to
-[inherents](/current/learn-substrate/extrinsics#Inherents) and is intended to represent functions
+[inherents](/current/learn-substrate/extrinsics.md#Inherents) and is intended to represent functions
 that are part of the block validation process. Since these kinds of dispatches are always included
 in a block regardless of the function weight, it is critical that the function's validation process
 prevents malicious validators from abusing the function in order to craft blocks that are valid but
