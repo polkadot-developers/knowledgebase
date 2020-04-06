@@ -22,11 +22,11 @@ of configurable parameters.
 
 ### Inclusion Fee
 
-An extrinsic fee consists of three parts:
+A transaction fee consists of three parts:
 
-* `base_fee`: A fixed fee that is applied to every extrinsic. See
+* `base_fee`: A fixed fee that is applied to every transaction. See
   [`TransactionBaseFee`](https://substrate.dev/rustdocs/master/pallet_transaction_payment/trait.Trait.html#associatedtype.TransactionBaseFee).
-* `length_fee`: A per-byte fee that is multiplied by the number of bytes in the encoded extrinsic. See
+* `length_fee`: A per-byte fee that is multiplied by the length, in bytes, of the encoded extrinsic. See
   [`TransactionByteFee`](https://substrate.dev/rustdocs/master/pallet_transaction_payment/trait.Trait.html#associatedtype.TransactionByteFee).
 * `weight_fee`: A fee based on the weight of the extrinsic. The weight of each dispatch is denoted
   via the flexible `#[weight]` annotation. The weight must be converted to the `Currency` type. For
@@ -153,10 +153,10 @@ This is equivalent to `SimpleDispatchInfo::FixedNormal(Weight::max_value())`.
 
 #### `InsecureFreeNormal`
 
-This means that the function has no weight; it will not contribute to block fullness at all, and no
-weight fee is applied. Although the `base_fee` and `length_fee` still need to be paid, as the name
-indicates a lack of weight fees also implies a lack of security, so developers should use care when
-when adding dispatches of this type to their runtime.
+This means that the function has no weight; it will not contribute to the block's weight at all,
+and no weight fee is applied. Although the `base_fee` and `length_fee` still need to be paid, as
+the name indicates a lack of weight fees also implies a lack of security, so developers should use
+care when when adding dispatches of this type to their runtime.
 
 ```rust
 #[weight = SimpleDispatchInfo::InsecureFreeNormal]
@@ -192,17 +192,18 @@ Mandatory dispatches will be included in a block even if they cause the block to
 limit. This dispatch class may only be applied to
 [inherents](/current/learn-substrate/extrinsics#Inherents) and is intended to represent functions
 that are part of the block validation process. Since these kinds of dispatches are always included
-in a block regardless of their weight, it is critical that their validation process prevents malicious
-validators from using them to craft blocks that are valid but impossibly heavy. This can typically
-be accomplished by ensuring that the operation is always very light and can only be included in a
-block once. In order to make it more difficult for malicious validators to abuse these types of
-dispatches, they may not be included in blocks that return errors. This dispatch class exists to
-serve the assumption that it is better to allow an overweight block to be created than to not allow
-any block to be created at all.
+in a block regardless of the function weight, it is critical that the function's validation process
+prevents malicious validators from abusing the function in order to craft blocks that are valid but
+impossibly heavy. This can typically be accomplished by ensuring that the operation is always very
+light and can only be included in a block once. In order to make it more difficult for malicious
+validators to abuse these types of dispatches, they may not be included in blocks that return errors.
+This dispatch class exists to serve the assumption that it is better to allow an overweight block
+to be created than to not allow any block to be created at all.
 
 #### `FixedMandatory`
 
-This function will have a fixed weight and be allowed in a block even if it makes it overweight.
+This function will have a fixed weight and be allowed in a block even if the function makes the block
+overweight.
 
 ```rust
 #[weight = SimpleDispatchInfo::FixedMandatory(20)]
