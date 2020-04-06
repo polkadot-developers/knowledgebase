@@ -78,7 +78,7 @@ but only ECDSA signatures communicate their public key.
 
 ### Learn More
 
-* Learn about the [Substrate account abstractions](/current/learn-substrate/account-abstractions.md).
+* Learn about the [Substrate account abstractions](../learn-substrate/account-abstractions).
 * For more detailed descriptions, please see the more advanced [research
   wiki](https://research.web3.foundation).
 

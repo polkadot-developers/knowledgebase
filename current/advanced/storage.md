@@ -84,7 +84,7 @@ querying the trie by key.
 
 ### Learn More
 
-- Learn how to add [storage items](current/runtime/storage.md) into your
+- Learn how to add [storage items](../runtime/storage) into your
   Substrate runtime modules.
 
 ### Examples

@@ -10,7 +10,7 @@ Substrate is a blockchain development framework with a completely generic State 
 (STF) and composable components for consensus, networking, and configuration.
 
 Despite being "completely generic", it comes with both standards and conventions - particularly with
-the Substrate runtime module library (a.k.a [FRAME](/current/runtime/frame.md)) - regarding the 
+the Substrate runtime module library (a.k.a [FRAME](../runtime/frame)) - regarding the 
 underlying data-structures that power the STF, thereby making rapid blockchain development a 
 reality.
 

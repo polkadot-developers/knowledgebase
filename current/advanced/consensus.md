@@ -22,7 +22,7 @@ Blockchains must agree on:
 - A final (current) state.
 
 In order to agree on the resulting state after a transition, all operations within a blockchain's
-[state transition function](/current/runtime/index.md) must be deterministic.
+[state transition function](../runtime/index) must be deterministic.
 
 ## Conflict Exclusion
 
@@ -46,7 +46,7 @@ Substrate provides several block construction algorithms and also allows you to 
 ## Fork Choice Rules
 
 As a primitive, a block contains a header and a batch of
-[extrinsics](/current/learn-substrate/extrinsics.md). The header must contain a reference to its parent
+[extrinsics](../learn-substrate/extrinsics). The header must contain a reference to its parent
 block such that one can trace the chain to its genesis. Forks occur when two blocks reference the
 same parent. Forks must be resolved such that only one, canonical chain exists.
 

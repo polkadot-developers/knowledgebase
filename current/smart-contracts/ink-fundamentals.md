@@ -38,7 +38,7 @@ languages. The skeleton of a contract has all of the same components that you mi
 ### Custom Types
 
 ink! supports custom type definitions needed to interact with the Substrate runtime. By default,
-ink! has access to all the [primitive Substrate types](/current/runtime/primitives.md) like
+ink! has access to all the [primitive Substrate types](../runtime/primitives) like
 `AccountId`, `Balance`, `Hash`, etc...
 
 You can specify and interact with additional types which may be specific to your Substrate runtime
@@ -87,14 +87,14 @@ Here is a brief comparison of features between ink! and Solidity:
 | Has Metadata? | Yes | Yes |
 | Multi-File Project | Planned | Yes |
 | Storage Entries | Variable | 256 bits |
-| Supported Types | [Docs](/current/advanced/codec.md) | [Docs](https://solidity.readthedocs.io/en/latest/types.html) |
+| Supported Types | [Docs](../advanced/codec) | [Docs](https://solidity.readthedocs.io/en/latest/types.html) |
 | Has Interfaces? | Planned (Rust Traits) | Yes |
 
 ## Next Steps
 
 ### Learn More
 
-- Learn about the [SRML Contracts module](/current/smart-contracts/contracts-pallet.md) which is
+- Learn about the [SRML Contracts module](../smart-contracts/contracts-pallet) which is
   used to deploy and execute ink! contracts.
 
 ### Examples

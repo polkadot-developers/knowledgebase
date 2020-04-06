@@ -47,7 +47,7 @@ to support earlier hard fork configurations.
 
 ### Learn More
 
-- Learn about our [Contracts module](/current/smart-contracts/contracts-pallet.md), which
+- Learn about our [Contracts module](../smart-contracts/contracts-pallet), which
   supports deployment and execution of Wasm smart contracts.
 
 ### Examples

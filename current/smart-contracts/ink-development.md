@@ -101,7 +101,7 @@ Join the growing community of ink! smart contract developers:
 
 * Learn more about the design philosophy of [ink! in our conceptual
   documentation](/current/smart-contracts/ink-fundamentals.md).
-* Learn more about the [Contracts module](/current/smart-contracts/contracts-pallet.md).
+* Learn more about the [Contracts module](../smart-contracts/contracts-pallet).
 
 ### Examples
 

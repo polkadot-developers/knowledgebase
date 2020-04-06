@@ -79,5 +79,5 @@ The `validate_transaction` function should focus on providing the necessary info
 
 ## Further Reading
 
-- [Extrinsics](/current/learn-substrate/extrinsics.md)
-- [Transaction Fees](/current/runtime/fees.md)
+- [Extrinsics](../learn-substrate/extrinsics)
+- [Transaction Fees](../runtime/fees)

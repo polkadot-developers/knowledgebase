@@ -36,12 +36,12 @@ However, if you are interested in learning more details about what exactly the m
 
 ### Learn More
 
-* Learn how to use the [`decl_storage` macro](/current/runtime/storage.md).
-* Learn how to use the [`decl_event` macro](/current/runtime/events.md).
+* Learn how to use the [`decl_storage` macro](../runtime/storage).
+* Learn how to use the [`decl_event` macro](../runtime/events).
 
 ### Examples
 
-View our most [simple Substrate runtime](/current/runtime/index.md) to see all these macros interact with one another.
+View our most [simple Substrate runtime](../runtime/index) to see all these macros interact with one another.
 
 ### References
 
