@@ -94,7 +94,7 @@ Here is a brief comparison of features between ink! and Solidity:
 
 ### Learn More
 
-- Learn about the [SRML Contracts module](../smart-contracts/contracts-pallet) which is
+- Learn about the [SRML Contracts module](contracts-pallet) which is
   used to deploy and execute ink! contracts.
 
 ### Examples

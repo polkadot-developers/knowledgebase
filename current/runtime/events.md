@@ -22,7 +22,7 @@ decl_event!{
 }
 ```
 
-The `Event` enum needs to be declared in your runtime's [configuration trait](../runtime/traits).
+The `Event` enum needs to be declared in your runtime's [configuration trait](traits).
 
 ```rust
 pub trait Trait: system::Trait {
@@ -101,7 +101,7 @@ The Substrate RPC does not directly expose an endpoint for querying events. If y
 
 ### Learn More
 
-* Learn more about the [macros](../runtime/macros) used in Substrate runtime development.
+* Learn more about the [macros](macros) used in Substrate runtime development.
 * Learn more about using the [Polkadot JS api](../integrate/polkadot-js).
 
 ### Examples

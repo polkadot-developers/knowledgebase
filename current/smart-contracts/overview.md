@@ -13,13 +13,13 @@ be added to your Substrate runtime.
 
 ### Contracts Module
 
-The [SRML Contracts module](../smart-contracts/contracts-pallet) provides functionality
+The [SRML Contracts module](contracts-pallet) provides functionality
 for the runtime to deploy and execute WebAssembly smart-contracts. It is designed to iterate on the
 design of modern smart contract platforms.
 
 ### EVM Module
 
-The [SRML EVM module](../smart-contracts/evm-pallet) provides an EVM execution
+The [SRML EVM module](evm-pallet) provides an EVM execution
 environment that allows unmodified EVM code to be executed in a Substrate-based blockchain. It is
 designed to most closely emulate the functionality of executing contracts on the Ethereum mainnet
 within the Substrate runtime.
@@ -36,7 +36,7 @@ existing systems to work on a Substrate based chain.
 
 ### ink!
 
-[ink!](../smart-contracts/ink-fundamentals) is a Rust-based eDSL for writing Wasm smart contracts specifically for the [Contracts module](#contracts-module). It is designed for correctness, conciseness and efficiency.
+[ink!](ink-fundamentals) is a Rust-based eDSL for writing Wasm smart contracts specifically for the [Contracts module](#contracts-module). It is designed for correctness, conciseness and efficiency.
 
 ## Smart Contracts vs Runtime Modules
 
@@ -174,10 +174,10 @@ influence your decision on the kinds of situations you may want to use these dif
 ### Learn More
 
 - See how Substrate is iterating on smart contract blockchains with the [Contracts
-  pallet](/current/smart-contracts/contracts-pallet.md).
-- Investigate the [EVM pallet](../smart-contracts/evm-pallet) to see if it is what
+  pallet](contracts-pallet).
+- Investigate the [EVM pallet](evm-pallet) to see if it is what
   you need for your next project.
-- Read about the [ink! smart contract language](../smart-contracts/ink-fundamentals).
+- Read about the [ink! smart contract language](ink-fundamentals).
 
 ### Examples
 
