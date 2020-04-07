@@ -22,7 +22,7 @@ decl_event!{
 }
 ```
 
-The `Event` enum needs to be declared in your runtime's [configuration trait](/current/runtime/traits.md).
+The `Event` enum needs to be declared in your runtime's [configuration trait](traits).
 
 ```rust
 pub trait Trait: system::Trait {
@@ -85,24 +85,24 @@ The default behavior of this function is to call [`deposit_event`](https://subst
 
 This function places the event in the System module's runtime storage for that block. At the beginning of a new block, the System module automatically removes all events that were stored from the previous block.
 
-Events deposited using the default implementation will be directly supported by downstream libraries like the [Polkadot-JS api](/current/integrate/polkadot-js.md), however you can implement your own `deposit_event` function if you want to handle events differently.
+Events deposited using the default implementation will be directly supported by downstream libraries like the [Polkadot-JS api](../integrate/polkadot-js), however you can implement your own `deposit_event` function if you want to handle events differently.
 
 ## Supported Types
 
-Events can emit any type which supports the [Parity SCALE codec](/current/advanced/codec.md).
+Events can emit any type which supports the [Parity SCALE codec](../advanced/codec).
 
 In the case where you want to use Runtime generic types like `AccountId` or `Balances`, you need to include a [`where` clause](https://doc.rust-lang.org/rust-by-example/generics/where.html) to define those types as shown in the example above.
 
 ## Listening To Events
 
-The Substrate RPC does not directly expose an endpoint for querying events. If you used the default implementation, you can see the list of events for the current block by querying the storage of the System module. Otherwise, the [Polkadot-JS api](/current/integrate/polkadot-js.md) supports a WebSocket subscription on runtime events.
+The Substrate RPC does not directly expose an endpoint for querying events. If you used the default implementation, you can see the list of events for the current block by querying the storage of the System module. Otherwise, the [Polkadot-JS api](../integrate/polkadot-js) supports a WebSocket subscription on runtime events.
 
 ## Next Steps
 
 ### Learn More
 
-* Learn more about the [macros](/current/runtime/macros.md) used in Substrate runtime development.
-* Learn more about using the [Polkadot JS api](/current/integrate/polkadot-js.md).
+* Learn more about the [macros](macros) used in Substrate runtime development.
+* Learn more about using the [Polkadot JS api](../integrate/polkadot-js).
 
 ### Examples
 

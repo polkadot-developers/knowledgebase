@@ -49,4 +49,4 @@ verification mechanism (e.g. voting, averaging, checking sender signatures, or s
 should be implemented to determine what information gets into the chain.
 
 For more information on how to use off-chain workers in your next runtime development project,
-please refer to our [Development Guide](/current/runtime/off-chain-workers.md).
+please refer to our [Development Guide](../runtime/off-chain-workers).

@@ -5,14 +5,14 @@ title: Transaction Fees
 ---
 
 When a block author constructs a block, it must limit the block's execution time. A block body
-consists of a series of [extrinsics](/current/learn-substrate/extrinsics.md). Since the resources
+consists of a series of [extrinsics](../learn-substrate/extrinsics). Since the resources
 needed to execute an extrinsic can vary, Substrate provides a flexible mechanism called "weights"
 to characterize the _time_ it takes to execute an extrinsic. To be economically sustainable and to
 limit spam, some transactions --- primarily those dispatched by users --- require a fee prior to
 transaction execution.
 
 Although an extrinsic's weight is only one component of the fee charged to its sender, it is
-recommended to understand the [weight system](/current/learn-substrate/weight.md) before reading
+recommended to understand the [weight system](../learn-substrate/weight) before reading
 this document.
 
 ## Fee Calculation
@@ -136,7 +136,7 @@ pub enum DispatchClass {
 Dispatches in this class represent normal user-triggered transactions. These types of dispatches may
 only consume a portion of a block's total weight limit; this portion can be found by examining the
 [`AvailableBlockRatio`](https://substrate.dev/rustdocs/master/frame_system/trait.Trait.html#associatedtype.AvailableBlockRatio).
-Normal dispatches are sent to the [transaction pool](/current/learn-substrate/tx-pool.md).
+Normal dispatches are sent to the [transaction pool](../learn-substrate/tx-pool).
 
 #### `FixedNormal`
 
@@ -190,7 +190,7 @@ This is equivalent to `SimpleDispatchInfo::FixedOperational(Weight::max_value())
 
 Mandatory dispatches will be included in a block even if they cause the block to surpass its weight
 limit. This dispatch class may only be applied to
-[inherents](/current/learn-substrate/extrinsics.md#Inherents) and is intended to represent functions
+[inherents](../learn-substrate/extrinsics#Inherents) and is intended to represent functions
 that are part of the block validation process. Since these kinds of dispatches are always included
 in a block regardless of the function weight, it is critical that the function's validation process
 prevents malicious validators from abusing the function in order to craft blocks that are valid but
@@ -329,7 +329,7 @@ payment module drawing inspiration from Transaction Payment.
 
 ### Learn More
 
-- Dedicated [weight documentation](/current/learn-substrate/weight.md)
+- Dedicated [weight documentation](../learn-substrate/weight)
 - [Example module](https://github.com/paritytech/substrate/blob/master/frame/example/src/lib.rs)
 - [SignedExtension](https://substrate.dev/rustdocs/master/sp_runtime/traits/trait.SignedExtension.html)
 

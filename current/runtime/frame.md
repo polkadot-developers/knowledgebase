@@ -287,7 +287,7 @@ a structure for making spending proposals from this pot.
 
 ### Learn More
 
-- Learn how to [develop custom Substrate pallets](/current/runtime/pallet.md).
+- Learn how to [develop custom Substrate pallets](pallet).
 
 ### Examples
 

@@ -15,7 +15,7 @@ Your runtime module has access to Substrate storage APIs which allows you to eas
 * [Storage Linked Map](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageLinkedMap.html) - Similar to a storage map, but allows enumeration of the stored elements.
 * [Storage Double Map](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageDoubleMap.html) - An implementation of a map with two keys.
 
-Any value which can be encoded by the [Parity SCALE codec](/current/advanced/codec.md) is supported by these storage APIs.
+Any value which can be encoded by the [Parity SCALE codec](../advanced/codec) is supported by these storage APIs.
 
 ### Storage Declaration
 

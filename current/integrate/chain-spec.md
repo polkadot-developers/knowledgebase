@@ -83,7 +83,7 @@ chain spec, and then use it.
 ### Developing a Runtime
 
 Nearly every Substrate runtime will have storage items that need to be configured at genesis. When
-developing with [FRAME](current/runtime/frame.md), any storage item that is declared with
+developing with [FRAME](../runtime/frame), any storage item that is declared with
 the `config()` option requires configuration at genesis. It is the job of the chain spec,
 specifically the genesis portion, to configure such storage values.
 

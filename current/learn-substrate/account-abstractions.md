@@ -104,7 +104,7 @@ security.
 
 ### Learn More
 
-* Learn about the [cryptography used within Substrate](current/advanced/cryptography.md).
+* Learn about the [cryptography used within Substrate](../advanced/cryptography).
 
 ### Examples
 

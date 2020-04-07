@@ -6,7 +6,7 @@ title: Off-Chain Workers
 
 This article covers the technical aspects of using off-chain workers in a Substrate runtime. For a
 conceptual overview of off-chain workers see the
-[Conceptual Guide](/current/learn-substrate/off-chain-workers.md).
+[Conceptual Guide](../learn-substrate/off-chain-workers).
 
 ## Using Off-Chain Workers in the Runtime
 
@@ -133,7 +133,7 @@ impl system::offchain::CreateTransaction<Runtime, UncheckedExtrinsic> for Runtim
 Inside the `contruct_runtime!` macro where you put all the various pallets as part of your runtime,
 add the additional parameter `ValidateUnsigned` if you are using unsigned transactions in off-chain
 workers. You will need to write custom 
-[validation logic](/current/learn-substrate/extrinsics.md) for this.
+[validation logic](../learn-substrate/extrinsics) for this.
 
 ```rust
 construct_runtime!(
@@ -262,7 +262,7 @@ If you look at the implementation of `fn system::offchain::submit_signed` in the
 you will see it is calling the on-chain callback for each key in the local keystore. But since
 you only have one key in the local keystore now, you are calling the function only once.
 
-[Learn more about Signed Transactions](/current/learn-substrate/extrinsics.md#signed-transactions).
+[Learn more about Signed Transactions](../learn-substrate/extrinsics#signed-transactions).
 
 ## Unsigned Transactions
 
@@ -324,7 +324,7 @@ We add a `deprecated` attribute to prevent warning messages from being displayed
 because this part of the API is still in transition and will be updated in coming Substrate release.
 Please use this with caution for now.
 
-[Learn more about Unsigned Transactions](/current/learn-substrate/extrinsics.md#unsigned-transactions).
+[Learn more about Unsigned Transactions](../learn-substrate/extrinsics#unsigned-transactions).
 
 ## Parameters in On-Chain Callbacks
 
@@ -403,8 +403,8 @@ using an external library to parse the JSON result in a `no_std` environment.
 ## Next Steps
 
 ### Learn More
-  - [Signed Transactions](/current/learn-substrate/extrinsics.md#signed-transactions)
-  - [Unsigned Transactions](/current/learn-substrate/extrinsics.md#unsigned-transactions)
+  - [Signed Transactions](../learn-substrate/extrinsics#signed-transactions)
+  - [Unsigned Transactions](../learn-substrate/extrinsics#unsigned-transactions)
 
 ### Examples
   - [Off-chain workers Sub0 workshop materials](https://github.com/tomusdrw/sub0-offchain-workshop)
