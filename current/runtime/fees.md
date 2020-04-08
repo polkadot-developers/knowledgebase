@@ -89,16 +89,20 @@ transactions than the target, fees are decreased by a small amount. More informa
 be found in the [Web3 research
 page](https://research.web3.foundation/en/latest/polkadot/Token%20Economics.html#relay-chain-transaction-fees-and-per-block-transaction-limits).
 
-### Additional Fees
+## Additional Fees
 
-Inclusion fees must be computable prior to execution so they cannot vary based on the logic of the
-transaction being executed. The inclusion fee will always be paid by the sender.
+Inclusion fees must be computable prior to execution, and therefore can only represent fixed logic.
+Some transactions warrant limiting resources with other strategies. For example:
 
-It's possible to add fees inside dispatchable functions that are only paid if certain logic paths
-are executed. A common example of such fees is a one-time payment that may cover the additional
-storage created by a successful transaction. However, Substrate makes it easy to implement different
-types of additional fees, such as bonds, which may be returned or slashed based on some future
-outcome or deposits, which may be returned after some future event (like freeing up storage).
+- Bonds: Some transactions, like voting, may require a bond that will be returned or slashed after
+  an on-chain event. In the voting example, returned at the end of the election or slashed if the
+  voter tried anything malicious.
+- Deposits: Some transactions use storage space indefinitely and may require a deposit that will be
+  returned if the user decides to free storage.
+- Burns: A transaction may burn funds internally based on its logic. For example, a transaction may
+  burn funds from the sender if it creates new storage entries, thus increasing the state size.
+- Limits: Some limits are part of the protocol. For example, in Polkadot, nominators can only nominate
+  16 validators. This limits the complexity of the validator election process.
 
 It is important to note that if you query the chain for a transaction fee, it will only return the
 inclusion fee.
