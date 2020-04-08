@@ -91,13 +91,14 @@ page](https://research.web3.foundation/en/latest/polkadot/Token%20Economics.html
 
 ### Additional Fees
 
-Inclusion fees don't know anything about the logic of the transaction being executed. That is,
-Substrate doesn't care what happens in the transaction, it only cares about the size and weight of
-the transaction. The inclusion fee will always be paid by the sender.
+Inclusion fees must be computable prior to execution so they cannot vary based on the logic of the
+transaction being executed. The inclusion fee will always be paid by the sender.
 
 It's possible to add fees inside dispatchable functions that are only paid if certain logic paths
-are executed. Most likely, this will be if the transaction succeeds. The `transfer` function in the
-Balances module, for example, takes a fixed fee for transferring tokens.
+are executed. A common example of such fees is a one-time payment that may cover the additional
+storage created by a successful transaction. However, Substrate makes it easy to implement different
+types of additional fees, such as bonds, which may be returned or slashed based on some future
+outcome or deposits, which may be returned after some future event (like freeing up storage).
 
 It is important to note that if you query the chain for a transaction fee, it will only return the
 inclusion fee.
