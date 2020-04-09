@@ -94,15 +94,18 @@ page](https://research.web3.foundation/en/latest/polkadot/Token%20Economics.html
 Inclusion fees must be computable prior to execution, and therefore can only represent fixed logic.
 Some transactions warrant limiting resources with other strategies. For example:
 
-- Bonds: Some transactions, like voting, may require a bond that will be returned or slashed after
-  an on-chain event. In the voting example, returned at the end of the election or slashed if the
-  voter tried anything malicious.
-- Deposits: Some transactions use storage space indefinitely and may require a deposit that will be
-  returned if the user decides to free storage.
+- Bonds: A bond is a type of fee that will either be returned or slashed after some on-chain event.
+  For example, runtime developers may want to implement a bond in order to participate in a vote; in
+  this example the bond could be returned at the end of the referendum or slashed if the voter tried
+  anything malicious.
+- Deposits: Deposits are fees that may be returned later. For example, users may be required to pay
+  a deposit in order to execute an operation that uses storage; if a subsequent operation frees that
+  storage, the user's deposit could be returned.
 - Burns: A transaction may burn funds internally based on its logic. For example, a transaction may
   burn funds from the sender if it creates new storage entries, thus increasing the state size.
-- Limits: Some limits are part of the protocol. For example, in Polkadot, nominators can only nominate
-  16 validators. This limits the complexity of the validator election process.
+- Limits: Runtime developers are free to enforce constant or configurable limits on certain
+  operations. For example, the default Staking pallet only allows nominators to nominate 16 validators
+  in order to limit the complexity of the validator election process.
 
 It is important to note that if you query the chain for a transaction fee, it will only return the
 inclusion fee.
