@@ -89,15 +89,23 @@ transactions than the target, fees are decreased by a small amount. More informa
 be found in the [Web3 research
 page](https://research.web3.foundation/en/latest/polkadot/Token%20Economics.html#relay-chain-transaction-fees-and-per-block-transaction-limits).
 
-### Additional Fees
+## Additional Fees
 
-Inclusion fees don't know anything about the logic of the transaction being executed. That is,
-Substrate doesn't care what happens in the transaction, it only cares about the size and weight of
-the transaction. The inclusion fee will always be paid by the sender.
+Inclusion fees must be computable prior to execution, and therefore can only represent fixed logic.
+Some transactions warrant limiting resources with other strategies. For example:
 
-It's possible to add fees inside dispatchable functions that are only paid if certain logic paths
-are executed. Most likely, this will be if the transaction succeeds. The `transfer` function in the
-Balances module, for example, takes a fixed fee for transferring tokens.
+- Bonds: A bond is a type of fee that will either be returned or slashed after some on-chain event.
+  For example, runtime developers may want to implement a bond in order to participate in a vote; in
+  this example the bond could be returned at the end of the referendum or slashed if the voter tried
+  anything malicious.
+- Deposits: Deposits are fees that may be returned later. For example, users may be required to pay
+  a deposit in order to execute an operation that uses storage; if a subsequent operation frees that
+  storage, the user's deposit could be returned.
+- Burns: A transaction may burn funds internally based on its logic. For example, a transaction may
+  burn funds from the sender if it creates new storage entries, thus increasing the state size.
+- Limits: Runtime developers are free to enforce constant or configurable limits on certain
+  operations. For example, the default Staking pallet only allows nominators to nominate 16 validators
+  in order to limit the complexity of the validator election process.
 
 It is important to note that if you query the chain for a transaction fee, it will only return the
 inclusion fee.
