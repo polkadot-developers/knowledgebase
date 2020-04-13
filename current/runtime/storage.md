@@ -44,12 +44,56 @@ can be used to store lists of items, but runtime developers should take care wit
 Large lists incur storage costs just like large `structs`. Furthermore, iterating over a large list in your runtime may
 result in exceeding the block production time.
 
+#### Methods
+
+Refer to the Storage Value documentation for
+[a comprehensive list of the methods that Storage Values expose](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageValue.html#required-methods).
+Some of the most important methods are summarized here:
+
+##### `get()`
+
+Load the value from storage.
+
+##### `put(val)`
+
+Store the provided value.
+
+##### `mutate(fn)`
+
+Mutate the value with the provided function.
+
+##### `take()`
+
+Remove the value from storage.
+
 ### Storage Maps
 
 Substrate maps are implemented as hash maps, which is a pattern that should be familiar to most developers. In order to
 give blockchain engineers increased control over the way in which these data structures are stored, Substrate allows
 developers to select the hashing algorithm that is used to generate map keys. Map data structures are ideal for managing
 sets of items whose elements will be accessed randomly, as opposed to iterating over them sequentially in their entirety.
+
+#### Methods
+
+[Storage Maps expose an API](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageMap.html#required-methods)
+that is similar to that of Storage Values. The selected methods referenced below all use a single key; use two keys for
+[Storage Double Maps](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageDoubleMap.html#required-methods):
+
+##### `get(key)`
+
+Load the value associated with the provided key from storage.
+
+##### `store(key, val)`
+
+Store the provided value by associating it with the given key.
+
+##### `mutate(key, fn)`
+
+Use the provided function to mutate the value associated with the given key.
+
+##### `take(key)`
+
+Remove the value associated with the given key from storage.
 
 ### Iterable Storage Maps
 
@@ -58,6 +102,26 @@ data (account balances, for example) it is especially likely to exceed block pro
 their entirety within the runtime. Furthermore, because maps are comprised of more layers of indirection than native
 lists, they are significantly more costly than lists to iterate over with respect to time. Depending on the hashing
 algorithm that you select to generate a map's keys, you may be able to iterate across its keys as well as its values.
+
+#### Methods
+
+[Iterable Storage Maps expose the following methods](https://substrate.dev/rustdocs/master/frame_support/storage/trait.IterableStorageMap.html#required-methods)
+in addition to the other map methods:
+
+##### `iter()`
+
+Enumerate all elements in the map in no particular order. If you alter the map while doing this, you'll get undefined
+results.
+
+##### `drain()`
+
+Remove all elements from the map and iterate through them in no particular order. If you add elements to the map while
+doing this, you'll get undefined results.
+
+##### `translate(fn)`
+
+Use the provided function to translate all elements of the map, in no particular order. To remove an element from the
+map, return `None` from the translation function.
 
 ## Declaring Storage Items
 
@@ -76,7 +140,22 @@ decl_storage! {
 ```
 
 Notice that the last item, the `double_map` specifies the "hasher" (the hash algorithm) that should be used to generate
-one of its key. Keep reading for more information about the different hashing algorithms and when to use them.
+one of its key. Keep reading for [more information about the different hashing algorithms](#Hashing-Algorithms) and when
+to use them.
+
+### Getter Functions
+
+The `decl_storage` macro makes it easy to define and implement getter functions for your storage items.
+
+Here is an example of adding a getter function for a simple Storage Value:
+
+```rust
+decl_storage! {
+	trait Store for Module<T: Trait> as Example {
+		pub SomeValue get(someValue): u64;
+	}
+}
+```
 
 ### Default Values
 
@@ -92,6 +171,14 @@ decl_storage! {
 	}
 }
 ```
+
+### Genesis Config
+
+You can define
+[an optional `GenesisConfig`](https://substrate.dev/rustdocs/master/frame_support/macro.decl_storage.html#genesisconfig)
+struct in order to initialize Storage Items in the genesis block of your blockchain.
+
+// TODO
 
 ## Hashing Algorithms
 
