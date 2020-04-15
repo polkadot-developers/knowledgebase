@@ -17,22 +17,20 @@ information and best practices about Substrate's runtime storage interfaces. Ple
 ## Storage Items
 
 [The `storage` module in the Substrate Support pallet](https://substrate.dev/rustdocs/master/frame_support/storage/index.html)
-gives runtime developers access to Substrate's flexible storage APIs:
+gives runtime developers access to Substrate's flexible storage APIs. Any value which can be encoded by the
+[Parity SCALE codec](../advanced/codec) is supported by these storage APIs:
 
 * [Storage Value](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageValue.html) - A single value
 * [Storage Map](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageMap.html) - A key-value hash map
 * [Storage Double Map](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageDoubleMap.html) - An
   implementation of a map with two keys that provides the important ability to efficiently remove all entries that have
-	a common first key
+  a common first key
 * Iterable Storage Maps - Implementations of
   [Storage Map](https://substrate.dev/rustdocs/master/frame_support/storage/trait.IterableStorageMap.html) and
-	[Storage Double Map](https://substrate.dev/rustdocs/master/frame_support/storage/trait.IterableStorageDoubleMap.html)
-	whose keys and values can be iterated over
+  [Storage Double Map](https://substrate.dev/rustdocs/master/frame_support/storage/trait.IterableStorageDoubleMap.html)
+  whose keys and values can be iterated over
 
-Any value which can be encoded by the [Parity SCALE codec](../advanced/codec) is supported by these
-storage APIs.
-
-The type of storage item you use should depend on the logical way in which the value will be used by your runtime.
+The type of Storage Item you select should depend on the logical way in which the value will be used by your runtime.
 
 ### Storage Value
 
@@ -68,7 +66,7 @@ Remove the value from storage.
 
 ### Storage Maps
 
-Substrate maps are implemented as hash maps, which is a pattern that should be familiar to most developers. In order to
+Storage Maps are implemented as hash maps, which is a pattern that should be familiar to most developers. In order to
 give blockchain engineers increased control over the way in which these data structures are stored, Substrate allows
 developers to select the hashing algorithm that is used to generate map keys. Map data structures are ideal for managing
 sets of items whose elements will be accessed randomly, as opposed to iterating over them sequentially in their entirety.
@@ -100,8 +98,9 @@ Remove the value associated with the given key from storage.
 The Substrate storage API provides iterable map implementations. Because maps are often used to track unbounded sets of
 data (account balances, for example) it is especially likely to exceed block production time by iterating over maps in
 their entirety within the runtime. Furthermore, because maps are comprised of more layers of indirection than native
-lists, they are significantly more costly than lists to iterate over with respect to time. Depending on the hashing
-algorithm that you select to generate a map's keys, you may be able to iterate across its keys as well as its values.
+lists, they are significantly more costly than lists to iterate over with respect to time. Depending on
+[the hashing algorithm](#Transparent-Hashing-Algorithms) that you select to generate a map's keys, you may be able to
+iterate across its keys as well as its values.
 
 #### Methods
 
@@ -125,8 +124,8 @@ map, return `None` from the translation function.
 
 ## Declaring Storage Items
 
-You can use the `decl_storage!` macro to easily create new runtime storage items. Here is an example of what it looks
-like to declare each type of storage item:
+You can use [the `decl_storage` macro](https://substrate.dev/rustdocs/master/frame_support/macro.decl_storage.html) to
+easily create new runtime storage items. Here is an example of what it looks like to declare each type of storage item:
 
 ```rust
 decl_storage! {
@@ -139,20 +138,20 @@ decl_storage! {
 }
 ```
 
-Notice that the last item, the `double_map` specifies the "hasher" (the hash algorithm) that should be used to generate
+Notice that the last item (the `double_map`) specifies the "hasher" (the hash algorithm) that should be used to generate
 one of its key. Keep reading for [more information about the different hashing algorithms](#Hashing-Algorithms) and when
 to use them.
 
-### Getter Functions
+### Custom Getter Method Names
 
-The `decl_storage` macro makes it easy to define and implement getter functions for your storage items.
+The `decl_storage` macro makes it easy to provide a custom name for a Storage Item's `get()` method.
 
-Here is an example of adding a getter function for a simple Storage Value:
+Here is an example of renaming the `get()` function of a Storage Value named `SomeValue` to `some_value()`:
 
 ```rust
 decl_storage! {
 	trait Store for Module<T: Trait> as Example {
-		pub SomeValue get(someValue): u64;
+		pub SomeValue get(some_value): u64;
 	}
 }
 ```
@@ -207,13 +206,13 @@ counterparts, which is why Substrate allows developers to select when they are u
 
 A transparent hashing algorithm is one that makes it easy to discover and verify the input that was used to generate a
 given output. In Substrate, hashing algorithms are made transparent by concatenating the algorithm's input to its output.
-This makes it trivial for users to retrieve a key's original unhashed value and verify it (by re-hashing it) if they'd
-like. It is generally recommended to use transparent hashing algorithms for your runtime's Storage Maps. In fact, it is
+This makes it trivial for users to retrieve a key's original unhashed value and verify it if they'd like (by re-hashing
+it). It is generally recommended to use transparent hashing algorithms for your runtime's Storage Maps. In fact, it is
 necessary to use a transparent hashing algorithm if you would like to iterate over the keys in a map.
 
 ### Common Substrate Hashers
 
-This table lists some common hashers used in Substrate and describes which ones are cryptographic and which ones are
+This table lists some common hashers used in Substrate and denotes those that are cryptographic and those that are
 transparent:
 
 | Hasher                                                                                                | Cryptographic | Transparent |
@@ -224,7 +223,7 @@ transparent:
 | [TwoX 64 Concat](https://substrate.dev/rustdocs/master/frame_support/struct.Twox64Concat.html)        |               | X           |
 | [Identity](https://substrate.dev/rustdocs/master/frame_support/struct.Identity.html)                  |               |             |
 
-The Identity hasher exposes a hashing algorithm that has an output equal to its input (the identity function).This type
+The Identity hasher encapsulates a hashing algorithm that has an output equal to its input (the identity function).This type
 of hasher should only be used when the starting key is already a cryptographic hash.
 
 ## Querying Storage
@@ -233,8 +232,8 @@ Blockchains that are built with Substrate expose a remote procedure call (RPC) s
 blockchain's runtime storage. One thing that will be important to understand before proceeding is that the Substrate
 runtime storage APIs are layers of abstraction that have been built upon a simple key-value database. When you use the
 Substrate RPC to query runtime storage, you only need to provide a single piece of information: the storage key. The rest
-of this section will go over the basics of how to calculate storage keys for the different types of storage items. If
-you'd like to learn more about how Substrate uses a key-value database to implement the different kinds of storage items,
+of this section will go over the basics of how to calculate storage keys for the different types of Storage Items. If
+you'd like to learn more about how Substrate uses a key-value database to implement the different kinds of Storage Items,
 refer to [the advanced storage documentation](../advanced/storage).
 
 ### Storage Value Keys
@@ -270,10 +269,10 @@ potentially malicious users of your blockchain.
 Like Storage Values, the keys for Storage Maps are equal to the TwoX 128 hash of the name of the module that contains
 the map prepended to the TwoX 128 hash of the name of the Storage Map itself. To retrieve an element from a map, simply
 append the hash of the desired map key to the storage key of the Storage Map. For maps with two keys (Storage Double
-Maps), append the hash of the first map key followed by the hash of the second map key to the map's storage key. Remember,
-Substrate will use the TwoX 128 hashing algorithm for the module and storage item names, but you will need to make sure
-to use the correct hashing algorithm (the one that was declared in [the `decl_storage` macro](#Declaring-Storage-Items))
-when determining the hashed keys for the elements in a map.
+Maps), append the hash of the first map key followed by the hash of the second map key to the Storage Double Map's storage
+key. Remember, Substrate will use the TwoX 128 hashing algorithm for the module and storage item names, but you will need
+to make sure to use the correct hashing algorithm (the one that was declared in
+[the `decl_storage` macro](#Declaring-Storage-Items)) when determining the hashed keys for the elements in a map.
 
 Here is an example that illustrates querying a Storage Map named `FreeBalance` from a module named "Balances" for the
 balance of the familiar `Alice` account. In this example, the `FreeBalance` map is using
@@ -327,7 +326,7 @@ previous example that this represents the Blake2 128 Concat hash of some [SCALE]
 As described above, the Blake 128 Concat hashing algorithm consists of appending (concatenating) the hashing algorithm's
 input to its Blake 128 hash. This means that the first 128 bits (or 32 hexadecimal characters) of a Blake2 128 Concat
 hash represents a Blake2 128 hash, and the remainder represents the value that was passed to the Blake 2 128 hashing
-algorithm. In this example, after you remove the first 32 hexadecimal characters that represent a Blake2 128 hash (i.e.
+algorithm. In this example, after you remove the first 32 hexadecimal characters that represent the Blake2 128 hash (i.e.
 `0x32a5935f6edc617ae178fef9eb1e211f`) what is left is the hexadecimal value
 `0xbe5ddb1579b72e84524fc29e78609e3caf42e85aa118ebfe0b0ad404b5bdd25f`, which is a [SCALE](../advanced/codec)-encoded
 account ID. Decoding this value yields the result `5GNJqTPyNqANBkUVMN1LPPrxXnFouWXoe2wNSmmEoLctxiZY`, which is the account
@@ -359,11 +358,11 @@ TODO
 
 * Visit the reference docs for the
   [`decl_storage!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.decl_storage.html) more details
-	possible storage declarations.
+  possible storage declarations.
 
 * Visit the reference docs for
   [StorageValue](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageValue.html),
-	[StorageMap](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageMap.html),
-	[StorageLinkedMap](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageLinkedMap.html), and
-	[StorageDoubleMap](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageDoubleMap.html) to learn
-	more about their APIs.
+  [StorageMap](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageMap.html),
+  [StorageLinkedMap](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageLinkedMap.html), and
+  [StorageDoubleMap](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageDoubleMap.html) to learn
+  more about their APIs.
