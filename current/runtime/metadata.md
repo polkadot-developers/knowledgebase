@@ -8,7 +8,7 @@ The Substrate Metadata lets you inspect type/error information of Calls, Events,
 
 ## How to Use
 ### Rust
-The easiest way to get the metadata is by querying the automatically generated JSONRPC function `state_getMetadata` (client/rpc-api/src/state/mod.rs in substrate repository). This will return a Vector of SCALE-encoded bytes (`Bytes` where `Bytes` is a newstruct wrapping a `Vec<u8>`). If using rust you can decode into the `RuntimeMetadataPrefixed` struct using substrate 'frame-metadata' and 'parity-scale-codec' libraries. Older versions of metadata would need to be decoded into their corresponding versioned `RuntimeMetadataPrefixed`. Some helpful libraries, `substrate-subxt` fetch the metadata and decodes it into the latest `RuntimeMetadataPrefixed` struct and converts it into a helpful format for you, while `desub` doesn't fetch metadata from RPC, it will decode and convert historical metadata from version 8. Effort is underway to combine desub/subxt. Once decoded into `RuntimeMetadataPrefixed` the struct may be serialized into JSON with serde. If you'd prefer to use the RPC more directly, the (JSONRPC)[https://github.com/paritytech/jsonrpc] or (jsonrpsee)[https://github.com/paritytech/jsonrpsee] libraries provide an interface to do so from rust, and both are created with substrate/polkadot in mind.
+The easiest way to get the metadata is by querying the automatically generated JSONRPC function `state_getMetadata`. This will return a vector of SCALE-encoded bytes. If using rust you can decode into the `RuntimeMetadataPrefixed` struct using substrate 'frame-metadata' and 'parity-scale-codec' libraries. Older versions of metadata would need to be decoded into their corresponding versioned `RuntimeMetadataPrefixed`. Some helpful libraries like `substrate-subxt` fetch the metadata and decode them into the latest `RuntimeMetadataPrefixed` data structure, while `desub` doesn't fetch metadata from RPC, it will decode and convert historical metadata from version 8. Once decoded into `RuntimeMetadataPrefixed` the structure may be serialized into JSON with serde. If you'd prefer to use the RPC more directly, the (JSONRPC)[https://github.com/paritytech/jsonrpc] or (jsonrpsee)[https://github.com/paritytech/jsonrpsee] libraries provide an interface to do so from rust, and both are created with substrate/polkadot in mind.
 
 ### Javascript
 
@@ -207,7 +207,7 @@ With the metadata, this lets someone know the types and information required to 
 ],
 ```
 
-This is generated from this piece of declarational code:
+The `calls` json is generated from this piece of declarational code:
 ```rust
 decl_module! {
 	pub struct Module<T: Trait> for enum Call where origin: T::Origin {
