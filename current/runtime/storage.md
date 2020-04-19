@@ -48,50 +48,40 @@ Refer to the Storage Value documentation for
 [a comprehensive list of the methods that Storage Values expose](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageValue.html#required-methods).
 Some of the most important methods are summarized here:
 
-##### `get()`
-
-Load the value from storage.
-
-##### `put(val)`
-
-Store the provided value.
-
-##### `mutate(fn)`
-
-Mutate the value with the provided function.
-
-##### `take()`
-
-Remove the value from storage.
+* [`get()`](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageValue.html#tymethod.get) - Load
+  the value from storage.
+* [`put(val)`](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageValue.html#tymethod.put) - Store
+  the provided value.
+* [`mutate(fn)`](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageValue.html#tymethod.mutate) -
+  Mutate the value with the provided function.
+* [`take()`](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageValue.html#tymethod.take) - Remove
+  the value from storage.
 
 ### Storage Maps
 
-Storage Maps are implemented as hash maps, which is a pattern that should be familiar to most developers. In order to
-give blockchain engineers increased control over the way in which these data structures are stored, Substrate allows
-developers to select the hashing algorithm that is used to generate map keys. Map data structures are ideal for managing
-sets of items whose elements will be accessed randomly, as opposed to iterating over them sequentially in their entirety.
+Storage Maps are implemented as maps with hashed keys, which is a pattern that should be familiar to most developers.
+In order to give blockchain engineers increased control over the way in which these data structures are stored,
+Substrate allows developers to select the hashing algorithm that is used to generate map keys. Map data structures are
+ideal for managing sets of items whose elements will be accessed randomly, as opposed to iterating over them
+sequentially in their entirety.
 
 #### Methods
 
 [Storage Maps expose an API](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageMap.html#required-methods)
-that is similar to that of Storage Values. The selected methods referenced below all use a single key; use two keys for
-[Storage Double Maps](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageDoubleMap.html#required-methods):
+that is similar to that of Storage Values.
 
-##### `get(key)`
-
-Load the value associated with the provided key from storage.
-
-##### `store(key, val)`
-
-Store the provided value by associating it with the given key.
-
-##### `mutate(key, fn)`
-
-Use the provided function to mutate the value associated with the given key.
-
-##### `take(key)`
-
-Remove the value associated with the given key from storage.
+* `get` - Load the value associated with the provided key from storage. Docs:
+  [`StorageMap#get(key)`](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageMap.html#tymethod.get),
+	[`StorageDoubleMap#get(key1, key2)`](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageDoubleMap.html#tymethod.get)
+* `insert` - Store the provided value by associating it with the given key. Docs:
+  [`StorageMap#insert(key, val)`](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageMap.html#tymethod.insert),
+	[`StorageDoubleMap#insert(key1, key2, val)`](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageDoubleMap.html#tymethod.insert)
+* `mutate` - Use the provided function to mutate the value associated with the given key. Docs:
+  [`StorageMap#mutate(key, fn)`](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageMap.html#tymethod.mutate),
+	[`StorageDoubleMap#mutate(key1, key2, fn)`](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageDoubleMap.html#tymethod.mutate)
+* `take` - Remove the value associated with the given key from storage. Docs:
+  [`StorageMap#take(key)`](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageMap.html#tymethod.take),
+	[`StorageDoubleMap#take(key1, key2)`](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageDoubleMap.html#tymethod.take)
 
 ### Iterable Storage Maps
 
@@ -105,22 +95,19 @@ iterate across its keys as well as its values.
 #### Methods
 
 [Iterable Storage Maps expose the following methods](https://substrate.dev/rustdocs/master/frame_support/storage/trait.IterableStorageMap.html#required-methods)
-in addition to the other map methods:
+in addition to the other map methods. Note that for Iterable Storage Double Maps, the `iter` and `drain` methods require a parameter, i.e. the first key:
 
-##### `iter()`
-
-Enumerate all elements in the map in no particular order. If you alter the map while doing this, you'll get undefined
-results.
-
-##### `drain()`
-
-Remove all elements from the map and iterate through them in no particular order. If you add elements to the map while
-doing this, you'll get undefined results.
-
-##### `translate(fn)`
-
-Use the provided function to translate all elements of the map, in no particular order. To remove an element from the
-map, return `None` from the translation function.
+* `iter` - Enumerate all elements in the map in no particular order. If you alter the map while doing this, you'll get undefined
+  results. Docs:
+	[IterableStorageMap#iter()](https://substrate.dev/rustdocs/master/frame_support/storage/trait.IterableStorageMap.html#tymethod.iter),
+	[IterableStorageDoubleMap#iter(key1)](https://substrate.dev/rustdocs/master/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.iter)
+* `drain` - Remove all elements from the map and iterate through them in no particular order. If you add elements to the map while
+  doing this, you'll get undefined results. Docs:
+	[IterableStorageMap#drain()](https://substrate.dev/rustdocs/master/frame_support/storage/trait.IterableStorageMap.html#tymethod.drain), [IterableStorageDoubleMap#drain(key1)](https://substrate.dev/rustdocs/master/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.drain)
+* `translate` - Use the provided function to translate all elements of the map, in no particular order. To remove an element from the
+  map, return `None` from the translation function. Docs:
+	[IterableStorageMap#translate(fn)](https://substrate.dev/rustdocs/master/frame_support/storage/trait.IterableStorageMap.html#tymethod.translate),
+	[IterableStorageDoubleMap#translate(fn)](https://substrate.dev/rustdocs/master/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.translate)
 
 ## Declaring Storage Items
 
