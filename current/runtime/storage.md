@@ -60,10 +60,13 @@ Some of the most important methods are summarized here:
 ### Storage Maps
 
 Storage Maps are implemented as maps with hashed keys, which is a pattern that should be familiar to most developers.
-In order to give blockchain engineers increased control over the way in which these data structures are stored,
-Substrate allows developers to select the hashing algorithm that is used to generate map keys. Map data structures are
-ideal for managing sets of items whose elements will be accessed randomly, as opposed to iterating over them
-sequentially in their entirety.
+Unlike traditional hash maps, though, [Storage Maps in Substrate are simple key-value stores](../advanced/storage) that
+do not take key collision into account. The hashing algorithms that Substrate supplies are designed so that runtime
+developers do not need to worry about key collisions, but the implementation of Substrate Storage Maps does becomes
+important when [querying storage](#Querying-Storage) to read the elements of a Storage Map. In order to give blockchain
+engineers increased control over the way in which these data structures are stored, Substrate allows developers to select
+the hashing algorithm that is used to generate map keys. Map data structures are ideal for managing sets of items whose
+elements will be accessed randomly, as opposed to iterating over them sequentially in their entirety.
 
 #### Methods
 
@@ -88,7 +91,11 @@ that is similar to that of Storage Values.
 The Substrate storage API provides iterable map implementations. Because maps are often used to track unbounded sets of
 data (account balances, for example) it is especially likely to exceed block production time by iterating over maps in
 their entirety within the runtime. Furthermore, because maps are comprised of more layers of indirection than native
-lists, they are significantly more costly than lists to iterate over with respect to time. Depending on
+lists, they are significantly more costly than lists to iterate over with respect to time. This is not to say that it
+is "wrong" to iterate over maps in your runtime; in general Substrate focuses on "first principals" as opposed to hard
+and fast rules of right and wrong. Being efficient within the runtime of a blockchain is an important first principal
+of Substrate and this information is designed to help you understand _all_ of Substrate's storage capabilities and use
+them in a way that respects the important first principals around which they were designed. Depending on
 [the hashing algorithm](#Transparent-Hashing-Algorithms) that you select to generate a map's keys, you may be able to
 iterate across its keys as well as its values.
 
