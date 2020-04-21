@@ -137,16 +137,23 @@ Notice that the last item (the `double_map`) specifies the "hasher" (the hash al
 one of its key. Keep reading for [more information about the different hashing algorithms](#Hashing-Algorithms) and when
 to use them.
 
-### Custom Getter Method Names
+### Getter Methods
 
-The `decl_storage` macro makes it easy to provide a custom name for a Storage Item's `get()` method.
+The `decl_storage` macro provides an optional `get` extension that can be used to implement a getter method for a storage
+item on the module that contains that storage item; the extension takes the desired name of the getter function as an
+argument. If you omit this optional extension, you will still be able to access the storage item's value, but you will
+not be able to do so by way of a getter method implemented on the module; instead, you will need to need to use
+[the storage item's `get` method](#Methods). Keep in mind that the optional `get` extension only impacts the way that
+the storage item can be accessed from within Substrate code; you will always be able to
+[query the storage of your runtime](#Querying-Storage) to get the value of a storage item.
 
-Here is an example of renaming the `get()` function of a Storage Value named `SomeValue` to `some_value()`:
+Here is an example that implements a getter method named `some_value` for a Storage Value named `SomeValue`. This module
+would now have access to a `Self::some_value()` method in addition to the `SomeValue::get()` method:
 
 ```rust
 decl_storage! {
 	trait Store for Module<T: Trait> as Example {
-		pub SomeValue get(some_value): u64;
+		pub SomeValue get(fn some_value): u64;
 	}
 }
 ```
