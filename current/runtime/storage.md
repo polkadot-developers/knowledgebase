@@ -110,7 +110,8 @@ in addition to the other map methods. Note that for Iterable Storage Double Maps
 	[IterableStorageDoubleMap#iter(key1)](https://substrate.dev/rustdocs/master/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.iter)
 * `drain` - Remove all elements from the map and iterate through them in no particular order. If you add elements to the map while
   doing this, you'll get undefined results. Docs:
-	[IterableStorageMap#drain()](https://substrate.dev/rustdocs/master/frame_support/storage/trait.IterableStorageMap.html#tymethod.drain), [IterableStorageDoubleMap#drain(key1)](https://substrate.dev/rustdocs/master/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.drain)
+	[IterableStorageMap#drain()](https://substrate.dev/rustdocs/master/frame_support/storage/trait.IterableStorageMap.html#tymethod.drain),
+	[IterableStorageDoubleMap#drain(key1)](https://substrate.dev/rustdocs/master/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.drain)
 * `translate` - Use the provided function to translate all elements of the map, in no particular order. To remove an element from the
   map, return `None` from the translation function. Docs:
 	[IterableStorageMap#translate(fn)](https://substrate.dev/rustdocs/master/frame_support/storage/trait.IterableStorageMap.html#tymethod.translate),
