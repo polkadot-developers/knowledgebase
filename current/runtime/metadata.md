@@ -4,34 +4,40 @@ lang: en
 title: Runtime Metadata
 ---
 
-The Substrate Metadata lets you inspect type and error information of calls, events, storage items, 
-and constants of every pallet in a Substrate runtime. It's automatically generated from the 
-contents within the Substrate macros (`decl_module!`, `decl_storage!`, `decl_event!`, and 
-`decl_error!`). With the metadata, you are able to acquire the information necessary to query 
-storage and code around a specific runtime's types without importing the code from that runtime, or 
-any previous runtime.
+Blockchains that are built on Substrate expose metadata in order to make it easier to interact with
+them. This metadata is separated by the different modules ([pallets](pallets)) that inform your
+blockchain. For each module, the metadata provides information about the [storage items](storage),
+[extrinsic calls](../learn-substrate/extrinsics), [events](events), constants and errors that are
+exposed by that module. Substrate automatically generates this metadata for you and makes it
+available through RPC calls.
 
-Metadata for a specific version of the chain is stored on a per-block basis. Querying the metadata 
-for an older block (with an archive node, for example) could result in acquiring an older version 
-of metadata that is not compatible with the current runtime. Metadata will include information 
-specific to a single runtime rather than being generic over any runtime.
+Since the runtime of a Substrate blockchain is an evolving part of the blockchain's state, blockchain
+metadata is stored on a per-block basis. Be aware that querying the metadata for an older block
+(with an archive node, for example) could result in acquiring out-of-date metadata that is not
+compatible with a blockchain's current state.
 
-> All examples in this document were taken from block 1,768,321 on Kusama. See the 
-  [full metadata](https://gist.github.com/insipx/db5e49c0160b1f1bd421a3c34fefdf48).
+All examples in this document were taken from block 1,768,321 on Kusama. You can (and should) take
+a quick look at the
+[full metadata](https://gist.github.com/insipx/db5e49c0160b1f1bd421a3c34fefdf48) before reading the
+rest of this document and continue to refer to it as you proceed.
 
 ## How to Get the Metadata
 
+There are a number of language-specific libraries that you can use to fetch metadata from a Substrate
+node, as well as language-agnostic HTTP and WebSocket APIs.
+
 ### Rust
 
-The easiest way to get the metadata is by querying the automatically generated JSON-RPC function 
+The easiest way to get the metadata is by querying the automatically-generated JSON-RPC function 
 `state_getMetadata`. This will return a vector of SCALE-encoded bytes. You can decode this using 
-the `frame-metadata` and `parity-scale-codec` libraries.
+the [`frame-metadata`](https://crates.parity.io/frame_metadata/index.html) and
+[`parity-scale-codec`](https://crates.parity.io/parity_scale_codec/index.html) libraries.
 
-Some helpful libraries like `substrate-subxt` fetch the metadata and decode them for you. Once 
-decoded, the structure may be serialized into JSON with serde. If you'd prefer to use the RPC more 
-directly, the [JSONRPC](https://github.com/paritytech/jsonrpc) and 
-[jsonrpsee](https://github.com/paritytech/jsonrpsee) libraries provide an interface to do so from 
-Rust, and both were created with Substrate/Polkadot in mind.
+Some helpful libraries like [`substrate-subxt`](https://github.com/paritytech/substrate-subxt)
+fetch the metadata and decode them for you. Once decoded, the structure may be serialized into
+JSON with [`serde`](https://serde.rs/). If you'd prefer to use the RPC more directly, the
+[JSONRPC](https://github.com/paritytech/jsonrpc) and
+[jsonrpsee](https://github.com/paritytech/jsonrpsee) Rust libraries provide interfaces to do so.
 
 ### Javascript
 
@@ -49,10 +55,12 @@ console.log( 'Magic number: ' + magicNumber );
 console.log( 'Metadata: ' + metadata.raw );
 ```
 
-### Other Languages
+### HTTP & WebSocket APIs
 
-You can send a **WebSocket message** or **HTTP POST request** to a Substrate node endpoint by using 
-any existing client. The message or body for `getMetadata` is:
+Substrate nodes expose [a JSON-RPC API](https://crates.parity.io/sc_rpc/index.html) that you can
+access by way of **HTTP** or **WebSocket** requests. The message to
+[request metadata](https://crates.parity.io/sc_rpc/state/struct.StateClient.html#method.metadata)
+from a node looks like this:
 
 ```json
 {
@@ -71,49 +79,59 @@ the block's hash:
   "id": 1,
   "jsonrpc": "2.0",
   "method": "state_getMetadata",
-  "params": ["ca15c2f1e1540517697b6b5f2cc6bc0c60876a1a1af604269b7215970798bbed"]
+  "params": ["0xca15c2f1e1540517697b6b5f2cc6bc0c60876a1a1af604269b7215970798bbed"]
 }
 ```
 
-Where `0xca15c2f1e1540517697b6b5f2cc6bc0c60876a1a1af604269b7215970798bbed` is the hash of 
-block 1,768,321.
+In the example above, `0xca15c2f1e1540517697b6b5f2cc6bc0c60876a1a1af604269b7215970798bbed` is the
+hash of block 1,768,321.
 
-The response has the following format, but with much more information in the `result` field:
+The response has the following format:
 
 ```json
 {
     "jsonrpc": "2.0",
-    "result": "0x6d65746104241873797374656d1853797374656d012c304163636f756e744e6f6e636501010130543a3a4163636f756e74...",
+    "result": "0x6d6574610b7c1853797374656d011853797374656d3c1c4163636f756e7401010230543a3a4163636f756e744964944163...",
     "id": 1
 }
 ```
 
-The hexadecimal string in the `result` field wraps the runtime metadata in 
-[SCALE](../advanced/codec) format.
+The `result` field contains the blockchain metadata as a [SCALE-encoded](../advanced/codec)
+hexadecimal string. The example above represents the actual value that is returned for block
+1,768,321; you can check for yourself by using
+[a WebSocket client](https://chrome.google.com/webstore/detail/simple-websocket-client/pfdhoblngboilpfeibdedpjgfnlcodoo)
+to query a Kusama node, such as `wss://kusama-rpc.polkadot.io/`, with the example request provided
+above. Continue reading to learn more about the format of this encoded blob as well as
+[its decoded format](https://gist.githubusercontent.com/insipx/db5e49c0160b1f1bd421a3c34fefdf48/raw/2c33ff080bec84f0627610124c732deb30a0adc7/meta_block_1768321.json).
 
-The hex blob starts with a hard-coded magic number `6d657461`, which represents "meta" in plain 
-text. The next piece of data shows the version number of the metadata, here we are using `04` to 
-represent version 4. We already mentioned that runtime metadata is composed of data from the 
-runtime's pallets. In our case we have 9 pallets. After shifting 9 in binary representation two 
-bits to the left, we get `24` in hex to represent the length of the array.
 
-The remaining blob encodes the metadata of each pallet. To learn more about decoding different 
-types in the [struct](https://crates.parity.io/frame_metadata/struct.ModuleMetadata.html), please 
-refer to the [reference docs](https://crates.parity.io/frame_metadata/index.html)..
+## Metadata Format
 
-After decoding the hex blob successfully, you should be able to see similar metadata in the above 
-example.
+This section will briefly review the SCALE-encoded metadata that is represented as a hexadecimal
+string before taking a more detailed look at the metadata's decoded format.
 
-## Format
+### Encoded Metadata Format
 
-### Encoded Format
+The hex blob that is returned by the JSON-RPCs `state_getMetadata` method starts with a hard-coded
+magic number, `0x6d657461`, which represents "meta" in plain text. The next piece of data (`0x0b`
+in the example above) represents the metadata version; decoding the hexadecimal value `0x0b` yields
+the decimal value 11, which is
+[the version of the Substrate metadata format](https://crates.parity.io/frame_metadata/enum.RuntimeMetadata.html)
+that the result encodes. After the metadata version, the next piece of information encoded in the
+result field is the number of modules/pallets that inform the blockchain's runtime; in the example
+above, the hexadecimal value `0x7c` represents the decimal number 31, which is SCALE-encoded by
+taking its binary representation (`11111` or `0x1F` in hex), shifting it two bits to the left
+(`1111100`) and encoded that as hex.
 
-Encoded, runtime metadata is a tuple struct, `RuntimeMetadataPrefixed(u32, RuntimeMetadata)` where 
-`u32` is a 4-byte prefix and `RuntimeMetadata` is the encoded metadata enum. Since enums in SCALE 
-are encoded by indexing, the first byte (5th byte in the SCALE-encoded byte-string) is the index of 
-the enum variant, but also conveniently corresponds to the version of the metadata. 
+The remaining blob encodes
+[the metadata of each pallet](https://crates.parity.io/frame_metadata/struct.ModuleMetadata.html),
+which will be reviewed below as well as some
+[extrinsic metadata](https://crates.parity.io/frame_metadata/struct.ExtrinsicMetadata.html), which
+is mostly out of the scope of this document.
 
-### Decoded Format
+## Decoded Metadata Format
+
+Here is a condensed version of the decoded metadata for block 1,768,321:
 
 ```json
 [
@@ -146,13 +164,15 @@ the enum variant, but also conveniently corresponds to the version of the metada
 ]
 ```
 
-The number at the beginning is the prefix, which is the ascii-text "meta" in big-endian. The rest 
-of the metadata has two sections: "modules" and "extrinsic". The modules section contains the bulk 
-of the information about the runtime's pallets, while the extrinsic sections denotes the version of 
-extrinsics in use. Different extrinsic versions may have different formats, especially when 
-considering [signed extrinsics](../learn-substrate/extrinsics).
+As described above, the integer `1635018093` is a "magic number" that represents "meta" in plain
+text. The rest of the metadata has two sections: `modules` and `extrinsic`. The `modules` section
+contains information about the runtime's pallets, while the extrinsic section describes the version
+of extrinsics that the runtime is using. Different extrinsic versions may have different formats,
+especially when considering [signed extrinsics](../learn-substrate/extrinsics).
 
 #### Modules
+
+Here is a condensed example of a single element in the `modules` array:
 
 ```json
 {
@@ -175,11 +195,16 @@ considering [signed extrinsics](../learn-substrate/extrinsics).
 }
 ```
 
-Every module contains the name of the pallet being represented, as well as a "storage" object, 
-"calls" array, "event" array, and "errors" array. If "calls" or "event" are empty, they will be a 
-`null` value in JSON, if constants or errors are empty, they will be an empty array.
+Every element contains the name of the pallet that it represents, as well as a `storage` object, 
+`calls` array, `event` array, and `errors` array. 
 
-##### Storage Item
+> Note: If `calls` or `event` are empty, they will be represented as `null`; if `constants` or
+`errors` are empty, they will be represented as an empty array.
+
+##### Storage
+
+Here is a condensed example of a single element in the `modules` array that highlights metadata
+about the module's storage:
 
 ```json
 {
@@ -215,8 +240,9 @@ Every module contains the name of the pallet being represented, as well as a "st
 },
 ```
 
-Every storage item defined in a pallet will have a corresponding metadata entry. For example, the 
-`Account` item is generated from this in `frame-system`:
+Every storage item that is defined in a pallet will have a corresponding metadata entry. For
+example, the  `Account` item in the example above is generated from
+[this code in the System FRAME pallet](https://github.com/paritytech/substrate/blob/v2.0.0-alpha.6/frame/system/src/lib.rs#L347):
 
 ```rust
 decl_storage! {
@@ -228,20 +254,26 @@ decl_storage! {
 }
 ```
 
-With the metadata, this lets someone know the types and information required to query the RPC 
-storage function to get account information for a specific `AccountId`, assuming they know the type 
-that the generic `T::AccountId` resolves to. By combining the `prefix` and the `name` of storage 
-and querying the `state_subscribeStorage` RPC endpoint, you could subscribe to new entries in 
-`Account` storage.
+Storage metadata provides blockchain clients with the information that is required to query
+[the JSON-RPC's storage function](https://crates.parity.io/sc_rpc/state/struct.StateClient.html#method.storage)
+to get information for a specific storage item.
 
 ##### Calls
 
-The metadata will take the information from `decl_module!` about runtime calls. For example, this 
-comes from the Timestamp pallet.
+Module metadata includes information about the runtime calls that are defined with the
+`decl_module!` macro. For each call, the metadata will include:
+
+- `name`: Name of the function in the module.
+- `args`: Arguments in function definition. Includes the name and type of each argument.
+- `Documentation`: Documentation of the function.
+
+For example, consider
+[this code from the Timestamp pallet](https://github.com/paritytech/substrate/blob/v2.0.0-alpha.6/frame/timestamp/src/lib.rs#L141):
 
 ```rust
 decl_module! {
 	pub struct Module<T: Trait> for enum Call where origin: T::Origin {
+    // ... snip
 
 		/// Set the current time.
 		///
@@ -261,11 +293,7 @@ decl_module! {
 }
 ```
 
-The metadata will include:
-
-- `name`: Name of the function in the module.
-- `args`: Arguments in function definition. Includes the name and type of each argument.
-- `Documentation`: Documentation of the function.
+This materializes in the metadata as follows:
 
 ```json
 "calls": [
@@ -294,7 +322,8 @@ The metadata will include:
 
 ##### Events
 
-This metadata snippet is generated from this declaration in `frame-system`:
+Take a look at
+[the `decl_event!` macro in the FRAME System pallet](https://github.com/paritytech/substrate/blob/v2.0.0-alpha.6/frame/system/src/lib.rs#L431):
 
 ```Rust
 decl_event!(
@@ -304,11 +333,12 @@ decl_event!(
         ExtrinsicSuccess(DispatchInfo),
         /// An extrinsic failed.
         ExtrinsicFailed(DispatchError, DispatchInfo),
+        // ... snip
     }
 )
 ```
 
-The metadata will include event information:
+Substrate's metadata would describe these events as follows:
 
 ```json
 "event": [
@@ -336,7 +366,8 @@ The metadata will include event information:
 
 ##### Constants
 
-The metadata will include any module constants. From `pallet-babe`:
+The BABE pallet defines
+[a constant named `EpochDuration` with the `decl_module!` macro](https://github.com/paritytech/substrate/blob/v2.0.0-alpha.6/frame/babe/src/lib.rs#L169):
 
 ```rust
 decl_module! {
@@ -346,12 +377,12 @@ decl_module! {
         /// epochs, i.e. we start a new session once the new epoch begins.
         const EpochDuration: u64 = T::EpochDuration::get();
         
-        // ...
+        // ... snip
     }
 }
 ```
 
-This module will produce the following in the metadata:
+The metadata for this constant looks like this:
 
 ```json
 "constants": [
@@ -376,7 +407,8 @@ This module will produce the following in the metadata:
 ],
 ```
 
-The metadata also includes constants defined in the runtime's `lib.rs`. For example, from Kusama:
+The metadata also includes constants defined in the runtime's `lib.rs`. For example,
+[from Kusama](https://github.com/paritytech/polkadot/blob/master/runtime/kusama/src/lib.rs#L165):
 
 ```rust
 parameter_types! {
@@ -384,12 +416,13 @@ parameter_types! {
 }
 ```
 
-Where `EPOCH_DURATION_IN_BLOCKS` is a constant defined in `runtime/src/constants.rs`.
+Where `EPOCH_DURATION_IN_BLOCKS` is a constant
+[defined in `runtime/src/constants.rs`](https://github.com/paritytech/polkadot/blob/master/runtime/kusama/src/constants.rs#L36).
 
 ##### Errors
 
-Metadata will pull all the possible runtime errors from `decl_error!`. For example, from 
-`frame-system`:
+The metadata will include all the runtime errors defined with the `decl_error!` macro. For example,
+[from `frame-system`](https://github.com/paritytech/substrate/blob/v2.0.0-alpha.6/frame/system/src/lib.rs#L447):
 
 ```Rust
 decl_error! {
@@ -398,11 +431,12 @@ decl_error! {
         /// The name of specification does not match between the current runtime
         /// and the new runtime.
         InvalidSpecName,
+        // ... snip
     }
 }
 ```
 
-This will generate the following metadata:
+This will expose the following metadata:
 
 ```json
 "errors": [
@@ -416,7 +450,9 @@ This will generate the following metadata:
 ]
 ```
 
-These are errors that could occur during the submission of an extrinsic. In this case, the `InvalidSpecName` error could be raised from `frame-system`.
+These are errors that could occur during the submission or execution of an extrinsic. In this case,
+the FRAME System pallet is declaring that it may raise the
+[the `InvalidSpecName` error](https://crates.parity.io/frame_system/enum.Error.html#variant.InvalidSpecName).
 
 ## Next Steps
 
