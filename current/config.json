@@ -35,6 +35,7 @@
 				{ "title": "FRAME", "slug": "frame" },
 				{ "title": "Pallets", "slug": "pallets" },
 				{ "title": "Macros", "slug": "macros" },
+				{ "title": "Runtime Metadata", "slug": "metadata" },
 				{ "title": "Storage", "slug": "storage" },
 				{ "title": "Origin", "slug": "origin" },
 				{ "title": "Execution", "slug": "execution" },
