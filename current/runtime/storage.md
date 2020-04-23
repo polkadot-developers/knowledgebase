@@ -10,14 +10,14 @@ statement is somewhat self-evident, since one of the primary objectives of a blo
 consensus about the state of the underlying storage. Furthermore, well designed storage systems reduce the load on
 nodes in the network, which will lower the overhead for participants in your blockchain. Substrate exposes a set of
 layered, modular storage APIs that allow runtime developers to make the storage decisions that suit them best. However,
-the fundamental principal of blockchain runtime storage is to minimize its use. This document is intended to provide
+the fundamental principle of blockchain runtime storage is to minimize its use. This document is intended to provide
 information and best practices about Substrate's runtime storage interfaces. Please refer to
 [the advanced storage documentation](../advanced/storage) for more information about how these interfaces are implemented.
 
 ## Storage Items
 
-[The `storage` module in the Substrate Support pallet](https://substrate.dev/rustdocs/master/frame_support/storage/index.html)
-gives runtime developers access to Substrate's flexible storage APIs. Any value which can be encoded by the
+The `storage` module in [FRAME Support](https://substrate.dev/rustdocs/master/frame_support/storage/index.html)
+gives runtime developers access to Substrate's flexible storage APIs. Any value that can be encoded by the
 [Parity SCALE codec](../advanced/codec) is supported by these storage APIs:
 
 * [Storage Value](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageValue.html) - A single value
@@ -35,7 +35,7 @@ The type of Storage Item you select should depend on the logical way in which th
 ### Storage Value
 
 This type of storage item should be used for values that are viewed as a single unit by the runtime, whether that is a
-single primitive value, a single `struct` or a single collection of related items. Although wrapping related items in
+single primitive value, a single `struct`, or a single collection of related items. Although wrapping related items in
 a shared `struct` is an excellent way to reduce the number of storage reads (an important consideration), at some point
 the size of the object will begin to incur costs that may outweigh the optimization in storage reads. Storage values
 can be used to store lists of items, but runtime developers should take care with respect to the size of these lists.
@@ -62,7 +62,7 @@ Some of the most important methods are summarized here:
 Storage Maps are implemented as maps with hashed keys, which is a pattern that should be familiar to most developers.
 Unlike traditional hash maps, though, [Storage Maps in Substrate are simple key-value stores](../advanced/storage) that
 do not take key collision into account. The hashing algorithms that Substrate supplies are designed so that runtime
-developers do not need to worry about key collisions, but the implementation of Substrate Storage Maps does becomes
+developers do not need to worry about key collisions, but the implementation of Substrate Storage Maps does become
 important when [querying storage](#Querying-Storage) to read the elements of a Storage Map. In order to give blockchain
 engineers increased control over the way in which these data structures are stored, Substrate allows developers to select
 the hashing algorithm that is used to generate map keys. Map data structures are ideal for managing sets of items whose
@@ -92,10 +92,10 @@ The Substrate storage API provides iterable map implementations. Because maps ar
 data (account balances, for example) it is especially likely to exceed block production time by iterating over maps in
 their entirety within the runtime. Furthermore, because maps are comprised of more layers of indirection than native
 lists, they are significantly more costly than lists to iterate over with respect to time. This is not to say that it
-is "wrong" to iterate over maps in your runtime; in general Substrate focuses on "first principals" as opposed to hard
-and fast rules of right and wrong. Being efficient within the runtime of a blockchain is an important first principal
+is "wrong" to iterate over maps in your runtime; in general Substrate focuses on "first principles" as opposed to hard
+and fast rules of right and wrong. Being efficient within the runtime of a blockchain is an important first principle
 of Substrate and this information is designed to help you understand _all_ of Substrate's storage capabilities and use
-them in a way that respects the important first principals around which they were designed. Depending on
+them in a way that respects the important first principles around which they were designed. Depending on
 [the hashing algorithm](#Transparent-Hashing-Algorithms) that you select to generate a map's keys, you may be able to
 iterate across its keys as well as its values.
 
@@ -359,8 +359,8 @@ TODO
 ### References
 
 * Visit the reference docs for the
-  [`decl_storage!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.decl_storage.html) more details
-  possible storage declarations.
+  [`decl_storage!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.decl_storage.html) for more details
+  about the available storage declarations.
 
 * Visit the reference docs for
   [StorageValue](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageValue.html),
