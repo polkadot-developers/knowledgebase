@@ -5,26 +5,25 @@ title: Runtime Metadata
 ---
 
 Blockchains that are built on Substrate expose metadata in order to make it easier to interact with
-them. This metadata is separated by the different modules ([pallets](pallets)) that inform your
+them. This metadata is separated by the different [pallets](pallets) that inform your
 blockchain. For each module, the metadata provides information about the [storage items](storage),
-[extrinsic calls](../learn-substrate/extrinsics), [events](events), constants and errors that are
+[extrinsic calls](../learn-substrate/extrinsics), [events](events), constants, and errors that are
 exposed by that module. Substrate automatically generates this metadata for you and makes it
 available through RPC calls.
 
-Since the runtime of a Substrate blockchain is an evolving part of the blockchain's state, blockchain
-metadata is stored on a per-block basis. Be aware that querying the metadata for an older block
-(with an archive node, for example) could result in acquiring out-of-date metadata that is not
-compatible with a blockchain's current state.
+Since the runtime of a Substrate blockchain is an evolving part of the blockchain's state, 
+blockchain metadata is stored on a per-block basis. Be aware that querying the metadata for an 
+older block (with an archive node, for example) could result in acquiring out-of-date metadata that 
+is not compatible with a blockchain's current state.
 
-All examples in this document were taken from block 1,768,321 on Kusama. You can (and should) take
-a quick look at the
+All examples in this document were taken from block 1,768,321 on Kusama. You can look at the
 [full metadata](https://gist.github.com/insipx/db5e49c0160b1f1bd421a3c34fefdf48) before reading the
 rest of this document and continue to refer to it as you proceed.
 
 ## How to Get the Metadata
 
-There are a number of language-specific libraries that you can use to fetch metadata from a Substrate
-node, as well as language-agnostic HTTP and WebSocket APIs.
+There are a number of language-specific libraries that you can use to fetch metadata from a 
+Substrate node, as well as language-agnostic HTTP and WebSocket APIs.
 
 ### Rust
 
@@ -98,12 +97,9 @@ The response has the following format:
 
 The `result` field contains the blockchain metadata as a [SCALE-encoded](../advanced/codec)
 hexadecimal string. The example above represents the actual value that is returned for block
-1,768,321; you can check for yourself by using
-[a WebSocket client](https://chrome.google.com/webstore/detail/simple-websocket-client/pfdhoblngboilpfeibdedpjgfnlcodoo)
-to query a Kusama node, such as `wss://kusama-rpc.polkadot.io/`, with the example request provided
-above. Continue reading to learn more about the format of this encoded blob as well as
+1,768,321; you can check for yourself by using a WebSocket client to query a node. Continue reading 
+to learn more about the format of this encoded blob as well as
 [its decoded format](https://gist.githubusercontent.com/insipx/db5e49c0160b1f1bd421a3c34fefdf48/raw/2c33ff080bec84f0627610124c732deb30a0adc7/meta_block_1768321.json).
-
 
 ## Metadata Format
 
@@ -118,10 +114,10 @@ in the example above) represents the metadata version; decoding the hexadecimal 
 the decimal value 11, which is
 [the version of the Substrate metadata format](https://crates.parity.io/frame_metadata/enum.RuntimeMetadata.html)
 that the result encodes. After the metadata version, the next piece of information encoded in the
-result field is the number of modules/pallets that inform the blockchain's runtime; in the example
+result field is the number of pallets that inform the blockchain's runtime; in the example
 above, the hexadecimal value `0x7c` represents the decimal number 31, which is SCALE-encoded by
 taking its binary representation (`11111` or `0x1F` in hex), shifting it two bits to the left
-(`1111100`) and encoded that as hex.
+(`1111100`) and encoding that as hex.
 
 The remaining blob encodes
 [the metadata of each pallet](https://crates.parity.io/frame_metadata/struct.ModuleMetadata.html),
@@ -131,7 +127,7 @@ is mostly out of the scope of this document.
 
 ## Decoded Metadata Format
 
-Here is a condensed version of the decoded metadata for block 1,768,321:
+Here is a condensed version of decoded metadata:
 
 ```json
 [
@@ -241,8 +237,7 @@ about the module's storage:
 ```
 
 Every storage item that is defined in a pallet will have a corresponding metadata entry. For
-example, the  `Account` item in the example above is generated from
-[this code in the System FRAME pallet](https://github.com/paritytech/substrate/blob/v2.0.0-alpha.6/frame/system/src/lib.rs#L347):
+example, the `Account` item is generated from this in `frame-system`:
 
 ```rust
 decl_storage! {
@@ -267,8 +262,7 @@ Module metadata includes information about the runtime calls that are defined wi
 - `args`: Arguments in function definition. Includes the name and type of each argument.
 - `Documentation`: Documentation of the function.
 
-For example, consider
-[this code from the Timestamp pallet](https://github.com/paritytech/substrate/blob/v2.0.0-alpha.6/frame/timestamp/src/lib.rs#L141):
+For example, this comes from the Timestamp pallet:
 
 ```rust
 decl_module! {
@@ -322,8 +316,7 @@ This materializes in the metadata as follows:
 
 ##### Events
 
-Take a look at
-[the `decl_event!` macro in the FRAME System pallet](https://github.com/paritytech/substrate/blob/v2.0.0-alpha.6/frame/system/src/lib.rs#L431):
+This metadata snippet is generated from this declaration in `frame-system`:
 
 ```Rust
 decl_event!(
@@ -366,8 +359,7 @@ Substrate's metadata would describe these events as follows:
 
 ##### Constants
 
-The BABE pallet defines
-[a constant named `EpochDuration` with the `decl_module!` macro](https://github.com/paritytech/substrate/blob/v2.0.0-alpha.6/frame/babe/src/lib.rs#L169):
+The metadata will include any module constants. From `pallet-babe`:
 
 ```rust
 decl_module! {
@@ -407,8 +399,7 @@ The metadata for this constant looks like this:
 ],
 ```
 
-The metadata also includes constants defined in the runtime's `lib.rs`. For example,
-[from Kusama](https://github.com/paritytech/polkadot/blob/master/runtime/kusama/src/lib.rs#L165):
+The metadata also includes constants defined in the runtime's `lib.rs`. For example, from Kusama:
 
 ```rust
 parameter_types! {
@@ -416,13 +407,12 @@ parameter_types! {
 }
 ```
 
-Where `EPOCH_DURATION_IN_BLOCKS` is a constant
-[defined in `runtime/src/constants.rs`](https://github.com/paritytech/polkadot/blob/master/runtime/kusama/src/constants.rs#L36).
+Where `EPOCH_DURATION_IN_BLOCKS` is a constant defined in `runtime/src/constants.rs`.
 
 ##### Errors
 
-The metadata will include all the runtime errors defined with the `decl_error!` macro. For example,
-[from `frame-system`](https://github.com/paritytech/substrate/blob/v2.0.0-alpha.6/frame/system/src/lib.rs#L447):
+Metadata will pull all the possible runtime errors from `decl_error!`. For example, from 
+`frame-system`:
 
 ```Rust
 decl_error! {
