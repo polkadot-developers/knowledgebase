@@ -1,7 +1,6 @@
 {
 	"lang": "en",
 	"slug": "config",
-	"version": "v2.0.0-alpha.5",
 	"release_url": "https://github.com/paritytech/substrate/",
 	"menu": [
 		{
