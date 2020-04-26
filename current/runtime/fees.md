@@ -27,11 +27,13 @@ A transaction fee consists of two parts:
 * `length_fee`: A per-byte fee that is multiplied by the length, in bytes, of the encoded
   extrinsic. See
   [`TransactionByteFee`](https://substrate.dev/rustdocs/master/pallet_transaction_payment/trait.Trait.html#associatedtype.TransactionByteFee).
-* `weight_fee`: A fee based on the weight of the extrinsic. Each extrinsic has an
-  `ExtrinsicBaseWeight` in addition to a flexible `#[weight]` annotation. The weight must be
-  converted to the `Currency` type. For this, each runtime must define a
+* `weight_fee`: A fee based on the weight of the extrinsic, which is a function of two parameters. 
+  One, an `ExtrinsicBaseWeight` that is declared in the runtime and applies to all extrinsics. The 
+  base weight covers inclusion overhead like signature verification. Two, a flexible `#[weight]` 
+  annotation that accounts for an extrinsic's complexity. In order to convert the weight to 
+  `Currency`, the runtime must define a
   [`WeightToFee`](https://substrate.dev/rustdocs/master/pallet_transaction_payment/trait.Trait.html#associatedtype.WeightToFee)
-  type that makes the conversion. `WeightToFee` must be a struct that implements
+  struct that implements a conversion function,
   [`Convert<Weight,Balance>`](https://substrate.dev/rustdocs/master/sp_runtime/traits/trait.Convert.html).
 
 Based on the above, the final fee of a dispatchable is:
