@@ -22,34 +22,34 @@ of configurable parameters.
 
 ### Inclusion Fee
 
-A transaction fee consists of three parts:
+A transaction fee consists of two parts:
 
-* `base_fee`: A fixed fee that is applied to every transaction. See
-  [`TransactionBaseFee`](https://substrate.dev/rustdocs/master/pallet_transaction_payment/trait.Trait.html#associatedtype.TransactionBaseFee).
-* `length_fee`: A per-byte fee that is multiplied by the length, in bytes, of the encoded extrinsic. See
+* `length_fee`: A per-byte fee that is multiplied by the length, in bytes, of the encoded
+  extrinsic. See
   [`TransactionByteFee`](https://substrate.dev/rustdocs/master/pallet_transaction_payment/trait.Trait.html#associatedtype.TransactionByteFee).
-* `weight_fee`: A fee based on the weight of the extrinsic. The weight of each dispatch is denoted
-  via the flexible `#[weight]` annotation. The weight must be converted to the `Currency` type. For
-  this, each runtime must define a
+* `weight_fee`: A fee based on the weight of the extrinsic, which is a function of two parameters. 
+  One, an `ExtrinsicBaseWeight` that is declared in the runtime and applies to all extrinsics. The 
+  base weight covers inclusion overhead like signature verification. Two, a flexible `#[weight]` 
+  annotation that accounts for an extrinsic's complexity. In order to convert the weight to 
+  `Currency`, the runtime must define a
   [`WeightToFee`](https://substrate.dev/rustdocs/master/pallet_transaction_payment/trait.Trait.html#associatedtype.WeightToFee)
-  type that makes the conversion. `WeightToFee` must be a struct that implements [`Convert<Weight,
-  Balance>`](https://substrate.dev/rustdocs/master/sp_runtime/traits/trait.Convert.html).
+  struct that implements a conversion function,
+  [`Convert<Weight,Balance>`](https://substrate.dev/rustdocs/master/sp_runtime/traits/trait.Convert.html).
 
 Based on the above, the final fee of a dispatchable is:
 
 ```
 fee =
-  base_fee +
   len(tx) * length_fee +
   WeightToFee(weight)
 ```
 
 This `fee` is known as the "inclusion fee". Note that the extrinsic sender is charged the inclusion
-fee _prior_ to the actual invocation of the extrinsic, so its cost will still be incurred if execution
-fails. In the event that an account does not have a sufficient balance to pay the fee and remain
-alive (i.e. existential deposit + inclusion fee), no fee will be deducted and the transaction will
-not begin execution. This latter case should be rare as the transaction queue and block construction
-logic perform checks prior to adding an extrinsic to a block.
+fee _prior_ to the actual invocation of the extrinsic, so its cost will still be incurred if
+execution fails. In the event that an account does not have a sufficient balance to pay the fee and
+remain alive (i.e. existential deposit plus inclusion fee), no fee will be deducted and the
+transaction will not begin execution. This latter case should be rare as the transaction queue and
+block construction logic perform checks prior to adding an extrinsic to a block.
 
 ### Fee Multiplier
 
@@ -60,7 +60,7 @@ is defined, the final fee can include some degree of variability. To fulfill thi
 Substrate provides:
 
   - [`NextFeeMultiplier`](https://substrate.dev/rustdocs/master/pallet_transaction_payment/struct.Module.html#method.next_fee_multiplier):
-    A multiplier stored in the Transaction Payment module and configurable.
+    A configurable multiplier stored in the Transaction Payment module.
   - [`FeeMultiplierUpdate`](https://substrate.dev/rustdocs/master/pallet_transaction_payment/trait.Trait.html#associatedtype.FeeMultiplierUpdate):
     A configurable parameter for a runtime to describe how this multiplier can change.
 
@@ -69,7 +69,6 @@ inclusion fee formula above, the final version would be:
 
 ```
 fee =
-  base_fee +
   len(tx) * length_fee +
   WeightToFee(weight)
 
@@ -104,18 +103,18 @@ Some transactions warrant limiting resources with other strategies. For example:
 - Burns: A transaction may burn funds internally based on its logic. For example, a transaction may
   burn funds from the sender if it creates new storage entries, thus increasing the state size.
 - Limits: Runtime developers are free to enforce constant or configurable limits on certain
-  operations. For example, the default Staking pallet only allows nominators to nominate 16 validators
-  in order to limit the complexity of the validator election process.
+  operations. For example, the default Staking pallet only allows nominators to nominate 16
+  validators in order to limit the complexity of the validator election process.
 
 It is important to note that if you query the chain for a transaction fee, it will only return the
 inclusion fee.
 
 ## Default Weight Fees
 
-All dispatchable functions in Substrate must specify a weight. Substrate provides flexible mechanisms
-for defining custom weight logic as well as a default weight system that uses _fixed_ weights, which
-means that the arguments to a dispatch do not affect its weight. The tiers in the default system are
-represented by the following enum:
+All dispatchable functions in Substrate must specify a weight. Substrate provides flexible
+mechanisms for defining custom weight logic as well as a default weight system that uses _fixed_
+weights, which means that the arguments to a dispatch do not affect its weight. The tiers in the
+default system are represented by the following enum:
 
 ```rust
 pub enum SimpleDispatchInfo {
@@ -146,53 +145,13 @@ only consume a portion of a block's total weight limit; this portion can be foun
 [`AvailableBlockRatio`](https://substrate.dev/rustdocs/master/frame_system/trait.Trait.html#associatedtype.AvailableBlockRatio).
 Normal dispatches are sent to the [transaction pool](../learn-substrate/tx-pool).
 
-#### `FixedNormal`
-
-Describes a normal function that will always have the specified weight.
-
-```rust
-#[weight = SimpleDispatchInfo::FixedNormal(10)]
-pub fn some_normal_function_heavy() { some_computation(); }
-```
-
-#### `MaxNormal`
-
-This is equivalent to `SimpleDispatchInfo::FixedNormal(Weight::max_value())`.
-
-#### `InsecureFreeNormal`
-
-This means that the function has no weight; it will not contribute to the block's weight at all,
-and no weight fee is applied. Although the `base_fee` and `length_fee` still need to be paid, as
-the name indicates a lack of weight fees also implies a lack of security, so developers should use
-care when when adding dispatches of this type to their runtime.
-
-```rust
-#[weight = SimpleDispatchInfo::InsecureFreeNormal]
-pub fn some_normal_function_light() { noop(); }
-```
-
 ### Operational Dispatches
 
-As opposed to normal dispatches, which represent _usage_ of network capabilities, operational dispatches
-are those that _provide_ network capabilities. These types of dispatches may consume the entire weight
-limit of a block, which is to say that they are not bound by the
+As opposed to normal dispatches, which represent _usage_ of network capabilities, operational
+dispatches are those that _provide_ network capabilities. These types of dispatches may consume the
+entire weight limit of a block, which is to say that they are not bound by the
 [`AvailableBlockRatio`](https://substrate.dev/rustdocs/master/frame_system/trait.Trait.html#associatedtype.AvailableBlockRatio).
-Dispatches in this class are given maximum priority and are exempt from paying the `base_fee` and
-`length_fee`.
-
-#### `FixedOperational`
-
-Describes a function that will have a fixed weight and can consume the reserved operational portion
-as well.
-
-```rust
-#[weight = SimpleDispatchInfo::FixedOperational(20)]
-pub fn mission_critical_function() { some_sudo_op(); }
-```
-
-#### `MaxOperational`
-
-This is equivalent to `SimpleDispatchInfo::FixedOperational(Weight::max_value())`.
+Dispatches in this class are given maximum priority and are exempt from paying the `length_fee`.
 
 ### Mandatory Dispatches
 
@@ -204,19 +163,9 @@ in a block regardless of the function weight, it is critical that the function's
 prevents malicious validators from abusing the function in order to craft blocks that are valid but
 impossibly heavy. This can typically be accomplished by ensuring that the operation is always very
 light and can only be included in a block once. In order to make it more difficult for malicious
-validators to abuse these types of dispatches, they may not be included in blocks that return errors.
-This dispatch class exists to serve the assumption that it is better to allow an overweight block
-to be created than to not allow any block to be created at all.
-
-#### `FixedMandatory`
-
-This function will have a fixed weight and be allowed in a block even if the function makes the block
-overweight.
-
-```rust
-#[weight = SimpleDispatchInfo::FixedMandatory(20)]
-pub fn block_validation_critical_function() { block_validation_op(); }
-```
+validators to abuse these types of dispatches, they may not be included in blocks that return
+errors. This dispatch class exists to serve the assumption that it is better to allow an overweight
+block to be created than to not allow any block to be created at all.
 
 ## Custom Fees
 
@@ -224,19 +173,18 @@ You can also define custom fee systems through custom weight functions or inclus
 
 ### Custom Weights
 
-Implementing a custom weight calculation function can vary in complexity. Using the
-`SimpleDispatchInfo` struct provided by Substrate is the easiest approach.
+Implementing a custom weight calculation function can vary in complexity.
 
 A weight calculation function must provide two trait implementations:
 
-  - [`WeightData<T>`]: To determine the weight of the dispatch.
+  - [`WeighData<T>`]: To determine the weight of the dispatch.
   - [`ClassifyDispatch<T>`]: To determine the class of the dispatch.
 
 Substrate then bundles the output information of the two traits into the [`DispatchInfo`] struct and
 provides it by implementing the [`GetDispatchInfo`] for all `Call` variants and opaque extrinsic
 types. This is used internally by the System and Executive modules; you probably won't use it.
 
-Both `ClassifyDispatch` and `WeightData` are generic over `T`, which gets resolved into the tuple of
+Both `ClassifyDispatch` and `WeighData` are generic over `T`, which gets resolved into the tuple of
 all dispatch arguments except for the origin. To demonstrate, we will craft a struct that calculates
 the weight as `m * len(args)` where `m` is a given multiplier and `args` is the concatenated tuple
 of all dispatch arguments. Further, the dispatch class is `Operational` if the transaction has more
@@ -273,8 +221,8 @@ impl<T: Encode> ClassifyDispatch<T> for LenWeight {
 ```
 
 A weight calculator function can also be coerced to the final type of the argument, instead of
-defining it as a vague type that is encodable. `srml-example` contains an example of how to do this.
-Just note that, in that case, your code would roughly look like:
+defining it as a vague type that is encodable. `pallet-example` contains an example of how to do
+this. Just note that, in that case, your code would roughly look like:
 
 ```rust
 struct CustomWeight;
@@ -316,22 +264,35 @@ impl Convert<Weight, Balance> for CustomWeightToFee {
 }
 
 parameter_types! {
-    TransactionBaseFee: Balance = 10;
-    TransactionByteFee: Balance = 10;
+    pub const ExtrinsicBaseWeight: Weight = 10_000_000;
+}
+
+impl frame_system::Trait for Runtime {
+    type ExtrinsicBaseWeight = ExtrinsicBaseWeight;
+}
+
+parameter_types! {
+    pub const TransactionByteFee: Balance = 10;
 }
 
 impl transaction_payment::Trait {
-    TransactionBaseFee = TransactionBaseFee;
-    TransactionByteFee = TransactionByteFee;
-    WeightToFee = CustomWeightToFee;
-    // we will get to this one soon enough
-    FeeMultiplierUpdate = ();
+    type TransactionByteFee = TransactionByteFee;
+    type WeightToFee = CustomWeightToFee;
+    type FeeMultiplierUpdate = TargetedFeeAdjustment<TargetBlockFullness>;
+}
+
+struct TargetedFeeAdjustment<T>(sp_std::marker::PhantomData<T>);
+impl<T: Get<Perquintill>> Convert<Fixed128, Fixed128> for TargetedFeeAdjustment<T> {
+	  fn convert(multiplier: Fixed128) -> Fixed128 {
+        // Don't change anything. Put any fee update info here.
+        multiplier
+    }
 }
 ```
 
 ## Next Steps
 
-The entire logic of fees is encapsulated in `srml-transaction-payment` via a `SignedExtension`.
+The entire logic of fees is encapsulated in `pallet-transaction-payment` via a `SignedExtension`.
 While this module provides a high degree of flexibility, a user can opt to build their custom
 payment module drawing inspiration from Transaction Payment.
 
