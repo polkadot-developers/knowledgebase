@@ -24,14 +24,14 @@ of configurable parameters.
 
 A transaction fee consists of two parts:
 
-* `length_fee`: A per-byte fee that is multiplied by the length, in bytes, of the encoded 
+* `length_fee`: A per-byte fee that is multiplied by the length, in bytes, of the encoded
   extrinsic. See
   [`TransactionByteFee`](https://substrate.dev/rustdocs/master/pallet_transaction_payment/trait.Trait.html#associatedtype.TransactionByteFee).
-* `weight_fee`: A fee based on the weight of the extrinsic. Each extrinsic has an 
-  `ExtrinsicBaseWeight` in addition to a flexible `#[weight]` annotation. The weight must be 
-  converted to the `Currency` type. For this, each runtime must define a 
-  [`WeightToFee`](https://substrate.dev/rustdocs/master/pallet_transaction_payment/trait.Trait.html#associatedtype.WeightToFee) 
-  type that makes the conversion. `WeightToFee` must be a struct that implements 
+* `weight_fee`: A fee based on the weight of the extrinsic. Each extrinsic has an
+  `ExtrinsicBaseWeight` in addition to a flexible `#[weight]` annotation. The weight must be
+  converted to the `Currency` type. For this, each runtime must define a
+  [`WeightToFee`](https://substrate.dev/rustdocs/master/pallet_transaction_payment/trait.Trait.html#associatedtype.WeightToFee)
+  type that makes the conversion. `WeightToFee` must be a struct that implements
   [`Convert<Weight,Balance>`](https://substrate.dev/rustdocs/master/sp_runtime/traits/trait.Convert.html).
 
 Based on the above, the final fee of a dispatchable is:
@@ -43,11 +43,11 @@ fee =
 ```
 
 This `fee` is known as the "inclusion fee". Note that the extrinsic sender is charged the inclusion
-fee _prior_ to the actual invocation of the extrinsic, so its cost will still be incurred if execution
-fails. In the event that an account does not have a sufficient balance to pay the fee and remain
-alive (i.e. existential deposit plus inclusion fee), no fee will be deducted and the transaction will
-not begin execution. This latter case should be rare as the transaction queue and block construction
-logic perform checks prior to adding an extrinsic to a block.
+fee _prior_ to the actual invocation of the extrinsic, so its cost will still be incurred if
+execution fails. In the event that an account does not have a sufficient balance to pay the fee and
+remain alive (i.e. existential deposit plus inclusion fee), no fee will be deducted and the
+transaction will not begin execution. This latter case should be rare as the transaction queue and
+block construction logic perform checks prior to adding an extrinsic to a block.
 
 ### Fee Multiplier
 
@@ -101,7 +101,7 @@ Some transactions warrant limiting resources with other strategies. For example:
 - Burns: A transaction may burn funds internally based on its logic. For example, a transaction may
   burn funds from the sender if it creates new storage entries, thus increasing the state size.
 - Limits: Runtime developers are free to enforce constant or configurable limits on certain
-  operations. For example, the default Staking pallet only allows nominators to nominate 16 
+  operations. For example, the default Staking pallet only allows nominators to nominate 16
   validators in order to limit the complexity of the validator election process.
 
 It is important to note that if you query the chain for a transaction fee, it will only return the
@@ -109,10 +109,10 @@ inclusion fee.
 
 ## Default Weight Fees
 
-All dispatchable functions in Substrate must specify a weight. Substrate provides flexible mechanisms
-for defining custom weight logic as well as a default weight system that uses _fixed_ weights, which
-means that the arguments to a dispatch do not affect its weight. The tiers in the default system are
-represented by the following enum:
+All dispatchable functions in Substrate must specify a weight. Substrate provides flexible
+mechanisms for defining custom weight logic as well as a default weight system that uses _fixed_
+weights, which means that the arguments to a dispatch do not affect its weight. The tiers in the
+default system are represented by the following enum:
 
 ```rust
 pub enum SimpleDispatchInfo {
@@ -145,9 +145,9 @@ Normal dispatches are sent to the [transaction pool](../learn-substrate/tx-pool)
 
 ### Operational Dispatches
 
-As opposed to normal dispatches, which represent _usage_ of network capabilities, operational dispatches
-are those that _provide_ network capabilities. These types of dispatches may consume the entire weight
-limit of a block, which is to say that they are not bound by the
+As opposed to normal dispatches, which represent _usage_ of network capabilities, operational
+dispatches are those that _provide_ network capabilities. These types of dispatches may consume the
+entire weight limit of a block, which is to say that they are not bound by the
 [`AvailableBlockRatio`](https://substrate.dev/rustdocs/master/frame_system/trait.Trait.html#associatedtype.AvailableBlockRatio).
 Dispatches in this class are given maximum priority and are exempt from paying the `length_fee`.
 
@@ -161,9 +161,9 @@ in a block regardless of the function weight, it is critical that the function's
 prevents malicious validators from abusing the function in order to craft blocks that are valid but
 impossibly heavy. This can typically be accomplished by ensuring that the operation is always very
 light and can only be included in a block once. In order to make it more difficult for malicious
-validators to abuse these types of dispatches, they may not be included in blocks that return errors.
-This dispatch class exists to serve the assumption that it is better to allow an overweight block
-to be created than to not allow any block to be created at all.
+validators to abuse these types of dispatches, they may not be included in blocks that return
+errors. This dispatch class exists to serve the assumption that it is better to allow an overweight
+block to be created than to not allow any block to be created at all.
 
 ## Custom Fees
 
