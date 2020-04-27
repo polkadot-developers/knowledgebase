@@ -25,10 +25,6 @@ gives runtime developers access to Substrate's flexible storage APIs. Any value 
 * [Storage Double Map](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageDoubleMap.html) - An
   implementation of a map with two keys that provides the important ability to efficiently remove all entries that have
   a common first key
-* Iterable Storage Maps - Implementations of
-  [Storage Map](https://substrate.dev/rustdocs/master/frame_support/storage/trait.IterableStorageMap.html) and
-  [Storage Double Map](https://substrate.dev/rustdocs/master/frame_support/storage/trait.IterableStorageDoubleMap.html)
-  whose keys and values can be iterated over
 
 The type of Storage Item you select should depend on the logical way in which the value will be used by your runtime.
 
