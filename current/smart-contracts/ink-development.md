@@ -6,8 +6,8 @@ title: ink! Development
 
 ink! is a [Rust](https://www.rust-lang.org/)-based embedded domain specific language
 ([eDSL](https://wiki.haskell.org/Embedded_domain_specific_language)) for writing
-[WebAssembly](https://webassembly.org/) smart contracts specifically for the [SRML Contracts
-module](/current/smart-contracts/contracts-pallet.md).
+[WebAssembly](https://webassembly.org/) smart contracts specifically for the [FRAME Contracts
+pallet](/current/smart-contracts/contracts-pallet.md).
 
 ink! is still under development, so the documentation for using it is sparse. However, on this page
 you will find the best resources to get you started building ink! contracts right away.
@@ -35,11 +35,10 @@ understand how it is similar and different to other smart contract languages.
 
 This includes:
 
-* [A Flipper Contract](https://github.com/paritytech/ink/tree/master/examples/lang2/flipper/)
-* [An Incrementer
-  Contract](https://github.com/paritytech/ink/tree/master/examples/lang2/incrementer/)
-* [An ERC20 Contract](https://github.com/paritytech/ink/tree/master/examples/lang2/erc20/)
-* [A Delegator Contract](https://github.com/paritytech/ink/tree/master/examples/lang2/delegator/)
+* [A Flipper Contract](https://github.com/paritytech/ink/tree/master/examples/flipper/)
+* [An ERC20 Contract](https://github.com/paritytech/ink/tree/master/examples/erc20/)
+* [An ERC721 Contract](https://github.com/paritytech/ink/tree/master/examples/erc721/)
+* [A Delegator Contract](https://github.com/paritytech/ink/tree/master/examples/delegator/)
 
 ## FAQ
 
@@ -80,7 +79,7 @@ find a small off-chain test at the bottom of the contract.
 You should run this test just like you would any other Rust test:
 
 ```bash
-cargo test
+cargo +nightly test
 ```
 
 ## Get Help
@@ -101,11 +100,11 @@ Join the growing community of ink! smart contract developers:
 
 * Learn more about the design philosophy of [ink! in our conceptual
   documentation](/current/smart-contracts/ink-fundamentals.md).
-* Learn more about the [Contracts module](contracts-pallet).
+* Learn more about the [Contracts pallet](https://docs.rs/pallet-contracts).
 
 ### Examples
 
-* Follow a [tutorial to add this SRML Contracts module to your Substrate
+* Follow a [tutorial to add this Contracts pallet to your Substrate
   runtime](https://substrate.dev/docs/en/tutorials/adding-a-module-to-your-runtime/).
 
 ### References

@@ -6,8 +6,8 @@ title: ink! Concepts
 
 ink! is a [Rust](https://www.rust-lang.org/)-based embedded domain specific language
 ([eDSL](https://wiki.haskell.org/Embedded_domain_specific_language)) for writing
-[Wasm](https://webassembly.org/) smart contracts specifically for the [SRML Contracts
-module](/current/smart-contracts/contracts-pallet.md).
+[Wasm](https://webassembly.org/) smart contracts specifically for the [FRAME Contracts
+pallet](/current/smart-contracts/contracts-pallet.md).
 
 ## Design
 
@@ -94,7 +94,7 @@ Here is a brief comparison of features between ink! and Solidity:
 
 ### Learn More
 
-- Learn about the [SRML Contracts module](contracts-pallet) which is
+- Learn about the [FREAME Contracts Pallet](https://docs.rs/pallet-contracts) which is
   used to deploy and execute ink! contracts.
 
 ### Examples

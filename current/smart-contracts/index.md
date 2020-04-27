@@ -10,7 +10,7 @@ Because Substrate supports Wasm smart contracts, it means that any language that
 
 ## Contracts Pallet
 
-The Contracts pallet provides the ability for the runtime to deploy and execute WebAssembly smart contracts. Here we will provide a short overview of the major features of the contracts pallet. To really learn all of the fine details, you can take a look at the [reference documentation for `srml_contracts`](https://substrate.dev/rustdocs/master/pallet_contracts/index.html).
+The Contracts pallet provides the ability for the runtime to deploy and execute WebAssembly smart contracts. Here we will provide a short overview of the major features of the contracts pallet. To really learn all of the fine details, you can take a look at the [reference documentation for `pallet-contracts`](https://docs.rs/pallet-contracts).
 
 ### Account Based
 
@@ -27,7 +27,7 @@ This means that multiple contract instances, with different constructor argument
 
 ### Runtime Environment Types
 
-For writing contracts and interacting with the runtime, a set of types are available (e.g. `AccountId`, `Balance`, `Hash`, `Moment`). These types can be user defined for custom runtimes, or the supplied defaults can be used. See: [EnvTypes](env-types)
+For writing contracts and interacting with the runtime, a set of types are available (e.g. `AccountId`, `Balance`, `Hash`, `Timestamp`). These types can be user defined for custom runtimes, or the supplied defaults can be used. See: [EnvTypes](env-types)
 
 ### Contract Calls
 
@@ -56,7 +56,6 @@ ink! is a Rust-based embedded domain specific language ([eDSL](https://wiki.hask
 The ink! language is composed of three different layers of abstractions with which you can write smart contracts:
 
 * [Lang](https://github.com/paritytech/ink/tree/master/lang): The actual eDSL to provide a user-friendly interface to writing smart contract code.
-* [Model](https://github.com/paritytech/ink/tree/master/model): Medium-level abstractions to write smart contracts heavily inspired by [Fleetwood](https://github.com/paritytech/fleetwood).
 * [Core](https://github.com/paritytech/ink/tree/master/core): The core utilities and APIs used to interact with the Contracts pallet.
 
 We expect that most users will develop using the language layer, but thanks to the other abstractions, it is possible for developers to create their own Rust eDSL for their specific needs.

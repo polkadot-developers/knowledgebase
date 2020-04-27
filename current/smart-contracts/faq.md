@@ -8,17 +8,6 @@ This page will answer a number of common questions you may have when starting to
 
 ## ink! F.A.Q.
 
-### How do I use `env` in non-message functions?
-
-Currently, ink! hides some special details about calling messages that allows users to easily work with the environment like `env.caller()`. However, this support only works for message functions; those which are `pub(external)`.
-
-To use the `env` module in `non-message` functions, the user has to add an additional argument to their function declaration.
-
-* For `&self` methods, you must include `env: &ink_model::EnvHandler`.
-* For `&mut self` methods, you must include `env: &mut ink_model::EnvHandler`.
-
-Additionally, you need to pass this `env` variable from your message function to your non-message function. Look at [examples/lang/events](https://github.com/paritytech/ink/blob/master/examples/lang/events/src/lib.rs) to see how this is done.
-
 ### What is the difference between memory and storage?
 
 In ink! we refer `memory` to being the computer memory that is commonly known to programmers while with `storage` we refer to the contract instance's memory. The `storage` is backed up by the runtime in a data base. Accesses to it are considered to be slow.
@@ -42,13 +31,13 @@ For example, in the minimal [flipper contract](https://github.com/paritytech/ink
 To run this test, type the following command:
 
 ```bash
-cargo test
+cargo +nightly test
 ```
 
 ## Contracts Module
 
 ### How do I add the Contracts module to my custom chain?
 
-You can follow [our guide 
-here](https://substrate.dev/docs/en/tutorials/adding-a-module-to-your-runtime/) 
-for instructions to add the Contracts module and other SRML modules to your blockchain runtime.
+You can follow [our guide
+here](https://substrate.dev/docs/en/tutorials/adding-a-module-to-your-runtime/)
+for instructions to add the Contracts pallet and other FRAME pallets to your blockchain runtime.
