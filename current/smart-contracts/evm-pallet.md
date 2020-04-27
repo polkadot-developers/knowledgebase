@@ -47,7 +47,7 @@ to support earlier hard fork configurations.
 
 ### Learn More
 
-- Learn about our [Contracts module](contracts-pallet), which
+- Learn about our [Contracts pallet](https://docs.rs/pallet-contracts/), which
   supports deployment and execution of Wasm smart contracts.
 
 ### Examples
@@ -57,6 +57,6 @@ to support earlier hard fork configurations.
 
 ### References
 
-- Visit the reference docs for the [EVM module](https://substrate.dev/rustdocs/master/pallet_evm/index.html).
+- Visit the reference docs for the [EVM module](https://docs.rs/pallet_evm/).
 
 - Visit the reference docs for [SputnikVM's `evm` crate](https://docs.rs/evm/).

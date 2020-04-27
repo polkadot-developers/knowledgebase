@@ -109,8 +109,8 @@ blockchain.
 ### Learn More
 
 - Learn about [ink!, a Rust based embedded domain specific
-  language](/current/smart-contracts/index.md) for developing smart contracts for the SRML
-  Contracts module.
+  language](/current/smart-contracts/index.md) for developing smart contracts for the SEAL
+  pallet.
 
 ### Examples
 

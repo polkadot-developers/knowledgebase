@@ -8,18 +8,17 @@ This page is an overview on the state of smart contracts in Substrate.
 
 ## Virtual Machines
 
-The Substrate Runtime Module Library (SRML) provides two smart contract virtual machines which can
-be added to your Substrate runtime.
+FRAME provides two smart contract virtual machines which can be added to your Substrate runtime.
 
 ### Contracts Module
 
-The [SRML Contracts module](contracts-pallet) provides functionality
-for the runtime to deploy and execute WebAssembly smart-contracts. It is designed to iterate on the
-design of modern smart contract platforms.
+The **FRAME Contracts pallet** (SEAL) provides functionality for the runtime to deploy and execute
+WebAssembly smart-contracts. It is designed to iterate on the design of modern smart contract
+platforms.
 
 ### EVM Module
 
-The [SRML EVM module](evm-pallet) provides an EVM execution
+The [FRAME EVM pallet](evm-pallet) provides an EVM execution
 environment that allows unmodified EVM code to be executed in a Substrate-based blockchain. It is
 designed to most closely emulate the functionality of executing contracts on the Ethereum mainnet
 within the Substrate runtime.
