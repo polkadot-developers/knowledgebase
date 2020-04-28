@@ -82,23 +82,22 @@ that is similar to that of Storage Values.
   [`StorageMap#take(key)`](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageMap.html#tymethod.take),
 	[`StorageDoubleMap#take(key1, key2)`](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageDoubleMap.html#tymethod.take)
 
-### Iterable Storage Maps
+#### Iterable Storage Maps
 
-The Substrate storage API provides iterable map implementations. Because maps are often used to track unbounded sets of
-data (account balances, for example) it is especially likely to exceed block production time by iterating over maps in
-their entirety within the runtime. Furthermore, because maps are comprised of more layers of indirection than native
-lists, they are significantly more costly than lists to iterate over with respect to time. This is not to say that it
-is "wrong" to iterate over maps in your runtime; in general Substrate focuses on "first principles" as opposed to hard
-and fast rules of right and wrong. Being efficient within the runtime of a blockchain is an important first principle
-of Substrate and this information is designed to help you understand _all_ of Substrate's storage capabilities and use
-them in a way that respects the important first principles around which they were designed. Depending on
-[the hashing algorithm](#Transparent-Hashing-Algorithms) that you select to generate a map's keys, you may be able to
-iterate across its keys as well as its values.
+Depending on [the hashing algorithm](#Transparent-Hashing-Algorithms) that you select to generate a map's keys, you may
+be able to iterate across its keys and values. Because maps are often used to track unbounded sets of data (account
+balances, for example) it is especially likely to exceed block production time by iterating over maps in their entirety
+within the runtime. Furthermore, because maps are comprised of more layers of indirection than native lists, they are
+significantly more costly than lists to iterate over with respect to time. This is not to say that it is "wrong" to
+iterate over maps in your runtime; in general Substrate focuses on "first principles" as opposed to hard and fast rules
+of right and wrong. Being efficient within the runtime of a blockchain is an important first principle of Substrate and
+this information is designed to help you understand _all_ of Substrate's storage capabilities and use them in a way
+that respects the important first principles around which they were designed.
 
-#### Methods
+##### Iterable Storage Map Methods
 
-[Iterable Storage Maps expose the following methods](https://substrate.dev/rustdocs/master/frame_support/storage/trait.IterableStorageMap.html#required-methods)
-in addition to the other map methods. Note that for Iterable Storage Double Maps, the `iter` and `drain` methods require a parameter, i.e. the first key:
+Substrate's Iterable Storage Map interfaces define the following methods. Note that for Iterable Storage Double Maps,
+the `iter` and `drain` methods require a parameter, i.e. the first key:
 
 * `iter` - Enumerate all elements in the map in no particular order. If you alter the map while doing this, you'll get undefined
   results. Docs:
