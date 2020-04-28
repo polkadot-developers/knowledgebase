@@ -10,12 +10,12 @@ are some restrictions when operating inside of a `no_std` environment like the S
 
 ## Substrate's Own `print` Function
 
-To facilitate the debugging of the runtime, Substrate provides extra tools for `Print` debugging
-(or tracing). You can use the
-[`print` function](https://substrate.dev/rustdocs/master/sp_runtime/fn.print.html) to log the
-status of the runtime execution.
+To facilitate the debugging of the runtime, Substrate provides extra tools for `Print` debugging (or
+tracing). You can use the
+[`print` function](https://substrate.dev/rustdocs/master/sp_runtime/fn.print.html) to log the status
+of the runtime execution.
 
-``` rust
+```rust
 use sp_runtime::print;
 
 // --snip--
@@ -37,21 +37,21 @@ pub fn do_something(origin) -> DispatchResult {
 
 Start the chain using the `RUST_LOG` environment variable to see the print logs.
 
-``` sh
+```sh
 RUST_LOG=runtime=debug ./target/release/node-template --dev
 ```
 
 The values are printed in the terminal or the standard output if the Error gets triggered.
 
-``` sh
+```sh
 2020-01-01 00:00:00 tokio-blocking-driver DEBUG runtime  Execute do_something
 2020-01-01 00:00:00 tokio-blocking-driver DEBUG runtime  After storing my_val
 ```
 
 ## Printable Trait
 
-The Printable trait is meant to be a way to print from the runtime in `no_std` and in `std`.
-The `print` function works with any type that implements the
+The Printable trait is meant to be a way to print from the runtime in `no_std` and in `std`. The
+`print` function works with any type that implements the
 [`Printable` trait](https://substrate.dev/rustdocs/master/sp_runtime/traits/trait.Printable.html).
 Substrate implements this trait for some types (`u8`, `u32`, `u64`, `usize`, `&[u8]`, `&str`) by
 default. You can also implement it for your own custom types. Here is an example of implementing it
@@ -62,7 +62,7 @@ use sp_runtime::traits::Printable;
 use sp_runtime::print;
 ```
 
-``` rust
+```rust
 // The pallet's errors
 decl_error! {
 	pub enum Error for Module<T: Trait> {
@@ -109,12 +109,15 @@ pub fn cause_error(origin) -> dispatch::DispatchResult {
 	}
 }
 ```
+
 Run the node binary with the RUST_LOG environment variable to print the values.
-``` sh
+
+```sh
 RUST_LOG=runtime=debug ./target/release/node-template --dev
 ```
-The values are printed in the terminal or the standard output every time that the
-runtime function gets called.
+
+The values are printed in the terminal or the standard output every time that the runtime function
+gets called.
 
 ```rust
 2020-01-01 tokio-blocking-driver DEBUG runtime  My Test Message  <-- str implements Printable by default
@@ -124,27 +127,28 @@ runtime function gets called.
 2020-01-01 tokio-blocking-driver DEBUG runtime  0                <-- index value from the Error enum definition
 2020-01-01 tokio-blocking-driver DEBUG runtime  NoneValue        <-- str which holds the name of the ident of the error
 ```
+
 > IMPORTANT: Adding many print functions to the runtime will produce a bigger binary and wasm blob
-with debug code not needed in production.
+> with debug code not needed in production.
 
 ## If Std
 
-The `print` function works well when you just want to print and you have an implementation of the 
-`Printable` trait. In some cases you may want to do more than print, or not bother with 
-Substrate-specific traits just for debugging purposes. The 
-[`if_std!` macro](https://substrate.dev/rustdocs/master/sp_std/macro.if_std.html) is for exactly 
+The `print` function works well when you just want to print and you have an implementation of the
+`Printable` trait. In some cases you may want to do more than print, or not bother with
+Substrate-specific traits just for debugging purposes. The
+[`if_std!` macro](https://substrate.dev/rustdocs/master/sp_std/macro.if_std.html) is for exactly
 this situation.
 
-One caveat of using this macro is that the code inside will only execute when you are actually 
+One caveat of using this macro is that the code inside will only execute when you are actually
 running the native version of the runtime.
 
-``` rust
+```rust
 use sp_std::if_std; // Import into scope the if_std! macro.
 ```
 
 The `println!` statement should be inside of the `if_std` macro.
 
-``` rust
+```rust
 decl_module! {
 
 		// --snip--
@@ -169,8 +173,8 @@ decl_module! {
 }
 ```
 
-The values are printed in the terminal or the standard output every time that the
-runtime function gets called.
+The values are printed in the terminal or the standard output every time that the runtime function
+gets called.
 
 ```sh
 $		2020-01-01 00:00:00 Substrate Node

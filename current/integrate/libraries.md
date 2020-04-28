@@ -10,19 +10,18 @@ implemented on top of the Substrate remote procedure call (RPC) API.
 
 ## Javascript
 
-The Polkadot JS team maintains a rich set of tools for interacting with Substrate-based
-blockchains. Refer to [the main Polkadot JS page](./polkadot-js) to learn more about that suite of
-tools.
+The Polkadot JS team maintains a rich set of tools for interacting with Substrate-based blockchains.
+Refer to [the main Polkadot JS page](./polkadot-js) to learn more about that suite of tools.
 
 Parity also maintains [`txwrapper`](https://github.com/paritytech/txwrapper), which is a Javascript
 library for offline generation of Substrate transactions.
 
 ## Go
 
-[The Go Substrate RPC Client](https://github.com/centrifuge/go-substrate-rpc-client/), AKA GSRPC,
-is maintained by [Centrifuge](https://centrifuge.io/).
+[The Go Substrate RPC Client](https://github.com/centrifuge/go-substrate-rpc-client/), AKA GSRPC, is
+maintained by [Centrifuge](https://centrifuge.io/).
 
-## C#
+## C
 
 [Polkadot API DotNet](https://github.com/usetech-llc/polkadot_api_dotnet) is a Substrate RPC client
 library for .Net programmers. It is maintained by [Usetech](https://usetech.com/blockchain/).

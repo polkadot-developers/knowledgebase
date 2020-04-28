@@ -17,24 +17,24 @@ module introduces account abstractions that help keep funds as secure as possibl
 These abstractions are:
 
 - Accounts
-    - Stash Key: The Stash account is meant to hold large amounts of funds. Its private key should
-      be as secure as possible in a cold wallet.
-    - Controller Key: The Controller account signals choices on behalf of the Stash account, like
-      payout preferences, but should only hold a minimal amount of funds to pay transaction fees.
-      Its private key should be secure as it can affect validator settings, but will be used
-      somewhat regularly for validator maintenance. 
+  - Stash Key: The Stash account is meant to hold large amounts of funds. Its private key should be
+    as secure as possible in a cold wallet.
+  - Controller Key: The Controller account signals choices on behalf of the Stash account, like
+    payout preferences, but should only hold a minimal amount of funds to pay transaction fees. Its
+    private key should be secure as it can affect validator settings, but will be used somewhat
+    regularly for validator maintenance.
 - Session Keys: Session keys are "hot" keys kept in the validator client and used for signing
   certain validator operations. They should never hold funds.
 
- > **Note:** Learn more about validators and nominators in the context of the Substrate's NPoS
- > [Staking module](https://substrate.dev/rustdocs/master/pallet_staking/index.html).
+> **Note:** Learn more about validators and nominators in the context of the Substrate's NPoS
+> [Staking module](https://substrate.dev/rustdocs/master/pallet_staking/index.html).
 
 ## Account Keys
 
 A key pair can represent an account and control funds, like normal accounts that you would expect
-from other blockchains. In the context of Substrate's [Balances
-module](https://substrate.dev/rustdocs/master/pallet_balances/index.html), these accounts must have a minimum amount (an
-"existential deposit") to exist in storage.
+from other blockchains. In the context of Substrate's
+[Balances module](https://substrate.dev/rustdocs/master/pallet_balances/index.html), these accounts
+must have a minimum amount (an "existential deposit") to exist in storage.
 
 Account keys are defined generically and made concrete in the runtime.
 
@@ -79,7 +79,8 @@ account (stake) and nominators. To do so, they create a certificate by signing t
 Controller key. Then, they inform the chain that this key represents their Controller key by
 publishing the Session certificate in a transaction on the chain.
 
-Substrate provides the [Session module](https://substrate.dev/rustdocs/master/pallet_session/index.html), which allows
+Substrate provides the
+[Session module](https://substrate.dev/rustdocs/master/pallet_session/index.html), which allows
 validators to manage their session keys.
 
 ### Strongly Typed Wrappers
@@ -96,29 +97,29 @@ used for their intended purpose.
 ### Generation
 
 If a Session key is compromised, attackers could commit slashable behavior. Session keys should be
-changed regularly (e.g. every session) via [the `rotate_keys`
-RPC](https://substrate.dev/rustdocs/master/sc_rpc/author/trait.AuthorApi.html#tymethod.rotate_keys) for increased
-security.
+changed regularly (e.g. every session) via
+[the `rotate_keys` RPC](https://substrate.dev/rustdocs/master/sc_rpc/author/trait.AuthorApi.html#tymethod.rotate_keys)
+for increased security.
 
 ## Next Steps
 
 ### Learn More
 
-* Learn about the [cryptography used within Substrate](../advanced/cryptography).
+- Learn about the [cryptography used within Substrate](../advanced/cryptography).
 
 ### Examples
 
-* Follow our [tutorial to create a local network and generate 
-keys](https://substrate.dev/docs/en/next/tutorials/start-a-private-network/).
+- Follow our
+  [tutorial to create a local network and generate keys](https://substrate.dev/docs/en/next/tutorials/start-a-private-network/).
 
 ### References
 
-* Visit the reference docs for the [session keys runtime
-  API](https://substrate.dev/rustdocs/master/sp_session/trait.SessionKeys.html).
+- Visit the reference docs for the
+  [session keys runtime API](https://substrate.dev/rustdocs/master/sp_session/trait.SessionKeys.html).
 
-* Take a look at the default [session keys in the Substrate node
-  runtime](https://substrate.dev/rustdocs/master/node_runtime/struct.SessionKeys.html).
+- Take a look at the default
+  [session keys in the Substrate node runtime](https://substrate.dev/rustdocs/master/node_runtime/struct.SessionKeys.html).
 
-* Take a look at
-  [`substrate_application_crypto`](https://substrate.dev/rustdocs/master/sp_application_crypto/index.html), used
-  for constructing application specific strongly typed crypto wrappers.
+- Take a look at
+  [`substrate_application_crypto`](https://substrate.dev/rustdocs/master/sp_application_crypto/index.html),
+  used for constructing application specific strongly typed crypto wrappers.

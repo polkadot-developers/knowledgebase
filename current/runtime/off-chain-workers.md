@@ -39,8 +39,8 @@ pub trait Trait: timestamp::Trait + system::Trait {
 }
 ```
 
-Inside the `decl_module!` block, define the `offchain_worker` function. This function serves
-as the entry point of the off-chain worker and runs after every block import.
+Inside the `decl_module!` block, define the `offchain_worker` function. This function serves as the
+entry point of the off-chain worker and runs after every block import.
 
 ```rust
 decl_module! {
@@ -132,8 +132,7 @@ impl system::offchain::CreateTransaction<Runtime, UncheckedExtrinsic> for Runtim
 
 Inside the `contruct_runtime!` macro where you put all the various pallets as part of your runtime,
 add the additional parameter `ValidateUnsigned` if you are using unsigned transactions in off-chain
-workers. You will need to write custom 
-[validation logic](../learn-substrate/extrinsics) for this.
+workers. You will need to write custom [validation logic](../learn-substrate/extrinsics) for this.
 
 ```rust
 construct_runtime!(
@@ -253,14 +252,14 @@ decl_module! {
 }
 ```
 
-After having defined the on-chain callback function, in the off-chain worker you can specify
-that function to be called back in the next block import phase. You then submit a signed transaction
-to the node.
+After having defined the on-chain callback function, in the off-chain worker you can specify that
+function to be called back in the next block import phase. You then submit a signed transaction to
+the node.
 
 If you look at the implementation of `fn system::offchain::submit_signed` in the
 [Substrate codebase](https://github.com/paritytech/substrate/blob/a98625501be68cc3084e666497c16b111741dded/frame/system/src/offchain.rs#L106-L115),
-you will see it is calling the on-chain callback for each key in the local keystore. But since
-you only have one key in the local keystore now, you are calling the function only once.
+you will see it is calling the on-chain callback for each key in the local keystore. But since you
+only have one key in the local keystore now, you are calling the function only once.
 
 [Learn more about Signed Transactions](../learn-substrate/extrinsics#signed-transactions).
 
@@ -320,28 +319,28 @@ impl<T: Trait> support::unsigned::ValidateUnsigned for Module<T> {
 }
 ```
 
-We add a `deprecated` attribute to prevent warning messages from being displayed. It is
-because this part of the API is still in transition and will be updated in coming Substrate release.
-Please use this with caution for now.
+We add a `deprecated` attribute to prevent warning messages from being displayed. It is because this
+part of the API is still in transition and will be updated in coming Substrate release. Please use
+this with caution for now.
 
 [Learn more about Unsigned Transactions](../learn-substrate/extrinsics#unsigned-transactions).
 
 ## Parameters in On-Chain Callbacks
 
-When making an on-chain callback, our implementation hashes the function name together with all
-of its parameter values. The callback will be stored and called during the next block import.
-If we find that the hash value exists, meaning a function with the same set of parameters has
-been called before, then for signed transactions the function will be replaced if called with a
-higher priority; for unsigned transactions this callback is simply ignored.
+When making an on-chain callback, our implementation hashes the function name together with all of
+its parameter values. The callback will be stored and called during the next block import. If we
+find that the hash value exists, meaning a function with the same set of parameters has been called
+before, then for signed transactions the function will be replaced if called with a higher priority;
+for unsigned transactions this callback is simply ignored.
 
-If your pallet is making on-chain callbacks regularly and you expect it to have a duplicate
-set of parameters occassionally, you can always pass in an additional parameter of the
-current block number that is passed in from the `offchain_worker` function. This number will only
-increment and is guaranteed to be unique.
+If your pallet is making on-chain callbacks regularly and you expect it to have a duplicate set of
+parameters occassionally, you can always pass in an additional parameter of the current block number
+that is passed in from the `offchain_worker` function. This number will only increment and is
+guaranteed to be unique.
 
 ## Fetching External Data
 
-To fetch external data from third-party APIs, use the `offchain::http` library  in
+To fetch external data from third-party APIs, use the `offchain::http` library in
 `my_offchain_worker.rs` as follows.
 
 ```rust
@@ -403,15 +402,20 @@ using an external library to parse the JSON result in a `no_std` environment.
 ## Next Steps
 
 ### Learn More
-  - [Signed Transactions](../learn-substrate/extrinsics#signed-transactions)
-  - [Unsigned Transactions](../learn-substrate/extrinsics#unsigned-transactions)
+
+- [Signed Transactions](../learn-substrate/extrinsics#signed-transactions)
+- [Unsigned Transactions](../learn-substrate/extrinsics#unsigned-transactions)
 
 ### Examples
-  - [Off-chain workers Sub0 workshop materials](https://github.com/tomusdrw/sub0-offchain-workshop)
-  - [Off-chain worker price fetch](https://github.com/jimmychu0807/substrate-offchain-pricefetch)
-  - (Deprecated) [Off-chain worker callback using Substrate v1 API](https://github.com/gnunicorn/substrate-offchain-cb)
+
+- [Off-chain workers Sub0 workshop materials](https://github.com/tomusdrw/sub0-offchain-workshop)
+- [Off-chain worker price fetch](https://github.com/jimmychu0807/substrate-offchain-pricefetch)
+- (Deprecated)
+  [Off-chain worker callback using Substrate v1 API](https://github.com/gnunicorn/substrate-offchain-cb)
 
 ### References
-  - Substrate [`im-online` module](https://github.com/paritytech/substrate/blob/master/frame/im-online/src/lib.rs),
+
+- Substrate
+  [`im-online` module](https://github.com/paritytech/substrate/blob/master/frame/im-online/src/lib.rs),
   a pallet inside Substrate using off-chain workers to notify other nodes that a validator in the
   network is online.

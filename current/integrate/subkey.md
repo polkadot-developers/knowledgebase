@@ -8,17 +8,17 @@ Subkey is a key-generation utility that is developed alongside Substrate. Its ma
 generating key pairs (currently supporting
 [sr25519](https://wiki.polkadot.network/docs/en/learn-cryptography),
 [ed25519](https://en.wikipedia.org/wiki/EdDSA#Ed25519), and
-[secp256k1](https://en.bitcoin.it/wiki/Secp256k1)), encoding SS58 addresses, and restoring keys
-from mnemonics and raw seeds. It can also create and verify signatures on a message, including
-encoded transactions.
+[secp256k1](https://en.bitcoin.it/wiki/Secp256k1)), encoding SS58 addresses, and restoring keys from
+mnemonics and raw seeds. It can also create and verify signatures on a message, including encoded
+transactions.
 
 ## Installation
 
 ### Build from Source
 
 The Subkey binary, `subkey`, is also installed along with
-[Substrate](https://substrate.dev/docs/en/overview/getting-started#unix-based-operating-systems).
-If you want to play with just Subkey (and not Substrate), you will need to have the Substrate
+[Substrate](https://substrate.dev/docs/en/overview/getting-started#unix-based-operating-systems). If
+you want to play with just Subkey (and not Substrate), you will need to have the Substrate
 dependencies. Use the following two commands to install the dependencies and Subkey, respectively:
 
 ```bash
@@ -138,8 +138,8 @@ Note that the "Secret seed" is _not_ password protected and can still recover th
 
 ## Inspecting Keys
 
-The `inspect` command recalculates a key pair's public key and public address given its secret
-seed. This shows that it is sufficient to back up the seed alone.
+The `inspect` command recalculates a key pair's public key and public address given its secret seed.
+This shows that it is sufficient to back up the seed alone.
 
 ```bash
 $ subkey inspect 0x554b6fc625fbea8f56eb56262d92ccb083fd6eaaf5ee9a966eaab4db2062f4d0
@@ -212,8 +212,8 @@ $ subkey insert 0x554b6fc625fbea8f56eb56262d92ccb083fd6eaaf5ee9a966eaab4db2062f4
 ## HD Derivation
 
 Subkey supports hard and soft hierarchical deterministic (HD) key derivation compliant with
-[BIP32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki). HD keys allow you to have
-a master seed and define a tree with a key pair at each leaf. The tree has a similar structure to a
+[BIP32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki). HD keys allow you to have a
+master seed and define a tree with a key pair at each leaf. The tree has a similar structure to a
 filesystem and can have any depth you want.
 
 Hard and soft key derivation both support:
@@ -340,8 +340,8 @@ Secret Key URI `//Jimmy` is account:
 
 ### Signing
 
-You can sign a message by passing the message to Subkey on STDIN. You can sign with either your
-seed or mnemonic phrase.
+You can sign a message by passing the message to Subkey on STDIN. You can sign with either your seed
+or mnemonic phrase.
 
 ```bash
 # Usage
@@ -367,9 +367,9 @@ $ echo "test message" | subkey verify 1e298698ed97654189ed082b3a19634c9cc2743e6e
 Signature verifies correctly.
 ```
 
-> Note: `echo` appends a newline character to the end of strings. Therefore, if you verify a
-message that was signed elsewhere, e.g. Polkadot JS, then you will need to use `echo -n` to remove
-the newline character and verify the correct message.
+> Note: `echo` appends a newline character to the end of strings. Therefore, if you verify a message
+> that was signed elsewhere, e.g. Polkadot JS, then you will need to use `echo -n` to remove the
+> newline character and verify the correct message.
 
 ## Generating Node Keys
 
@@ -389,9 +389,9 @@ The peer ID is displayed on screen and the actual key is saved in the `<output-f
 
 ## More Subkey to Explore
 
-* Learn more by running `subkey help` or see the
+- Learn more by running `subkey help` or see the
   [README](https://github.com/paritytech/substrate/tree/master/bin/utils/subkey).
-* Key pairs can also be generated in the [PolkadotJS Apps UI](https://polkadot.js.org/apps/). Try
+- Key pairs can also be generated in the [PolkadotJS Apps UI](https://polkadot.js.org/apps/). Try
   creating keys with the UI and restoring them with `subkey` or vice versa.
-* Learn more about [different cryptographies and choosing between
-  them](https://wiki.polkadot.network/docs/en/learn-cryptography).
+- Learn more about
+  [different cryptographies and choosing between them](https://wiki.polkadot.network/docs/en/learn-cryptography).

@@ -9,14 +9,15 @@ Substrate-based blockchain.
 
 ## EVM Engine
 
-The EVM module uses [SputnikVM](https://github.com/sorpaas/rust-evm) as the underlying EVM engine. The engine is
-overhauled so that it's [modular](https://github.com/corepaper/evm). In the future, we will want to
-allow users to swap out components like gasometer, and inject their own customized ones.
+The EVM module uses [SputnikVM](https://github.com/sorpaas/rust-evm) as the underlying EVM engine.
+The engine is overhauled so that it's [modular](https://github.com/corepaper/evm). In the future, we
+will want to allow users to swap out components like gasometer, and inject their own customized
+ones.
 
 ## Execution Lifecycle
 
-There are a separate set of accounts managed by the EVM module. Substrate based accounts can
-call the EVM Module to deposit or withdraw balance from the Substrate base-currency into a different
+There are a separate set of accounts managed by the EVM module. Substrate based accounts can call
+the EVM Module to deposit or withdraw balance from the Substrate base-currency into a different
 balance managed and used by the EVM module. Once a user has populated their balance, they can create
 and call smart contracts using this module.
 
@@ -30,9 +31,9 @@ including gas cost and balance changes.
 
 Observable differences include:
 
-* The available length of block hashes may not be 256 depending on the configuration of the System
+- The available length of block hashes may not be 256 depending on the configuration of the System
   module in the Substrate runtime.
-* Difficulty and coinbase, which do not make sense in this module and is currently hard coded to
+- Difficulty and coinbase, which do not make sense in this module and is currently hard coded to
   zero.
 
 We currently do not aim to make unobservable behaviors, such as state root, to be the same. We also
@@ -47,13 +48,13 @@ to support earlier hard fork configurations.
 
 ### Learn More
 
-- Learn about our [Contracts pallet](https://docs.rs/pallet-contracts/), which
-  supports deployment and execution of Wasm smart contracts.
+- Learn about our [Contracts pallet](https://docs.rs/pallet-contracts/), which supports deployment
+  and execution of Wasm smart contracts.
 
 ### Examples
 
-- Follow a [tutorial to add a runtime module to your Substrate
-  runtime](https://substrate.dev/docs/en/tutorials/adding-a-module-to-your-runtime/).
+- Follow a
+  [tutorial to add a runtime module to your Substrate runtime](https://substrate.dev/docs/en/tutorials/adding-a-module-to-your-runtime/).
 
 ### References
 

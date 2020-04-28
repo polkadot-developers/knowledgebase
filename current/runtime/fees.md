@@ -5,15 +5,15 @@ title: Transaction Fees
 ---
 
 When a block author constructs a block, it must limit the block's execution time. A block body
-consists of a series of [extrinsics](../learn-substrate/extrinsics). Since the resources
-needed to execute an extrinsic can vary, Substrate provides a flexible mechanism called "weights"
-to characterize the _time_ it takes to execute an extrinsic. To be economically sustainable and to
+consists of a series of [extrinsics](../learn-substrate/extrinsics). Since the resources needed to
+execute an extrinsic can vary, Substrate provides a flexible mechanism called "weights" to
+characterize the _time_ it takes to execute an extrinsic. To be economically sustainable and to
 limit spam, some transactions --- primarily those dispatched by users --- require a fee prior to
 transaction execution.
 
 Although an extrinsic's weight is only one component of the fee charged to its sender, it is
-recommended to understand the [weight system](../learn-substrate/weight) before reading
-this document.
+recommended to understand the [weight system](../learn-substrate/weight) before reading this
+document.
 
 ## Fee Calculation
 
@@ -24,13 +24,13 @@ of configurable parameters.
 
 A transaction fee consists of two parts:
 
-* `length_fee`: A per-byte fee that is multiplied by the length, in bytes, of the encoded
-  extrinsic. See
+- `length_fee`: A per-byte fee that is multiplied by the length, in bytes, of the encoded extrinsic.
+  See
   [`TransactionByteFee`](https://substrate.dev/rustdocs/master/pallet_transaction_payment/trait.Trait.html#associatedtype.TransactionByteFee).
-* `weight_fee`: A fee based on the weight of the extrinsic, which is a function of two parameters. 
-  One, an `ExtrinsicBaseWeight` that is declared in the runtime and applies to all extrinsics. The 
-  base weight covers inclusion overhead like signature verification. Two, a flexible `#[weight]` 
-  annotation that accounts for an extrinsic's complexity. In order to convert the weight to 
+- `weight_fee`: A fee based on the weight of the extrinsic, which is a function of two parameters.
+  One, an `ExtrinsicBaseWeight` that is declared in the runtime and applies to all extrinsics. The
+  base weight covers inclusion overhead like signature verification. Two, a flexible `#[weight]`
+  annotation that accounts for an extrinsic's complexity. In order to convert the weight to
   `Currency`, the runtime must define a
   [`WeightToFee`](https://substrate.dev/rustdocs/master/pallet_transaction_payment/trait.Trait.html#associatedtype.WeightToFee)
   struct that implements a conversion function,
@@ -59,10 +59,10 @@ dynamic and, based on how
 is defined, the final fee can include some degree of variability. To fulfill this requirement,
 Substrate provides:
 
-  - [`NextFeeMultiplier`](https://substrate.dev/rustdocs/master/pallet_transaction_payment/struct.Module.html#method.next_fee_multiplier):
-    A configurable multiplier stored in the Transaction Payment module.
-  - [`FeeMultiplierUpdate`](https://substrate.dev/rustdocs/master/pallet_transaction_payment/trait.Trait.html#associatedtype.FeeMultiplierUpdate):
-    A configurable parameter for a runtime to describe how this multiplier can change.
+- [`NextFeeMultiplier`](https://substrate.dev/rustdocs/master/pallet_transaction_payment/struct.Module.html#method.next_fee_multiplier):
+  A configurable multiplier stored in the Transaction Payment module.
+- [`FeeMultiplierUpdate`](https://substrate.dev/rustdocs/master/pallet_transaction_payment/trait.Trait.html#associatedtype.FeeMultiplierUpdate):
+  A configurable parameter for a runtime to describe how this multiplier can change.
 
 `NextFeeMultiplier` has the type `Fixed64`, which can represent a fixed point number. So, given the
 inclusion fee formula above, the final version would be:
@@ -85,8 +85,8 @@ The default update function is inspired by the Polkadot network and implements a
 in which a target saturation level of block weight is defined. If the previous block is more
 saturated, then the fees are slightly increased. Similarly, if the previous block has fewer
 transactions than the target, fees are decreased by a small amount. More information about this can
-be found in the [Web3 research
-page](https://research.web3.foundation/en/latest/polkadot/Token%20Economics.html#relay-chain-transaction-fees-and-per-block-transaction-limits).
+be found in the
+[Web3 research page](https://research.web3.foundation/en/latest/polkadot/Token%20Economics.html#relay-chain-transaction-fees-and-per-block-transaction-limits).
 
 ## Additional Fees
 
@@ -157,10 +157,10 @@ Dispatches in this class are given maximum priority and are exempt from paying t
 
 Mandatory dispatches will be included in a block even if they cause the block to surpass its weight
 limit. This dispatch class may only be applied to
-[inherents](../learn-substrate/extrinsics#Inherents) and is intended to represent functions
-that are part of the block validation process. Since these kinds of dispatches are always included
-in a block regardless of the function weight, it is critical that the function's validation process
-prevents malicious validators from abusing the function in order to craft blocks that are valid but
+[inherents](../learn-substrate/extrinsics#Inherents) and is intended to represent functions that are
+part of the block validation process. Since these kinds of dispatches are always included in a block
+regardless of the function weight, it is critical that the function's validation process prevents
+malicious validators from abusing the function in order to craft blocks that are valid but
 impossibly heavy. This can typically be accomplished by ensuring that the operation is always very
 light and can only be included in a block once. In order to make it more difficult for malicious
 validators to abuse these types of dispatches, they may not be included in blocks that return
@@ -177,8 +177,8 @@ Implementing a custom weight calculation function can vary in complexity.
 
 A weight calculation function must provide two trait implementations:
 
-  - [`WeighData<T>`]: To determine the weight of the dispatch.
-  - [`ClassifyDispatch<T>`]: To determine the class of the dispatch.
+- [`WeighData<T>`]: To determine the weight of the dispatch.
+- [`ClassifyDispatch<T>`]: To determine the class of the dispatch.
 
 Substrate then bundles the output information of the two traits into the [`DispatchInfo`] struct and
 provides it by implementing the [`GetDispatchInfo`] for all `Call` variants and opaque extrinsic
@@ -304,12 +304,11 @@ payment module drawing inspiration from Transaction Payment.
 
 ### Examples
 
-Substrate Recipes contains examples of both [custom
-weights](https://github.com/substrate-developer-hub/recipes/tree/master/pallets/weights) and
+Substrate Recipes contains examples of both
+[custom weights](https://github.com/substrate-developer-hub/recipes/tree/master/pallets/weights) and
 custom
 [WeightToFee](https://github.com/substrate-developer-hub/recipes/tree/master/runtimes/weight-fee-runtime).
 
 ### References
 
-- [Web3 Foundation
-  Research](https://research.web3.foundation/en/latest/polkadot/Token%20Economics.html#relay-chain-transaction-fees-and-per-block-transaction-limits)
+- [Web3 Foundation Research](https://research.web3.foundation/en/latest/polkadot/Token%20Economics.html#relay-chain-transaction-fees-and-per-block-transaction-limits)

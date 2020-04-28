@@ -41,23 +41,24 @@ They are:
 
 ## FRAME Primitives
 
-There are an additional set of primitives that are assumed about a runtime built with the Substrate FRAME:
+There are an additional set of primitives that are assumed about a runtime built with the Substrate
+FRAME:
 
-* `Call`: The dispatch type that can be called via an extrinsic.
+- `Call`: The dispatch type that can be called via an extrinsic.
 
-* `Origin`: Represents where a call came from. For example, a signed message (a transaction), an
+- `Origin`: Represents where a call came from. For example, a signed message (a transaction), an
   unsigned message (an inherent extrinsic), and a call from the runtime itself (a root call).
 
-* `Index`: An account index (aka nonce) type. This stores the number of previous transactions
+- `Index`: An account index (aka nonce) type. This stores the number of previous transactions
   associated with a sender account.
 
-* `Hashing`: The hashing system (algorithm) being used in the runtime (e.g. Blake2).
+- `Hashing`: The hashing system (algorithm) being used in the runtime (e.g. Blake2).
 
-* `AccountId`: The type used to identify user accounts in the runtime.
+- `AccountId`: The type used to identify user accounts in the runtime.
 
-* `Event`: The type used for events emitted by the runtime.
+- `Event`: The type used for events emitted by the runtime.
 
-* `Version`: A type which represents the version of the runtime.
+- `Version`: A type which represents the version of the runtime.
 
 ## Next Steps
 
@@ -67,12 +68,13 @@ There are an additional set of primitives that are assumed about a runtime built
 
 ### Examples
 
-- See how these generic types are implemented [in the Substrate
-  node](https://github.com/paritytech/substrate/blob/master/bin/node/runtime/src/lib.rs).
+- See how these generic types are implemented
+  [in the Substrate node](https://github.com/paritytech/substrate/blob/master/bin/node/runtime/src/lib.rs).
 
 ### References
 
-- View the [primitive types defined in
-  `node-primitives`](https://substrate.dev/rustdocs/master/node_primitives/index.html).
-  
-- View the [`traits` defined in `sp-runtime`](https://substrate.dev/rustdocs/master/sp_runtime/traits/index.html)
+- View the
+  [primitive types defined in `node-primitives`](https://substrate.dev/rustdocs/master/node_primitives/index.html).
+
+- View the
+  [`traits` defined in `sp-runtime`](https://substrate.dev/rustdocs/master/sp_runtime/traits/index.html)

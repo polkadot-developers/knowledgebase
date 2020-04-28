@@ -18,10 +18,9 @@ platforms.
 
 ### EVM Module
 
-The [FRAME EVM pallet](evm-pallet) provides an EVM execution
-environment that allows unmodified EVM code to be executed in a Substrate-based blockchain. It is
-designed to most closely emulate the functionality of executing contracts on the Ethereum mainnet
-within the Substrate runtime.
+The [FRAME EVM pallet](evm-pallet) provides an EVM execution environment that allows unmodified EVM
+code to be executed in a Substrate-based blockchain. It is designed to most closely emulate the
+functionality of executing contracts on the Ethereum mainnet within the Substrate runtime.
 
 ### Custom
 
@@ -35,7 +34,8 @@ existing systems to work on a Substrate based chain.
 
 ### ink!
 
-[ink!](ink-fundamentals) is a Rust-based eDSL for writing Wasm smart contracts specifically for the [Contracts module](#contracts-module). It is designed for correctness, conciseness and efficiency.
+[ink!](ink-fundamentals) is a Rust-based eDSL for writing Wasm smart contracts specifically for the
+[Contracts module](#contracts-module). It is designed for correctness, conciseness and efficiency.
 
 ## Smart Contracts vs Runtime Modules
 
@@ -51,14 +51,14 @@ public smart contract platform.
 
 Some examples are:
 
-* **Fees**: Ensuring that contract developers are charged for the computation and storage they force on
-  the computers running their contract, and not allowed to abuse the block creators.
-* **Sandbox**: A contract is not able to modify core blockchain storage or the storage of other
+- **Fees**: Ensuring that contract developers are charged for the computation and storage they force
+  on the computers running their contract, and not allowed to abuse the block creators.
+- **Sandbox**: A contract is not able to modify core blockchain storage or the storage of other
   contracts directly. It's power is limited to only modifying it's own state, and the ability to
   make outside calls to other contracts or runtime functions.
-* **State Rent**: A contract takes up space on the blockchain, and thus should be charged for simply
+- **State Rent**: A contract takes up space on the blockchain, and thus should be charged for simply
   existing. This ensures that people don't take advantage of "free, unlimited storage".
-* **Reversion**: A contract can be prone to have situations which lead to logical errors. The
+- **Reversion**: A contract can be prone to have situations which lead to logical errors. The
   expectations of a contract developer are low, so extra overhead is added to support reverting
   transactions when they fail so no state is updated when things go wrong.
 
@@ -72,11 +72,11 @@ any of the growing pains or errors which may occur.
 
 **In summary**, Substrate Smart Contracts:
 
-* Are inherently safer to the network.
-* Have built in economic incentives against abuse.
-* Have computational overhead to support graceful failures in logic.
-* Have a lower bar to entry for development.
-* Enable fast pace community interaction through a playground to write new logic.
+- Are inherently safer to the network.
+- Have built in economic incentives against abuse.
+- Have computational overhead to support graceful failures in logic.
+- Have a lower bar to entry for development.
+- Enable fast pace community interaction through a playground to write new logic.
 
 ### Runtime Modules
 
@@ -96,12 +96,11 @@ your network.
 
 **In summary**, Substrate Runtime Modules:
 
-* Provide low level access to your entire blockchain.
-* Have removed the overhead of built-in safety for performance.
-* Have a high bar to entry for developers.
-  * Not necessarily to write working code, but to avoid writing broken code.
-* Has no inherent economic incentives to repel bad actors.
-
+- Provide low level access to your entire blockchain.
+- Have removed the overhead of built-in safety for performance.
+- Have a high bar to entry for developers.
+  - Not necessarily to write working code, but to avoid writing broken code.
+- Has no inherent economic incentives to repel bad actors.
 
 ### The Right Tool For You
 
@@ -112,11 +111,11 @@ There is likely some amount of overlap in the kinds of problems each one can sol
 also a clear set of problems suited for only one of the two. To give just one example in each
 category:
 
-* Runtime Module: Building a privacy layer on top of transactions in your blockchain.
-* Shared: Building a gaming dApp which may need to build up a community of users (leaning toward
+- Runtime Module: Building a privacy layer on top of transactions in your blockchain.
+- Shared: Building a gaming dApp which may need to build up a community of users (leaning toward
   Smart Contract), or may need to scale to millions of transactions a day (leaning toward Runtime
   Module).
-* Smart Contract: Introducing multi-signature wallets over the currency of your blockchain.
+- Smart Contract: Introducing multi-signature wallets over the currency of your blockchain.
 
 In addition to everything written above, you also need to take into account the costs to set up a
 DApp using a certain tool. Deploying a contract is a relatively simple and easy process since you
@@ -139,30 +138,30 @@ influence your decision on the kinds of situations you may want to use these dif
 <tr>
 <td>
 
-* Privacy Layer
-* Feeless Token
-* Light-Client Bridge
-* Decentralized Exchange
-* Oracles
-* Stable Coin
+- Privacy Layer
+- Feeless Token
+- Light-Client Bridge
+- Decentralized Exchange
+- Oracles
+- Stable Coin
 
 </td>
 <td>
 
-* Game dApp
-    * Small scale (contract)
-    * Large scale (runtime)
-* Decentralized Autonomous Organizations (DAO)
-    * Community driven (contract)
-    * Protocol driven (runtime)
-* Treasury
-    * Community driven (contract)
-    * Protocol driven (runtime)
+- Game dApp
+  - Small scale (contract)
+  - Large scale (runtime)
+- Decentralized Autonomous Organizations (DAO)
+  - Community driven (contract)
+  - Protocol driven (runtime)
+- Treasury
+  - Community driven (contract)
+  - Protocol driven (runtime)
 
 </td>
 <td>
 
-* Multi-signature Wallet
+- Multi-signature Wallet
 
 </td>
 </tr>
@@ -172,21 +171,22 @@ influence your decision on the kinds of situations you may want to use these dif
 
 ### Learn More
 
-- See how Substrate is iterating on smart contract blockchains with the [Contracts
-  pallet](contracts-pallet).
-- Investigate the [EVM pallet](evm-pallet) to see if it is what
-  you need for your next project.
+- See how Substrate is iterating on smart contract blockchains with the
+  [Contracts pallet](contracts-pallet).
+- Investigate the [EVM pallet](evm-pallet) to see if it is what you need for your next project.
 - Read about the [ink! smart contract language](ink-fundamentals).
 
 ### Examples
 
-- Follow a [tutorial to add a runtime module to your Substrate
-  runtime](tutorials/adding-a-module-to-your-runtime.md).
-- Learn how to [start developing with the SRML Contracts module and
-  ink!](/current/smart-contracts/ink-development.md).
+- Follow a
+  [tutorial to add a runtime module to your Substrate runtime](tutorials/adding-a-module-to-your-runtime.md).
+- Learn how to
+  [start developing with the SRML Contracts module and ink!](/current/smart-contracts/ink-development.md).
 
 ### References
 
-- Visit the reference docs for the [Contracts pallet](https://substrate.dev/rustdocs/master/pallet_contracts/index.html).
-- Visit the reference docs for the [EVM pallet](https://substrate.dev/rustdocs/master/pallet_evm/index.html).
+- Visit the reference docs for the
+  [Contracts pallet](https://substrate.dev/rustdocs/master/pallet_contracts/index.html).
+- Visit the reference docs for the
+  [EVM pallet](https://substrate.dev/rustdocs/master/pallet_evm/index.html).
 - Take a look at the [repository for ink!](https://github.com/paritytech/ink).

@@ -11,8 +11,7 @@ This document offers a conceptual overview of the cryptography used in Substrate
 Hash functions are used in Substrate to map arbitrary sized data to fixed-sized values.
 
 Substrate provides two hash algorithms out of the box, but can support any hash algorithm which
-implements the [`Hasher`
-trait](https://substrate.dev/rustdocs/master/sp_core/trait.Hasher.html).
+implements the [`Hasher` trait](https://substrate.dev/rustdocs/master/sp_core/trait.Hasher.html).
 
 ### xxHash
 
@@ -30,7 +29,7 @@ Substrate uses the [`twox-hash`](https://github.com/shepmaster/twox-hash) implem
 
 ### Blake2
 
-[Blake2](https://en.wikipedia.org/wiki/BLAKE_(hash_function)#BLAKE2) is a cryptographic hash
+[Blake2](<https://en.wikipedia.org/wiki/BLAKE_(hash_function)#BLAKE2>) is a cryptographic hash
 function. It is considered to be very fast and is also used in
 [Zcash](https://en.wikipedia.org/wiki/Zcash).
 
@@ -41,8 +40,8 @@ Substrate uses the [`blake2`](https://docs.rs/blake2/) implementation in Rust.
 Public-key cryptography is used in Substrate to provide a robust authentication system.
 
 Substrate provides multiple different cryptographic schemes and is generic such that it can support
-anything which implements the [`Pair`
-trait](https://substrate.dev/rustdocs/master/sp_core/crypto/trait.Pair.html).
+anything which implements the
+[`Pair` trait](https://substrate.dev/rustdocs/master/sp_core/crypto/trait.Pair.html).
 
 ### ECDSA
 
@@ -66,10 +65,10 @@ EdDSA scheme.
 
 Schnorr signatures bring some noticeable features over the [ECDSA](#ecdsa)/EdDSA schemes:
 
-* It is better for hierarchical deterministic key derivations.
-* It allows for native multi-signature through [signature
-  aggregation](https://bitcoincore.org/en/2017/03/23/schnorr-signature-aggregation/).
-* It is generally more resistant to misuse.
+- It is better for hierarchical deterministic key derivations.
+- It allows for native multi-signature through
+  [signature aggregation](https://bitcoincore.org/en/2017/03/23/schnorr-signature-aggregation/).
+- It is generally more resistant to misuse.
 
 One sacrifice that is made when using Schnorr signatures over ECDSA is that both require 64 bytes,
 but only ECDSA signatures communicate their public key.
@@ -78,20 +77,19 @@ but only ECDSA signatures communicate their public key.
 
 ### Learn More
 
-* Learn about the [Substrate account abstractions](../learn-substrate/account-abstractions).
-* For more detailed descriptions, please see the more advanced [research
-  wiki](https://research.web3.foundation).
+- Learn about the [Substrate account abstractions](../learn-substrate/account-abstractions).
+- For more detailed descriptions, please see the more advanced
+  [research wiki](https://research.web3.foundation).
 
 ### Examples
 
-* Look at the Polkadot claims module to see how you can [verify Ethereum signatures in the Substrate
-  runtime](https://github.com/paritytech/polkadot/blob/master/runtime/common/src/claims.rs).
+- Look at the Polkadot claims module to see how you can
+  [verify Ethereum signatures in the Substrate runtime](https://github.com/paritytech/polkadot/blob/master/runtime/common/src/claims.rs).
 
 ### References
 
-* Take a look at the
-  [`Hash`](https://substrate.dev/rustdocs/master/sp_runtime/traits/trait.Hash.html) trait needed
-  for implementing new hashing algorithms.
-* Take a look at the
-  [`Pair`](https://substrate.dev/rustdocs/master/sp_core/crypto/trait.Pair.html) trait
-  needed for implementing new cryptographic schemes.
+- Take a look at the
+  [`Hash`](https://substrate.dev/rustdocs/master/sp_runtime/traits/trait.Hash.html) trait needed for
+  implementing new hashing algorithms.
+- Take a look at the [`Pair`](https://substrate.dev/rustdocs/master/sp_core/crypto/trait.Pair.html)
+  trait needed for implementing new cryptographic schemes.

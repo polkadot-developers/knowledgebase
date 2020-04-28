@@ -11,10 +11,10 @@ You can declare any number Session keys. For example, the default Substrate node
 chains could have more or fewer depending on what operations the chain expects its validators to
 perform.
 
-In practice, validators amalgamate all of the session public keys into a single object, sign the
-set of public keys with a "Controller" account, and submit a transaction to register the keys on
-chain. This on-chain registration links a validator _node_ with an _account_ that holds funds. As
-such, that account can be credited with rewards or slashed based on the node's behavior.
+In practice, validators amalgamate all of the session public keys into a single object, sign the set
+of public keys with a "Controller" account, and submit a transaction to register the keys on chain.
+This on-chain registration links a validator _node_ with an _account_ that holds funds. As such,
+that account can be credited with rewards or slashed based on the node's behavior.
 
 The runtime declares what session keys will be included (`runtime/src/lib.rs`):
 
@@ -40,8 +40,8 @@ mod app {
 ```
 
 > This code is just an example of the Substrate node at the
-[time of writing](https://github.com/paritytech/substrate/tree/9fa8589d9b8cfe8716e9e4c48f9e3f238c1e502f).
-Refer to the runtime for the most up-to-date implementation.
+> [time of writing](https://github.com/paritytech/substrate/tree/9fa8589d9b8cfe8716e9e4c48f9e3f238c1e502f).
+> Refer to the runtime for the most up-to-date implementation.
 
 The default Substrate node implements Session keys in the
 [Session pallet](https://substrate.dev/rustdocs/master/pallet_session/).
