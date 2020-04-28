@@ -4,9 +4,9 @@ lang: en
 title: Contracts Pallet
 ---
 
-The [Contracts pallet](https://substrate.dev/rustdocs/master/pallet_contracts/index.html)
-provides the ability for the runtime to deploy and execute [WebAssembly
-(Wasm)](https://webassembly.org/) smart contracts.
+The [Contracts pallet](https://substrate.dev/rustdocs/master/pallet_contracts/index.html) provides
+the ability for the runtime to deploy and execute [WebAssembly (Wasm)](https://webassembly.org/)
+smart contracts.
 
 ## Wasm Engine
 
@@ -16,8 +16,8 @@ available within the runtime. This is currently implemented with
 
 ## Features
 
-The Contracts module has a number of familiar and new features for the deployment and execution
-of smart contracts.
+The Contracts module has a number of familiar and new features for the deployment and execution of
+smart contracts.
 
 ### Account Based
 
@@ -68,7 +68,7 @@ remaining gas, it is returned to the user at the end of the transaction.
 
 The Contracts module determines the gas price, which is a conversion between the Substrate
 `Currency` and a single unit of gas. Thus, to execute a transaction, a user must have a free balance
-of at least `gas price` * `gas limit` which can be spent.
+of at least `gas price` \* `gas limit` which can be spent.
 
 ### Storage Rent
 
@@ -87,39 +87,39 @@ Ethereum and the EVM.
 
 The most obvious difference between the Contracts module and the EVM is the underlying execution
 engine used to run smart contracts. The EVM is a good theoretical execution environment, but it is
-not very practical to use with modern hardware. For example, manipulation of 256 bit integers on modern
-architectures is significantly more complex than standard types. Even the Ethereum team has
+not very practical to use with modern hardware. For example, manipulation of 256 bit integers on
+modern architectures is significantly more complex than standard types. Even the Ethereum team has
 investigated the use of [Wasm](https://github.com/ewasm/design) for the next generation of the
 network.
 
 The EVM charges for storage fees only at the time of storage. This one-time cost results in some
 permanent amount of storage being used on the blockchain, _forever_, which is economically unsound.
-The Contracts module attempts to repair this through [storage rent](#storage-rent) which
-ensures that any data that persists on the blockchain is appropriately charged for those resources.
+The Contracts module attempts to repair this through [storage rent](#storage-rent) which ensures
+that any data that persists on the blockchain is appropriately charged for those resources.
 
-The Contracts module chooses to approach contract creation using a [two-step
-process](#two-step-deployment), which fundamentally changes how contracts are stored on chain.
-Contract addresses, their storage, and balances are now separated from the underlying contract
-logic. This could enable behavior like what [`create2`](https://eips.ethereum.org/EIPS/eip-1014)
-provided to Ethereum or even enable repairable or upgradeable contracts on a Substrate based
-blockchain.
+The Contracts module chooses to approach contract creation using a
+[two-step process](#two-step-deployment), which fundamentally changes how contracts are stored on
+chain. Contract addresses, their storage, and balances are now separated from the underlying
+contract logic. This could enable behavior like what
+[`create2`](https://eips.ethereum.org/EIPS/eip-1014) provided to Ethereum or even enable repairable
+or upgradeable contracts on a Substrate based blockchain.
 
 ## Next Steps
 
 ### Learn More
 
-- Learn about [ink!, a Rust based embedded domain specific
-  language](/current/smart-contracts/index.md) for developing smart contracts for the SEAL
-  pallet.
+- Learn about
+  [ink!, a Rust based embedded domain specific language](/current/smart-contracts/index.md) for
+  developing smart contracts for the SEAL pallet.
 
 ### Examples
 
-- Follow a [tutorial to add this Contracts pallet to your Substrate
-  runtime](https://substrate.dev/docs/en/tutorials/adding-a-module-to-your-runtime/).
+- Follow a
+  [tutorial to add this Contracts pallet to your Substrate runtime](https://substrate.dev/docs/en/tutorials/adding-a-module-to-your-runtime/).
 
 ### References
 
-- Visit the reference docs for the [Contracts
-  module](https://substrate.dev/rustdocs/master/pallet_contracts/index.html).
+- Visit the reference docs for the
+  [Contracts module](https://substrate.dev/rustdocs/master/pallet_contracts/index.html).
 - Take a look at the [repository for `wasmi`](https://github.com/paritytech/wasmi).
 - Take a look at the [repository for ink!](https://github.com/paritytech/ink).

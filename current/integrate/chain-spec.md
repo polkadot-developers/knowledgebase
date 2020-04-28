@@ -29,8 +29,9 @@ command-line flags, and the values can be changed after the blockchain has been 
 ### Extension
 
 Because the Substrate framework is extensible, it provides a way to customize the client spec with
-additional data to configure customized parts of the client. One example use case is telling the node about
-well-known blocks at specific heights, to prevent long range attacks when syncing a new node from genesis.
+additional data to configure customized parts of the client. One example use case is telling the
+node about well-known blocks at specific heights, to prevent long range attacks when syncing a new
+node from genesis.
 
 ### The Genesis State
 
@@ -83,9 +84,9 @@ chain spec, and then use it.
 ### Developing a Runtime
 
 Nearly every Substrate runtime will have storage items that need to be configured at genesis. When
-developing with [FRAME](../runtime/frame), any storage item that is declared with
-the `config()` option requires configuration at genesis. It is the job of the chain spec,
-specifically the genesis portion, to configure such storage values.
+developing with [FRAME](../runtime/frame), any storage item that is declared with the `config()`
+option requires configuration at genesis. It is the job of the chain spec, specifically the genesis
+portion, to configure such storage values.
 
 ### Customizing a Chain Spec
 
@@ -147,10 +148,15 @@ After the conversion process, the above snippet looks like this:
 
 ### Learn More
 
-* Rustdocs for the [`ChainSpec` struct](https://substrate.dev/rustdocs/master/sc_service/struct.ChainSpec.html)
-* Rustdocs for the [`ProtocolId` struct](https://substrate.dev/rustdocs/master/sc_network/config/struct.ProtocolId.html)
+- Rustdocs for the
+  [`ChainSpec` struct](https://substrate.dev/rustdocs/master/sc_service/struct.ChainSpec.html)
+- Rustdocs for the
+  [`ProtocolId` struct](https://substrate.dev/rustdocs/master/sc_network/config/struct.ProtocolId.html)
 
 ### Examples
 
-* Gain hands-on experience with chain specs by [starting a private network](https://substrate.dev/docs/en/next/tutorials/start-a-private-network/).
-* The [Node Template's Chainspec](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/src/chain_spec.rs) stored as rust code.
+- Gain hands-on experience with chain specs by
+  [starting a private network](https://substrate.dev/docs/en/next/tutorials/start-a-private-network/).
+- The
+  [Node Template's Chainspec](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/src/chain_spec.rs)
+  stored as rust code.

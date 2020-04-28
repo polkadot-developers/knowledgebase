@@ -4,19 +4,30 @@ lang: en
 title: Pallets
 ---
 
-This document is a top-level entry point to documentation related to developing runtime modules for Substrate.
+This document is a top-level entry point to documentation related to developing runtime modules for
+Substrate.
 
-These documents are written for a technical audience, who is familiar with the Rust programming language.
+These documents are written for a technical audience, who is familiar with the Rust programming
+language.
 
-If you are getting started with Substrate runtime development for the first time, we suggest you try our introductory tutorial for [creating your first Substrate chain](https://substrate.dev/docs/en/next/tutorials/creating-your-first-substrate-chain/).
+If you are getting started with Substrate runtime development for the first time, we suggest you try
+our introductory tutorial for
+[creating your first Substrate chain](https://substrate.dev/docs/en/next/tutorials/creating-your-first-substrate-chain/).
 
 ## What is a Pallet?
 
-Pallets are a special kind of Rust module from which Substrate runtimes can be composed. Each pallet has its own discrete logic which can modify the features and functionality of your blockchain's state transition function.
+Pallets are a special kind of Rust module from which Substrate runtimes can be composed. Each pallet
+has its own discrete logic which can modify the features and functionality of your blockchain's
+state transition function.
 
-For example, the Balances pallet, which is included in the Framework for Runtime Aggregation of Modularised Entities (FRAME), defines a cryptocurrency for your blockchain. More specifically, it defines storage items which tracks the tokens a user has, functions that users can call to transfer and manage those tokens, APIs which allow other modules to burn or mint those tokens, and hooks which allow other modules to trigger functions when a user's balance changes.
+For example, the Balances pallet, which is included in the Framework for Runtime Aggregation of
+Modularised Entities (FRAME), defines a cryptocurrency for your blockchain. More specifically, it
+defines storage items which tracks the tokens a user has, functions that users can call to transfer
+and manage those tokens, APIs which allow other modules to burn or mint those tokens, and hooks
+which allow other modules to trigger functions when a user's balance changes.
 
-You are able to write your own pallets which define logic and functionality you want to introduce to your blockchain, and the following documentation will show you how.
+You are able to write your own pallets which define logic and functionality you want to introduce to
+your blockchain, and the following documentation will show you how.
 
 ## Skeleton of a Pallet
 
@@ -56,7 +67,8 @@ decl_module! { ... }
 
 Here is a minimal, working pallet which simply allows a user to put a `u64` value into storage.
 
-Parts of this example will be used to help teach concepts throughout the rest of the pallet documentation.
+Parts of this example will be used to help teach concepts throughout the rest of the pallet
+documentation.
 
 It is written in full here for clarity:
 

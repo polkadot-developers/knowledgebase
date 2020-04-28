@@ -6,8 +6,8 @@ title: ink! Concepts
 
 ink! is a [Rust](https://www.rust-lang.org/)-based embedded domain specific language
 ([eDSL](https://wiki.haskell.org/Embedded_domain_specific_language)) for writing
-[Wasm](https://webassembly.org/) smart contracts specifically for the [FRAME Contracts
-pallet](/current/smart-contracts/contracts-pallet.md).
+[Wasm](https://webassembly.org/) smart contracts specifically for the
+[FRAME Contracts pallet](/current/smart-contracts/contracts-pallet.md).
 
 ## Design
 
@@ -29,17 +29,17 @@ the box.
 ink! should still feel familiar to developers who have programmed using other modern smart contract
 languages. The skeleton of a contract has all of the same components that you might expect:
 
-  * Events
-  * Event Topics
-  * Storage
-  * Constructor Functions
-  * Message Functions
+- Events
+- Event Topics
+- Storage
+- Constructor Functions
+- Message Functions
 
 ### Custom Types
 
 ink! supports custom type definitions needed to interact with the Substrate runtime. By default,
-ink! has access to all the [primitive Substrate types](../runtime/primitives) like
-`AccountId`, `Balance`, `Hash`, etc...
+ink! has access to all the [primitive Substrate types](../runtime/primitives) like `AccountId`,
+`Balance`, `Hash`, etc...
 
 You can specify and interact with additional types which may be specific to your Substrate runtime
 environment.
@@ -49,8 +49,8 @@ environment.
 Being written in Rust, ink! can provide compile-time overflow/underflow safety. Using a Rust
 compiler configuration, you can specify whether you want to support overflowing math, or if you want
 contract execution to panic when overflows occur. No need to continually import "Safe Math"
-libraries, although Rust also provides [integrated checked, wrapped, and saturated math
-functions](https://doc.rust-lang.org/std/primitive.u32.html).
+libraries, although Rust also provides
+[integrated checked, wrapped, and saturated math functions](https://doc.rust-lang.org/std/primitive.u32.html).
 
 > Note: There are some known issues regarding functionality of compiler level overflow checks and
 > the resulting size of the Wasm blob. This feature may change or be iterated on in the future.
@@ -75,37 +75,37 @@ new features and functionality, improving how you can write smart contracts in t
 
 Here is a brief comparison of features between ink! and Solidity:
 
-|   | ink! | Solidity |
-|---|------|----------|
-| Virtual Machine | Any Wasm VM | EVM |
-| Encoding | Wasm | EVM Byte Code |
-| Language | Rust | Standalone |
-| Overflow Protection | Enabled by default | None |
-| Constructor Functions | Multiple | Single |
-| Tooling | Anything that supports Rust | Custom |
-| Versioning | Semantic | Semantic |
-| Has Metadata? | Yes | Yes |
-| Multi-File Project | Planned | Yes |
-| Storage Entries | Variable | 256 bits |
-| Supported Types | [Docs](../advanced/codec) | [Docs](https://solidity.readthedocs.io/en/latest/types.html) |
-| Has Interfaces? | Planned (Rust Traits) | Yes |
+|                       | ink!                        | Solidity                                                     |
+| --------------------- | --------------------------- | ------------------------------------------------------------ |
+| Virtual Machine       | Any Wasm VM                 | EVM                                                          |
+| Encoding              | Wasm                        | EVM Byte Code                                                |
+| Language              | Rust                        | Standalone                                                   |
+| Overflow Protection   | Enabled by default          | None                                                         |
+| Constructor Functions | Multiple                    | Single                                                       |
+| Tooling               | Anything that supports Rust | Custom                                                       |
+| Versioning            | Semantic                    | Semantic                                                     |
+| Has Metadata?         | Yes                         | Yes                                                          |
+| Multi-File Project    | Planned                     | Yes                                                          |
+| Storage Entries       | Variable                    | 256 bits                                                     |
+| Supported Types       | [Docs](../advanced/codec)   | [Docs](https://solidity.readthedocs.io/en/latest/types.html) |
+| Has Interfaces?       | Planned (Rust Traits)       | Yes                                                          |
 
 ## Next Steps
 
 ### Learn More
 
-- Learn about the [FREAME Contracts Pallet](https://docs.rs/pallet-contracts) which is
-  used to deploy and execute ink! contracts.
+- Learn about the [FREAME Contracts Pallet](https://docs.rs/pallet-contracts) which is used to
+  deploy and execute ink! contracts.
 
 ### Examples
 
-- Follow our [tutorial to create your first ink! smart
-  contract](https://substrate.dev/substrate-contracts-workshop/).
+- Follow our
+  [tutorial to create your first ink! smart contract](https://substrate.dev/substrate-contracts-workshop/).
 
 ### References
 
-- Visit the [ink! repository for additional docs and to look at the
-  source](https://github.com/paritytech/ink).
+- Visit the
+  [ink! repository for additional docs and to look at the source](https://github.com/paritytech/ink).
 
 - Visit the reference docs for the [ink! abi](https://paritytech.github.io/ink/ink_abi/).
 

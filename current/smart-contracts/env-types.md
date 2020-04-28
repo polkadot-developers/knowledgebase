@@ -4,11 +4,13 @@ lang: en
 title: Smart Contract Runtime Environment Types
 ---
 
-`ink!` provides a set of types for interacting with the runtime environment (currently:`AccountId`, `Balance`, `Hash`, `Timestamp`).
+`ink!` provides a set of types for interacting with the runtime environment (currently:`AccountId`,
+`Balance`, `Hash`, `Timestamp`).
 
 Previously these types were fixed, requiring that the target substrate runtime had compatible types.
 
-Now smart contract authors can specify their own definitions of these types, in order to be compatible with their custom runtime. e.g.
+Now smart contract authors can specify their own definitions of these types, in order to be
+compatible with their custom runtime. e.g.
 
 ```
 // 1. Define type and derive the implementations.
@@ -32,8 +34,11 @@ impl ink_core::env::EnvTypes for CustomRuntimeTypes {
     ...
 ```
 
-A full example of implementing this as a library can be found [here](https://github.com/paritytech/ink-types-node-runtime).
+A full example of implementing this as a library can be found
+[here](https://github.com/paritytech/ink-types-node-runtime).
 
 ### Testing
 
-For accessing the state of the contract test environment, some helper methods will now require the concrete implementation of the `EnvTypes`, matching the type specified in the contract `env` attribute.
+For accessing the state of the contract test environment, some helper methods will now require the
+concrete implementation of the `EnvTypes`, matching the type specified in the contract `env`
+attribute.

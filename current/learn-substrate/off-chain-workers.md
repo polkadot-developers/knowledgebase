@@ -7,11 +7,10 @@ title: Off-Chain Workers
 ## Overview
 
 There is often a need to query and/or process off-chain data before it can be included in the
-on-chain state. The conventional way of doing this is through oracles. Oracles are external
-services that typically listen to blockchain events and trigger tasks accordingly. When these tasks
-complete, their results are submitted back to the blockchain using transactions. While this approach
-works, it still has several flaws with respect to security, scalability, and infrastructure
-efficiency.
+on-chain state. The conventional way of doing this is through oracles. Oracles are external services
+that typically listen to blockchain events and trigger tasks accordingly. When these tasks complete,
+their results are submitted back to the blockchain using transactions. While this approach works, it
+still has several flaws with respect to security, scalability, and infrastructure efficiency.
 
 To make the off-chain data integration secure and more efficient, Substrate provides off-chain
 workers. The off-chain worker subsystem allows execution of long-running and possibly non-
@@ -30,14 +29,13 @@ easily access on-chain state for their computations.
 
 Offchain workers have access to extended APIs for communicating with the external world:
 
-  * Ability to submit transactions (either signed or unsigned) to the chain to publish computation
+- Ability to submit transactions (either signed or unsigned) to the chain to publish computation
   results.
-  * A fully-featured HTTP client allowing the worker to access and fetch data from external
-  services.
-  * Access to the local keystore to sign and verify statements or transactions.
-  * An additional, local key-value database shared between all off-chain workers.
-  * A secure, local entropy source for random number generation.
-  * Access to the node's precise local time and the ability to sleep and resume work.
+- A fully-featured HTTP client allowing the worker to access and fetch data from external services.
+- Access to the local keystore to sign and verify statements or transactions.
+- An additional, local key-value database shared between all off-chain workers.
+- A secure, local entropy source for random number generation.
+- Access to the node's precise local time and the ability to sleep and resume work.
 
 Off-chain workers can be initiated from within a special function in your runtime implementation,
 `fn offchain_worker(block: T::BlockNumber)`. The function is executed after each block import. To

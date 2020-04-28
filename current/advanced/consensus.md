@@ -34,8 +34,8 @@ further complication, blockchain networks strive to be fault tolerant, which mea
 continue to provide consistent data even if some participants are not following the rules.
 
 Blockchains batch transactions into blocks and have some method to select which participant has the
-right to submit a block. For example, in a proof-of-work chain, the node that finds a valid proof
-of work first has the right to submit a block to the chain.
+right to submit a block. For example, in a proof-of-work chain, the node that finds a valid proof of
+work first has the right to submit a block to the chain.
 
 Substrate provides several block construction algorithms and also allows you to create your own:
 
@@ -46,23 +46,23 @@ Substrate provides several block construction algorithms and also allows you to 
 ## Fork Choice Rules
 
 As a primitive, a block contains a header and a batch of
-[extrinsics](../learn-substrate/extrinsics). The header must contain a reference to its parent
-block such that one can trace the chain to its genesis. Forks occur when two blocks reference the
-same parent. Forks must be resolved such that only one, canonical chain exists.
+[extrinsics](../learn-substrate/extrinsics). The header must contain a reference to its parent block
+such that one can trace the chain to its genesis. Forks occur when two blocks reference the same
+parent. Forks must be resolved such that only one, canonical chain exists.
 
 A fork choice rule is an algorithm that takes a blockchain and selects the "best" chain, and thus
-the one that should be extended. Substrate exposes this concept through the [`SelectChain`
-Trait](https://substrate.dev/rustdocs/master/sp_consensus/trait.SelectChain.html).
+the one that should be extended. Substrate exposes this concept through the
+[`SelectChain` Trait](https://substrate.dev/rustdocs/master/sp_consensus/trait.SelectChain.html).
 
-Substrate allows you to write a custom fork choice rule, or use one that comes out of the box.
-For example:
+Substrate allows you to write a custom fork choice rule, or use one that comes out of the box. For
+example:
 
 ### Longest Chain Rule
 
-The longest chain rule simply says that the best chain is the longest chain. Substrate provides
-this chain selection rule with the
-[`LongestChain` struct](https://substrate.dev/rustdocs/master/sc_client/struct.LongestChain.html). GRANDPA uses
-the longest chain rule for voting.
+The longest chain rule simply says that the best chain is the longest chain. Substrate provides this
+chain selection rule with the
+[`LongestChain` struct](https://substrate.dev/rustdocs/master/sc_client/struct.LongestChain.html).
+GRANDPA uses the longest chain rule for voting.
 
 ![longest chain rule](../assets/consensus-longest-chain.png)
 
@@ -90,8 +90,8 @@ block production engine.
 ### Slots
 
 Slot-based consensus algorithms must have a known set of validators who are permitted to produce
-blocks. Time is divided up into discrete slots, and during each slot only some of the validators
-may produce a block. The specifics of which validators can author blocks during each slot vary from
+blocks. Time is divided up into discrete slots, and during each slot only some of the validators may
+produce a block. The specifics of which validators can author blocks during each slot vary from
 engine to engine. Substrate provides Aura and Babe, both of which are slot-based block authoring
 engines.
 
@@ -126,18 +126,19 @@ longest chain that contains the most recently finalized block.
 ## Consensus in Substrate
 
 The Substrate framework ships with several consensus engines that provide block authoring, or
-finality. This article provides a brief overview of the offerings included with Substrate itself. Developers are always welcome to provide their own custom consensus algorithms.
+finality. This article provides a brief overview of the offerings included with Substrate itself.
+Developers are always welcome to provide their own custom consensus algorithms.
 
 ### Aura
 
-[Aura](https://substrate.dev/rustdocs/master/sc_consensus_aura/index.html) provides a slot-based block
-authoring mechanism. In Aura a known set of authorities take turns producing blocks.
+[Aura](https://substrate.dev/rustdocs/master/sc_consensus_aura/index.html) provides a slot-based
+block authoring mechanism. In Aura a known set of authorities take turns producing blocks.
 
 ### BABE
 
-[BABE](https://substrate.dev/rustdocs/master/sc_consensus_babe/index.html) also provides slot-based block
-authoring with a known set of validators. In these ways it is similar to Aura. Unlike Aura, slot
-assignment is based on the evaluation of a Verifiable Random Function (VRF). Each validator is
+[BABE](https://substrate.dev/rustdocs/master/sc_consensus_babe/index.html) also provides slot-based
+block authoring with a known set of validators. In these ways it is similar to Aura. Unlike Aura,
+slot assignment is based on the evaluation of a Verifiable Random Function (VRF). Each validator is
 assigned a weight for an _epoch._ This epoch is broken up into slots and the validator evaluates its
 VRF at each slot. For each slot that the validator's VRF output is below its weight, it is allowed
 to author a block.
@@ -150,11 +151,11 @@ in a given slot. These "secondary" slot assignments allow BABE to achieve a cons
 
 ### Proof of Work
 
-[Proof-of-work](https://substrate.dev/rustdocs/master/sc_consensus_pow/index.html) block authoring is not
-slot-based and does not require a known authority set. In proof of work, anyone can
-produce a block at any time, so long as they can solve a computationally challenging problem
-(typically a hash preimage search). The difficulty of this problem can be tuned to provide a
-statistical target block time.
+[Proof-of-work](https://substrate.dev/rustdocs/master/sc_consensus_pow/index.html) block authoring
+is not slot-based and does not require a known authority set. In proof of work, anyone can produce a
+block at any time, so long as they can solve a computationally challenging problem (typically a hash
+preimage search). The difficulty of this problem can be tuned to provide a statistical target block
+time.
 
 ### GRANDPA
 
@@ -182,8 +183,8 @@ passed from the outer part of the node, where consensus lives, to the runtime, o
 Because both BABE and GRANDPA will be used in the Polkadot network, Web3 Foundation provides
 research-level presentations of the algorithms.
 
-* [BABE Research](https://research.web3.foundation/en/latest/polkadot/BABE/Babe.html)
-* [GRANDPA Research](https://research.web3.foundation/en/latest/polkadot/GRANDPA.html)
+- [BABE Research](https://research.web3.foundation/en/latest/polkadot/BABE/Babe.html)
+- [GRANDPA Research](https://research.web3.foundation/en/latest/polkadot/GRANDPA.html)
 
 All deterministic finality algorithms, including GRANDPA, require at least `2f + 1` non-faulty
 nodes, where `f` is the number of faulty or malicious nodes. Learn more about where this threshold
