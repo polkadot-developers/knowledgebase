@@ -176,7 +176,17 @@ These are general style guidelines that can help create clearer documentation:
 - **Do not use exclamation marks.** Some newspaper editors only let their writers use one
   exclamation mark _per year._ Just remove it, and you will see that the sentence is better.
 
-- **Use markdown.** You must create documentation in markdown (.md) and keep the markdown file
-  wrapped to a 100 character column size.
+- **Use markdown.** You must create documentation in markdown (.md).
+
+- **Use Prettier.** [Prettier](https://prettier.io/) is a tool that can be used to ensure consistent
+  formatting of markdown files. This repository includes
+  [a Prettier config file](./.prettierrc.json) and you should run Prettier on the entire repo before
+  submitting any changes. Prettier is distributed as an [NPM](https://www.npmjs.com/) package, so
+  you can either install it globally or run it on-the-fly using `npx`. Here is an example that
+  demonstrates the latter option:
+
+  ```
+  npx prettier --write .
+  ```
 
 - **Be respectful**
