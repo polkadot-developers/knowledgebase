@@ -64,6 +64,7 @@
 			"slug": "integrate",
 			"menu_items": [
 				{ "title": "Front End", "slug": "polkadot-js" },
+				{ "title": "Client Libraries", "slug": "libraries" },
 				{ "title": "Chain Specs", "slug": "chain-spec" },
 				{ "title": "Subkey", "slug": "subkey" }
 			]
