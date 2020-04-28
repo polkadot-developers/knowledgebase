@@ -116,10 +116,7 @@ the `iter` and `drain` methods require a parameter, i.e. the first key:
 As mentioned above, a novel feature of Substrate Storage Maps is that they allow developers to specify the hashing
 algorithm that will be used when generating a map's keys. A Rust object that is used to encapsulate hashing logic is
 referred to as a "hasher". Broadly speaking, the hashers that are available to Substrate developers can be described
-in two ways: whether or not they are cryptographic and whether or not they produce output that is transparent. In this
-document you will find information about the pros and cons of the different approaches to hashing; read
-[the advanced storage document](../advanced/storage) if you would like a better understanding of _why_ the different
-algorithms may behave differently.
+in two ways: whether or not they are cryptographic and whether or not they produce output that is transparent.
 
 ##### Cryptographic Hashing Algorithms
 
