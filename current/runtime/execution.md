@@ -11,9 +11,9 @@ that calls into the various runtime modules included in your blockchain.
 
 The Executive module exposes the `execute_block` function that:
 
-- [Initializes the block](#initializing-a-block).
-- [Executes extrinsics](#executing-extrinsics).
-- [Finalizes the block](#finalizing-a-block).
+- [Initializes the block](#initializing-a-block)
+- [Executes extrinsics](#executing-extrinsics)
+- [Finalizes the block](#finalizing-a-block)
 
 ## Validating Transactions
 
@@ -41,6 +41,15 @@ After the block has been initialized, each valid extrinsic is executed in order 
 priority. Extrinsics must not cause a panic in the runtime logic or else the system becomes
 vulnerable to attacks where users can trigger computational execution without any punishment.
 
+When an extrinsic executes, the state is not cached prior to execution and storage mutations operate
+directly on storage. Therefore, runtime developers should perform all necessary checks that an
+extrinsic will succeed before mutating storage. If an extrinsic fails mid-execution, previous
+storage mutations will not be reverted.
+
+[Events](events) that are emitted from an extrinsic are also written to storage. Therefore, you
+should not emit an event before performing the complementary actions. If an extrinsic fails after an
+event is emitted, the event will not be reverted.
+
 ### Finalizing a Block
 
 After all queued extrinsics have been executed, the Executive module calls into each module's
@@ -60,11 +69,7 @@ calculated.
 
 ### References
 
-- Visit the reference docs for the
-  [Executive module](https://substrate.dev/rustdocs/master/frame_executive/index.html).
-- Visit the reference docs for the
-  [`decl_event!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.decl_event.html).
-- Visit the reference docs for the
-  [`decl_storage!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.decl_storage.html).
-- Visit the reference docs for the
-  [`construct_runtime!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.construct_runtime.html).
+- [FRAME executive](https://substrate.dev/rustdocs/master/frame_executive/index.html)
+- [`decl_event!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.decl_event.html)
+- [`decl_storage!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.decl_storage.html)
+- [`construct_runtime!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.construct_runtime.html)

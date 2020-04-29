@@ -92,7 +92,7 @@ when to use them.
   [custom weights](https://github.com/substrate-developer-hub/recipes/tree/master/pallets/weights)
   and custom
   [WeightToFee](https://github.com/substrate-developer-hub/recipes/tree/master/runtimes/weight-fee-runtime).
-- The [srml-example](https://github.com/paritytech/substrate/blob/master/frame/example/src/lib.rs)
+- The [Example](https://github.com/paritytech/substrate/blob/master/frame/example/src/lib.rs)
   pallet.
 
 ### Examples
@@ -104,6 +104,6 @@ when to use them.
 ### References
 
 - Take a look at the
-  [SRML Transaction Payment pallet](https://github.com/paritytech/substrate/blob/master/frame/transaction-payment/src/lib.rs).
+  [Transaction Payment pallet](https://github.com/paritytech/substrate/blob/master/frame/transaction-payment/src/lib.rs).
 - Find info about weights including the `SimpleDispatchInfo` enum in
   [weights.rs](https://github.com/paritytech/substrate/blob/master/frame/support/src/weights.rs).
