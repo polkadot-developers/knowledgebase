@@ -69,7 +69,7 @@ calculated.
 
 ### References
 
-- [Executive module](https://substrate.dev/rustdocs/master/frame_executive/index.html)
+- [FRAME executive](https://substrate.dev/rustdocs/master/frame_executive/index.html)
 - [`decl_event!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.decl_event.html)
 - [`decl_storage!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.decl_storage.html)
 - [`construct_runtime!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.construct_runtime.html)

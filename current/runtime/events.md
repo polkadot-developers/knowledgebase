@@ -86,7 +86,7 @@ decl_module! {
 
 The default behavior of this function is to call
 [`deposit_event`](https://substrate.dev/rustdocs/master/frame_system/struct.Module.html#method.deposit_event)
-from the System module, which writes the event to storage.
+from the FRAME system, which writes the event to storage.
 
 This function places the event in the System module's runtime storage for that block. At the
 beginning of a new block, the System module automatically removes all events that were stored from
