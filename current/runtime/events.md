@@ -15,16 +15,15 @@ when those events are emitted.
 Runtime events are created with the `decl_event!` macro.
 
 ```rust
-decl_event!{
-	pub enum Event<T> where
-		AccountId = <T as system::Trait>::AccountId,
-	{
-		ValueSet(u64, AccountId),
+decl_event!(
+	pub enum Event<T> where AccountId = <T as Trait>::AccountId {
+		/// Set a value.
+		ValueSet(u32, AccountId),
 	}
-}
+);
 ```
 
-The `Event` enum needs to be declared in your runtime's [configuration trait](traits).
+The `Event` enum needs to be declared in your runtime's configuration trait.
 
 ```rust
 pub trait Trait: system::Trait {
@@ -87,7 +86,7 @@ decl_module! {
 
 The default behavior of this function is to call
 [`deposit_event`](https://substrate.dev/rustdocs/master/frame_system/struct.Module.html#method.deposit_event)
-from the SRML System module.
+from the System module, which writes the event to storage.
 
 This function places the event in the System module's runtime storage for that block. At the
 beginning of a new block, the System module automatically removes all events that were stored from
@@ -129,9 +128,6 @@ runtime events are used:
 
 ### References
 
-- Visit the reference docs for the
-  [`decl_event!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.decl_event.html).
-- Visit the reference docs for the
-  [`decl_module!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.decl_module.html).
-- Visit the reference docs for the
-  [`construct_runtime!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.construct_runtime.html).
+- [`decl_event!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.decl_event.html)
+- [`decl_module!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.decl_module.html)
+- [`construct_runtime!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.construct_runtime.html)

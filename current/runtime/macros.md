@@ -18,7 +18,7 @@ You can learn more about
 
 ## Runtime Macros
 
-Substrate provides a set of runtime macros which generate boilerplate code that would otherwise be
+Substrate provides a set of runtime macros that generate boilerplate code that would otherwise be
 cumbersome for you to write.
 
 The main macros you will interact with are:
@@ -26,7 +26,7 @@ The main macros you will interact with are:
 - `decl_module!` - Used for defining the callable functions your runtime module exposes and
   orchestrates actions our module takes through block execution.
 - `decl_storage!` - Used to define the storage items managed by your runtime module.
-- `decl_event!` - Used to define the events which can be emitted by your runtime module.
+- `decl_event!` - Used to define the events that can be emitted by your runtime module.
 
 In addition, you will interact with the `construct_runtime!` macro when finally choosing the modules
 which will be included into your runtime.
@@ -55,11 +55,7 @@ View our most [simple Substrate runtime](index) to see all these macros interact
 
 ### References
 
-- Visit the reference docs for the
-  [`decl_module!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.decl_module.html).
-- Visit the reference docs for the
-  [`decl_event!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.decl_event.html).
-- Visit the reference docs for the
-  [`decl_storage!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.decl_storage.html).
-- Visit the reference docs for the
-  [`construct_runtime!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.construct_runtime.html).
+- [`decl_module!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.decl_module.html)
+- [`decl_event!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.decl_event.html)
+- [`decl_storage!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.decl_storage.html)
+- [`construct_runtime!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.construct_runtime.html)
