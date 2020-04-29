@@ -18,6 +18,7 @@ guidelines.
 - [ ] Does it follow our [style guide](#documentation-style)?
 - [ ] If this is a new page, does the PR include the appropriate infrastructure, e.g. adding the
       page to a sidebar?
+- [ ] Did you run Prettier by executing `npx prettier --write .` in the project root?
 - [ ] Build the page. Does it render properly? E.g. no funny lists or formatting.
 - [ ] Links should go to rustdocs or devhub articles, not source code.
 - [ ] If this PR addresses an issue in the queue, have you referenced it in the description?
