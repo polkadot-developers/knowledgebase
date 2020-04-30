@@ -79,7 +79,7 @@ reading to learn how to calculate storage keys for the different types of storag
 To calculate the key for a simple [Storage Value](../runtime/storage#Storage-Value), take the
 [TwoX 128 hash](https://github.com/Cyan4973/xxHash) of the name of the module that contains the
 Storage Value and append to it the TwoX 128 hash of the name of the Storage Value itself. For
-example, the [Sudo](https://substrate.dev/rustdocs/master/pallet_sudo/index.html) module exposes a
+example, the [Sudo](https://substrate.dev/rustdocs/master/pallet_sudo/index.html) pallet exposes a
 Storage Value item named
 [`Key`](https://substrate.dev/rustdocs/master/pallet_sudo/struct.Module.html#method.key):
 
@@ -187,7 +187,7 @@ example, after you remove the first 32 hexadecimal characters that represent the
 
 ## Runtime Storage API
 
-The Substrate [FRAME Support pallet](https://substrate.dev/rustdocs/master/frame_support/index.html)
+Substrate's [FRAME Support crate](https://substrate.dev/rustdocs/master/frame_support/index.html)
 provides utilities for generating unique, deterministic keys for your runtime's storage items. These
 storage items are placed in the state trie[#Trie-Abstraction] and are accessible by
 [querying the trie by key](#Querying-Storage).

@@ -59,7 +59,7 @@ Some of the most important methods are summarized here:
 - [`mutate(fn)`](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageValue.html#tymethod.mutate) -
   Mutate the value with the provided function.
 - [`take()`](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageValue.html#tymethod.take) -
-  Remove the value from storage.
+  Load the value and remove it from storage.
 
 ### Storage Maps
 
@@ -85,7 +85,7 @@ that is similar to that of Storage Values.
 - `mutate` - Use the provided function to mutate the value associated with the given key. Docs:
   [`StorageMap#mutate(key, fn)`](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageMap.html#tymethod.mutate),
   [`StorageDoubleMap#mutate(key1, key2, fn)`](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageDoubleMap.html#tymethod.mutate)
-- `take` - Remove the value associated with the given key from storage. Docs:
+- `take` - Load the value associated with the given key and remove it from storage. Docs:
   [`StorageMap#take(key)`](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageMap.html#tymethod.take),
   [`StorageDoubleMap#take(key1, key2)`](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageDoubleMap.html#tymethod.take)
 
@@ -95,13 +95,14 @@ Depending on [the hashing algorithm](#Transparent-Hashing-Algorithms) that you s
 map's keys, you may be able to iterate across its keys and values. Because maps are often used to
 track unbounded sets of data (account balances, for example) it is especially likely to exceed block
 production time by iterating over maps in their entirety within the runtime. Furthermore, because
-maps are comprised of more layers of indirection than native lists, they are significantly more
-costly than lists to iterate over with respect to time. This is not to say that it is "wrong" to
-iterate over maps in your runtime; in general Substrate focuses on "first principles" as opposed to
-hard and fast rules of right and wrong. Being efficient within the runtime of a blockchain is an
-important first principle of Substrate and this information is designed to help you understand _all_
-of Substrate's storage capabilities and use them in a way that respects the important first
-principles around which they were designed.
+accessing the elements of a map requires more pointer dereferencing than accessing the elements of a
+native list, maps are significantly _more_ costly than lists to iterate over with respect to time.
+This is not to say that it is "wrong" to iterate over maps in your runtime; in general Substrate
+focuses on "[first principles](#Best-Practices)" as opposed to hard and fast rules of right and
+wrong. Being efficient within the runtime of a blockchain is an important first principle of
+Substrate and this information is designed to help you understand _all_ of Substrate's storage
+capabilities and use them in a way that respects the important first principles around which they
+were designed.
 
 ##### Iterable Storage Map Methods
 
@@ -110,16 +111,16 @@ Storage Double Maps, the `iter` and `drain` methods require a parameter, i.e. th
 
 - `iter` - Enumerate all elements in the map in no particular order. If you alter the map while
   doing this, you'll get undefined results. Docs:
-  [IterableStorageMap#iter()](https://substrate.dev/rustdocs/master/frame_support/storage/trait.IterableStorageMap.html#tymethod.iter),
-  [IterableStorageDoubleMap#iter(key1)](https://substrate.dev/rustdocs/master/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.iter)
+  [`IterableStorageMap#iter()`](https://substrate.dev/rustdocs/master/frame_support/storage/trait.IterableStorageMap.html#tymethod.iter),
+  [`IterableStorageDoubleMap#iter(key1)`](https://substrate.dev/rustdocs/master/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.iter)
 - `drain` - Remove all elements from the map and iterate through them in no particular order. If you
   add elements to the map while doing this, you'll get undefined results. Docs:
-  [IterableStorageMap#drain()](https://substrate.dev/rustdocs/master/frame_support/storage/trait.IterableStorageMap.html#tymethod.drain),
-  [IterableStorageDoubleMap#drain(key1)](https://substrate.dev/rustdocs/master/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.drain)
+  [`IterableStorageMap#drain()`](https://substrate.dev/rustdocs/master/frame_support/storage/trait.IterableStorageMap.html#tymethod.drain),
+  [`IterableStorageDoubleMap#drain(key1)`](https://substrate.dev/rustdocs/master/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.drain)
 - `translate` - Use the provided function to translate all elements of the map, in no particular
   order. To remove an element from the map, return `None` from the translation function. Docs:
-  [IterableStorageMap#translate(fn)](https://substrate.dev/rustdocs/master/frame_support/storage/trait.IterableStorageMap.html#tymethod.translate),
-  [IterableStorageDoubleMap#translate(fn)](https://substrate.dev/rustdocs/master/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.translate)
+  [`IterableStorageMap#translate(fn)`](https://substrate.dev/rustdocs/master/frame_support/storage/trait.IterableStorageMap.html#tymethod.translate),
+  [`IterableStorageDoubleMap#translate(fn)`](https://substrate.dev/rustdocs/master/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.translate)
 
 #### Hashing Algorithms
 
@@ -169,7 +170,7 @@ those that are transparent:
 | [Identity](https://substrate.dev/rustdocs/master/frame_support/struct.Identity.html)                  |               |             |
 
 The Identity hasher encapsulates a hashing algorithm that has an output equal to its input (the
-identity function).This type of hasher should only be used when the starting key is already a
+identity function). This type of hasher should only be used when the starting key is already a
 cryptographic hash.
 
 ## Declaring Storage Items
@@ -182,17 +183,26 @@ type of storage item:
 ```rust
 decl_storage! {
 	trait Store for Module<T: Trait> as Example {
+		SomePrivateValue: u32;
 		pub SomePrimitiveValue get(fn some_primitive_value): u32;
 		// complex types are prefaced by T::
 		pub SomeComplexValue: T::AccountId;
-		pub SomeMap get(fn some_map): map hasher(blake2_128_concat) str => u32;
-		pub SomeDoubleMap: double_map hasher(blake2_128_concat) str, hasher(blake2_128_concat) str => u32;
+		pub SomeMap get(fn some_map): map hasher(blake2_128_concat) T::AccountId => u32;
+		pub SomeDoubleMap: double_map hasher(blake2_128_concat) u32, hasher(blake2_128_concat) T::AccountId => u32;
 	}
 }
 ```
 
 Notice that the map storage items specify [the hashing algorithm](#Hashing-Algorithms) that will be
 used.
+
+### Visibility
+
+In the example above, all the storage items except `SomePrivateValue` are made public by way of the
+`pub` keyword. Blockchain storage is always publicly
+[visible from _outside_ of the runtime](#Accessing-Storage-Items); the visibility of Substrate
+storage items only impacts whether or not other runtime pallets will be able to access the storage
+item.
 
 ### Getter Methods
 
@@ -254,19 +264,87 @@ interacting with Substrate-based blockchains, including querying storage. Refer 
 key-value database to implement the different kinds of Storage Items and how to query this database
 directly by way of the RPC server.
 
+## Best Practices
+
+Substrate's goal is to provide a flexible framework that allows people to build the blockchain that
+suits their needs - the creators of Substrate tend not to think in terms of "right" or "wrong". That
+being said, the Substrate codebase adheres to a number of best practices in order to promote the
+creation of blockchain networks that are secure, performant and maintainable in the long-term. The
+following sections outline best practices for using Substrate storage and also describe the
+important first principles that motivated them.
+
+### What to Store
+
+Remember, the fundamental principle of blockchain runtime storage is to minimize its use. Only
+_consensus-critical_ data should be stored in your runtime. When possible, use techniques like
+hashing to reduce the amount of data you must store. For instance, many of Substrate's governance
+capabilities (e.g.
+[the Democracy pallet's `propose` dispatchable](https://crates.parity.io/pallet_democracy/enum.Call.html#variant.propose))
+allow network participants to vote on the _hash_ of a dispatchable call, which is always bounded in
+size, as opposed to the call itself, which may be unbounded in length. This is especially true in
+the case of runtime upgrades where the dispatchable call takes an entire runtime WASM blob as its
+parameter. Because these governance mechanisms are implemented _on-chain_, all the information that
+is needed to come to consensus on the state of a given proposal must also be stored on-chain - this
+includes _what_ is being voted on. However, by binding an on-chain proposal to its hash, Substrate's
+governance mechanisms allow this to be done in a way that defers bringing all the data associated
+with a proposal on-chain until _after_ it has been approved. This means that storage is not wasted
+on proposals that fail. Once a proposal has passed, someone can initiate the actual dispatchable
+call (including all its parameters), which will be hashed and compared to the hash in the proposal.
+Another common pattern for using hashes to minimize data that is stored on-chain is to store the
+metadata associated with an object in [IPFS](https://ipfs.io/); this means that only the IPFS
+location (a hash that is bounded in size) needs to be stored on-chain.
+
+Hashes are only one mechanism that can be used to control the size of runtime storage. An example of
+another mechanism is [bounds](#Create-Bounds).
+
+### Verify First, Write Last
+
+The state of a blockchain network's storage is immutable; data can be changed, but there will always
+be a record of these changes, and making them typically incurs costs. Because of this, it is
+important that data is only persisted to runtime storage when it is certain that all preconditions
+have been met. In general, code blocks that may result in adding data to storage should be
+structured as follows:
+
+```rust
+{
+  // all checks and throwing code go here
+
+  // all storage writes go here; no throwing code below this line
+
+  // all event emissions go here
+}
+```
+
+Do not use runtime storage to store intermediate or transient data within the context of an
+operation that is logically atomic or data that will not be needed if the operation is to fail. This
+does not mean that runtime storage should not be used to track the state of ongoing actions that
+require multiple atomic operations, as in the case of
+[the multi-signature capabilities from the Utility pallet](https://crates.parity.io/pallet_utility/enum.Call.html#variant.as_multi).
+In this case, runtime storage is used to track the signatories on a dispatchable call even though a
+given call may never receive enough signatures to actually be invoked. In this case, each signature
+is considered an atomic event in the ongoing multi-signature operation; the data needed to record a
+single signature is not stored until after all the preconditions associated with that signature have
+been met.
+
+### Create Bounds
+
+Creating bounds on the size of storage items is an extremely effective way to control the use of
+runtime storage and one that is used repeatedly throughout the Substrate codebase. In general, any
+storage item whose size is determined by user action should have a bound on it.
+[The multi-signature capabilities from the Utility pallet](https://crates.parity.io/pallet_utility/trait.Trait.html#associatedtype.MaxSignatories)
+that were described above are one such example. In this case, the list of signatories associated
+with a multi-signature operation is provided by the multi-signature participants. Because this
+signatory list is [necessary to come to consensus](#What-to-Store) on the state of the
+multi-signature operation, it must be stored in the runtime. However, in order to give runtime
+developers control over how much space in storage these lists may occupy, the Utility pallet
+requires users to configure a bound on this number that will be included as a
+[precondition](#Verify-First-Write-Last) before anything is written to storage.
+
 ## Child Storage Tries
 
 TODO
 
 ## Storage Cache
-
-TODO
-
-## Best Practices
-
-TODO
-
-### Verify First, Write Last
 
 TODO
 
