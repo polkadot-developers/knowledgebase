@@ -302,7 +302,7 @@ another mechanism is [bounds](#Create-Bounds).
 The state of a blockchain network's storage is immutable; data can be changed, but there will always
 be a record of these changes, and making them typically incurs costs. Because of this, it is
 important that data is only persisted to runtime storage when it is certain that all preconditions
-have been met. In general, code blocks that may result in adding data to storage should be
+have been met. In general, code blocks that may result in mutating storage should be
 structured as follows:
 
 ```rust
@@ -341,10 +341,6 @@ requires users to configure a bound on this number that will be included as a
 [precondition](#Verify-First-Write-Last) before anything is written to storage.
 
 ## Child Storage Tries
-
-TODO
-
-## Storage Cache
 
 TODO
 
