@@ -18,16 +18,15 @@ information about how these interfaces are implemented.
 
 ## Storage Items
 
-The `storage` module in
-[FRAME Support](https://substrate.dev/rustdocs/master/frame_support/storage/index.html) gives
-runtime developers access to Substrate's flexible storage APIs. Any value that can be encoded by the
-[Parity SCALE codec](../advanced/codec) is supported by these storage APIs:
+The `storage` module in [FRAME Support](https://crates.parity.io/frame_support/storage/index.html)
+gives runtime developers access to Substrate's flexible storage APIs. Any value that can be encoded
+by the [Parity SCALE codec](../advanced/codec) is supported by these storage APIs:
 
-- [Storage Value](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageValue.html) -
-  A single value
-- [Storage Map](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageMap.html) -
-  A key-value hash map
-- [Storage Double Map](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageDoubleMap.html) -
+- [Storage Value](https://crates.parity.io/frame_support/storage/trait.StorageValue.html) - A single
+  value
+- [Storage Map](https://crates.parity.io/frame_support/storage/trait.StorageMap.html) - A key-value
+  hash map
+- [Storage Double Map](https://crates.parity.io/frame_support/storage/trait.StorageDoubleMap.html) -
   An implementation of a map with two keys that provides the important ability to efficiently remove
   all entries that have a common first key
 
@@ -49,16 +48,16 @@ will stop producing blocks, which means that it will stop functioning.
 #### Methods
 
 Refer to the Storage Value documentation for
-[a comprehensive list of the methods that Storage Values expose](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageValue.html#required-methods).
+[a comprehensive list of the methods that Storage Values expose](https://crates.parity.io/frame_support/storage/trait.StorageValue.html#required-methods).
 Some of the most important methods are summarized here:
 
-- [`get()`](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageValue.html#tymethod.get) -
+- [`get()`](https://crates.parity.io/frame_support/storage/trait.StorageValue.html#tymethod.get) -
   Load the value from storage.
-- [`put(val)`](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageValue.html#tymethod.put) -
+- [`put(val)`](https://crates.parity.io/frame_support/storage/trait.StorageValue.html#tymethod.put) -
   Store the provided value.
-- [`mutate(fn)`](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageValue.html#tymethod.mutate) -
+- [`mutate(fn)`](https://crates.parity.io/frame_support/storage/trait.StorageValue.html#tymethod.mutate) -
   Mutate the value with the provided function.
-- [`take()`](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageValue.html#tymethod.take) -
+- [`take()`](https://crates.parity.io/frame_support/storage/trait.StorageValue.html#tymethod.take) -
   Load the value and remove it from storage.
 
 ### Storage Maps
@@ -73,21 +72,21 @@ Storage Maps are implemented.
 
 #### Methods
 
-[Storage Maps expose an API](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageMap.html#required-methods)
+[Storage Maps expose an API](https://crates.parity.io/frame_support/storage/trait.StorageMap.html#required-methods)
 that is similar to that of Storage Values.
 
 - `get` - Load the value associated with the provided key from storage. Docs:
-  [`StorageMap#get(key)`](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageMap.html#tymethod.get),
-  [`StorageDoubleMap#get(key1, key2)`](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageDoubleMap.html#tymethod.get)
+  [`StorageMap#get(key)`](https://crates.parity.io/frame_support/storage/trait.StorageMap.html#tymethod.get),
+  [`StorageDoubleMap#get(key1, key2)`](https://crates.parity.io/frame_support/storage/trait.StorageDoubleMap.html#tymethod.get)
 - `insert` - Store the provided value by associating it with the given key. Docs:
-  [`StorageMap#insert(key, val)`](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageMap.html#tymethod.insert),
-  [`StorageDoubleMap#insert(key1, key2, val)`](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageDoubleMap.html#tymethod.insert)
+  [`StorageMap#insert(key, val)`](https://crates.parity.io/frame_support/storage/trait.StorageMap.html#tymethod.insert),
+  [`StorageDoubleMap#insert(key1, key2, val)`](https://crates.parity.io/frame_support/storage/trait.StorageDoubleMap.html#tymethod.insert)
 - `mutate` - Use the provided function to mutate the value associated with the given key. Docs:
-  [`StorageMap#mutate(key, fn)`](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageMap.html#tymethod.mutate),
-  [`StorageDoubleMap#mutate(key1, key2, fn)`](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageDoubleMap.html#tymethod.mutate)
+  [`StorageMap#mutate(key, fn)`](https://crates.parity.io/frame_support/storage/trait.StorageMap.html#tymethod.mutate),
+  [`StorageDoubleMap#mutate(key1, key2, fn)`](https://crates.parity.io/frame_support/storage/trait.StorageDoubleMap.html#tymethod.mutate)
 - `take` - Load the value associated with the given key and remove it from storage. Docs:
-  [`StorageMap#take(key)`](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageMap.html#tymethod.take),
-  [`StorageDoubleMap#take(key1, key2)`](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageDoubleMap.html#tymethod.take)
+  [`StorageMap#take(key)`](https://crates.parity.io/frame_support/storage/trait.StorageMap.html#tymethod.take),
+  [`StorageDoubleMap#take(key1, key2)`](https://crates.parity.io/frame_support/storage/trait.StorageDoubleMap.html#tymethod.take)
 
 #### Iterable Storage Maps
 
@@ -111,16 +110,16 @@ Storage Double Maps, the `iter` and `drain` methods require a parameter, i.e. th
 
 - `iter` - Enumerate all elements in the map in no particular order. If you alter the map while
   doing this, you'll get undefined results. Docs:
-  [`IterableStorageMap#iter()`](https://substrate.dev/rustdocs/master/frame_support/storage/trait.IterableStorageMap.html#tymethod.iter),
-  [`IterableStorageDoubleMap#iter(key1)`](https://substrate.dev/rustdocs/master/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.iter)
+  [`IterableStorageMap#iter()`](https://crates.parity.io/frame_support/storage/trait.IterableStorageMap.html#tymethod.iter),
+  [`IterableStorageDoubleMap#iter(key1)`](https://crates.parity.io/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.iter)
 - `drain` - Remove all elements from the map and iterate through them in no particular order. If you
   add elements to the map while doing this, you'll get undefined results. Docs:
-  [`IterableStorageMap#drain()`](https://substrate.dev/rustdocs/master/frame_support/storage/trait.IterableStorageMap.html#tymethod.drain),
-  [`IterableStorageDoubleMap#drain(key1)`](https://substrate.dev/rustdocs/master/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.drain)
+  [`IterableStorageMap#drain()`](https://crates.parity.io/frame_support/storage/trait.IterableStorageMap.html#tymethod.drain),
+  [`IterableStorageDoubleMap#drain(key1)`](https://crates.parity.io/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.drain)
 - `translate` - Use the provided function to translate all elements of the map, in no particular
   order. To remove an element from the map, return `None` from the translation function. Docs:
-  [`IterableStorageMap#translate(fn)`](https://substrate.dev/rustdocs/master/frame_support/storage/trait.IterableStorageMap.html#tymethod.translate),
-  [`IterableStorageDoubleMap#translate(fn)`](https://substrate.dev/rustdocs/master/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.translate)
+  [`IterableStorageMap#translate(fn)`](https://crates.parity.io/frame_support/storage/trait.IterableStorageMap.html#tymethod.translate),
+  [`IterableStorageDoubleMap#translate(fn)`](https://crates.parity.io/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.translate)
 
 #### Hashing Algorithms
 
@@ -161,13 +160,13 @@ _necessary_ to use a transparent hashing algorithm if you would like access
 This table lists some common hashers used in Substrate and denotes those that are cryptographic and
 those that are transparent:
 
-| Hasher                                                                                                | Cryptographic | Transparent |
-| ----------------------------------------------------------------------------------------------------- | ------------- | ----------- |
-| [Blake2 128](https://substrate.dev/rustdocs/master/frame_support/struct.Blake2_128.html)              | X             |             |
-| [TwoX 128](https://substrate.dev/rustdocs/master/frame_support/struct.Twox128.html)                   |               |             |
-| [Blake2 128 Concat](https://substrate.dev/rustdocs/master/frame_support/struct.Blake2_128Concat.html) | X             | X           |
-| [TwoX 64 Concat](https://substrate.dev/rustdocs/master/frame_support/struct.Twox64Concat.html)        |               | X           |
-| [Identity](https://substrate.dev/rustdocs/master/frame_support/struct.Identity.html)                  |               |             |
+| Hasher                                                                                   | Cryptographic | Transparent |
+| ---------------------------------------------------------------------------------------- | ------------- | ----------- |
+| [Blake2 128](https://crates.parity.io/frame_support/struct.Blake2_128.html)              | X             |             |
+| [TwoX 128](https://crates.parity.io/frame_support/struct.Twox128.html)                   |               |             |
+| [Blake2 128 Concat](https://crates.parity.io/frame_support/struct.Blake2_128Concat.html) | X             | X           |
+| [TwoX 64 Concat](https://crates.parity.io/frame_support/struct.Twox64Concat.html)        |               | X           |
+| [Identity](https://crates.parity.io/frame_support/struct.Identity.html)                  |               |             |
 
 The Identity hasher encapsulates a hashing algorithm that has an output equal to its input (the
 identity function). This type of hasher should only be used when the starting key is already a
@@ -176,9 +175,9 @@ cryptographic hash.
 ## Declaring Storage Items
 
 You can use
-[the `decl_storage` macro](https://substrate.dev/rustdocs/master/frame_support/macro.decl_storage.html)
-to easily create new runtime storage items. Here is an example of what it looks like to declare each
-type of storage item:
+[the `decl_storage` macro](https://crates.parity.io/frame_support/macro.decl_storage.html) to easily
+create new runtime storage items. Here is an example of what it looks like to declare each type of
+storage item:
 
 ```rust
 decl_storage! {
@@ -247,7 +246,7 @@ decl_storage! {
 ### Genesis Config
 
 You can define
-[an optional `GenesisConfig`](https://substrate.dev/rustdocs/master/frame_support/macro.decl_storage.html#genesisconfig)
+[an optional `GenesisConfig`](https://crates.parity.io/frame_support/macro.decl_storage.html#genesisconfig)
 struct in order to initialize storage items in the genesis block of your blockchain.
 
 // TODO
@@ -302,8 +301,8 @@ another mechanism is [bounds](#Create-Bounds).
 The state of a blockchain network's storage is immutable; data can be changed, but there will always
 be a record of these changes, and making them typically incurs costs. Because of this, it is
 important that data is only persisted to runtime storage when it is certain that all preconditions
-have been met. In general, code blocks that may result in mutating storage should be
-structured as follows:
+have been met. In general, code blocks that may result in mutating storage should be structured as
+follows:
 
 ```rust
 {
@@ -358,8 +357,8 @@ Check out
 ### References
 
 - Visit the reference docs for the
-  [`decl_storage!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.decl_storage.html)
-  for more details about the available storage declarations.
+  [`decl_storage!` macro](https://crates.parity.io/frame_support/macro.decl_storage.html) for more
+  details about the available storage declarations.
 
 - Visit the reference docs for
   [StorageValue](https://crates.parity.io/frame_support/storage/trait.StorageValue.html),
