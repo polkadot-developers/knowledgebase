@@ -31,7 +31,7 @@ runtime developers access to Substrate's flexible storage APIs. Any value that c
   An implementation of a map with two keys that provides the important ability to efficiently remove
   all entries that have a common first key
 
-The type of Storage Item you select should depend on the logical way in which the value will be used
+The type of storage item you select should depend on the logical way in which the value will be used
 by your runtime.
 
 ### Storage Value
@@ -248,7 +248,7 @@ decl_storage! {
 
 You can define
 [an optional `GenesisConfig`](https://substrate.dev/rustdocs/master/frame_support/macro.decl_storage.html#genesisconfig)
-struct in order to initialize Storage Items in the genesis block of your blockchain.
+struct in order to initialize storage items in the genesis block of your blockchain.
 
 // TODO
 
@@ -261,7 +261,7 @@ access storage items. The Polkadot JS team also maintains
 [the Polkadot Apps UI](https://polkadot.js.org/apps), which is a fully-featured web app for
 interacting with Substrate-based blockchains, including querying storage. Refer to
 [the advanced storage documentation](../advanced/storage) to learn more about how Substrate uses a
-key-value database to implement the different kinds of Storage Items and how to query this database
+key-value database to implement the different kinds of storage items and how to query this database
 directly by way of the RPC server.
 
 ## Best Practices
