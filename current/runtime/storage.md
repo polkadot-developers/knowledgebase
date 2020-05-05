@@ -90,17 +90,17 @@ that is similar to that of Storage Values.
 
 #### Iterable Storage Maps
 
-Depending on [the hashing algorithm](#Transparent-Hashing-Algorithms) that you select to generate a
-map's keys, you may be able to iterate across its keys and values. Because maps are often used to
-track unbounded sets of data (account balances, for example) it is especially likely to exceed block
-production time by iterating over maps in their entirety within the runtime. Furthermore, because
-accessing the elements of a map requires more database reads than accessing the elements of a native
-list, maps are significantly _more_ costly than lists to iterate over with respect to time. This is
-not to say that it is "wrong" to iterate over maps in your runtime; in general Substrate focuses on
-"[first principles](#Best-Practices)" as opposed to hard and fast rules of right and wrong. Being
-efficient within the runtime of a blockchain is an important first principle of Substrate and this
-information is designed to help you understand _all_ of Substrate's storage capabilities and use
-them in a way that respects the important first principles around which they were designed.
+Substrate Storage Maps are iterable with respect to their keys and values. Because maps are often
+used to track unbounded sets of data (account balances, for example) it is especially likely to
+exceed block production time by iterating over maps in their entirety within the runtime.
+Furthermore, because accessing the elements of a map requires more database reads than accessing the
+elements of a native list, maps are significantly _more_ costly than lists to iterate over with
+respect to time. This is not to say that it is "wrong" to iterate over maps in your runtime; in
+general Substrate focuses on "[first principles](#Best-Practices)" as opposed to hard and fast rules
+of right and wrong. Being efficient within the runtime of a blockchain is an important first
+principle of Substrate and this information is designed to help you understand _all_ of Substrate's
+storage capabilities and use them in a way that respects the important first principles around which
+they were designed.
 
 ##### Iterable Storage Map Methods
 
@@ -123,10 +123,13 @@ Storage Double Maps, the `iter` and `drain` methods require a parameter, i.e. th
 #### Hashing Algorithms
 
 As mentioned above, a novel feature of Substrate Storage Maps is that they allow developers to
-specify the hashing algorithm that will be used when generating a map's keys. A Rust object that is
-used to encapsulate hashing logic is referred to as a "hasher". Broadly speaking, the hashers that
-are available to Substrate developers can be described in two ways: whether or not they are
-cryptographic and whether or not they produce output that is transparent.
+specify the hashing algorithm that will be used to generate a map's keys. A Rust object that is used
+to encapsulate hashing logic is referred to as a "hasher". Broadly speaking, the hashers that are
+available to Substrate developers can be described in two ways: whether or not they are
+cryptographic and whether or not they produce output that is transparent. For the sake of
+completeness, the characteristics of non-transparent hashing algorithms are described below, but
+keep in mind that any hasher that does not produce transparent output has been deprecated for use
+within FRAME-based blockchains.
 
 ##### Cryptographic Hashing Algorithms
 
@@ -149,23 +152,25 @@ used.
 A transparent hashing algorithm is one that makes it easy to discover and verify the input that was
 used to generate a given output. In Substrate, hashing algorithms are made transparent by
 concatenating the algorithm's input to its output. This makes it trivial for users to retrieve a
-key's original unhashed value and verify it if they'd like (by re-hashing it). It is generally
-recommended to use transparent hashing algorithms for your runtime's Storage Maps. In fact, it is
-_necessary_ to use a transparent hashing algorithm if you would like access
-[iterable map](#Iterable-Storage-Maps) capabilities.
+key's original unhashed value and verify it if they'd like (by re-hashing it). The creators of
+Substrate have **deprecated the use of non-transparent hashers** within FRAME-based runtimes, so
+this information is provided primarily for completeness. In fact, it is _necessary_ to use a
+transparent hashing algorithm if you would like access [iterable map](#Iterable-Storage-Maps)
+capabilities. Refer to [the advanced storage documentation](../advanced/storage#Storage-Map-Keys) to
+learn more about the important capabilities that transparent hashing algorithms expose.
 
 ##### Common Substrate Hashers
 
 This table lists some common hashers used in Substrate and denotes those that are cryptographic and
 those that are transparent:
 
-| Hasher                                                                                   | Cryptographic | Transparent |
-| ---------------------------------------------------------------------------------------- | ------------- | ----------- |
-| [Blake2 128](https://crates.parity.io/frame_support/struct.Blake2_128.html)              | X             |             |
-| [TwoX 128](https://crates.parity.io/frame_support/struct.Twox128.html)                   |               |             |
-| [Blake2 128 Concat](https://crates.parity.io/frame_support/struct.Blake2_128Concat.html) | X             | X           |
-| [TwoX 64 Concat](https://crates.parity.io/frame_support/struct.Twox64Concat.html)        |               | X           |
-| [Identity](https://crates.parity.io/frame_support/struct.Identity.html)                  |               |             |
+| Hasher                                                                                     | Cryptographic | Transparent |
+| ------------------------------------------------------------------------------------------ | ------------- | ----------- |
+| [Blake2 128 Concat](https://crates.parity.io/frame_support/struct.Blake2_128Concat.html)   | X             | X           |
+| [TwoX 64 Concat](https://crates.parity.io/frame_support/struct.Twox64Concat.html)          |               | X           |
+| [Identity](https://crates.parity.io/frame_support/struct.Identity.html)                    |               |             |
+| [Blake2 128](https://crates.parity.io/frame_support/struct.Blake2_128.html) **DEPRECATED** | X             |             |
+| [TwoX 128](https://crates.parity.io/frame_support/struct.Twox128.html) **DEPRECATED**      |               |             |
 
 The Identity hasher encapsulates a hashing algorithm that has an output equal to its input (the
 identity function). This type of hasher should only be used when the starting key is already a
