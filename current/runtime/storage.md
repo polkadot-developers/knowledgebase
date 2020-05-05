@@ -243,13 +243,152 @@ decl_storage! {
 }
 ```
 
-### Genesis Config
+### Genesis Configuration
 
-You can define
-[an optional `GenesisConfig`](https://crates.parity.io/frame_support/macro.decl_storage.html#genesisconfig)
-struct in order to initialize storage items in the genesis block of your blockchain.
+Substrate's runtime storage APIs include capabilities to initialize storage items in the genesis
+block of your blockchain. The genesis storage configuration APIs expose a number of mechanisms for
+initializing storage, all of which have entry points in the `decl_storage` macro. These mechanisms
+all result in the creation of a `GenesisConfig` data type that implements
+[the `sp_runtime::BuildModuleGenesisStorage` trait](https://crates.parity.io/sp_runtime/trait.BuildModuleGenesisStorage.html)
+and will be added to the storage item's module (e.g.
+[`Struct pallet_balances::GenesisConfig`](https://crates.parity.io/pallet_balances/struct.GenesisConfig.html));
+storage items that are tagged for genesis configuration will have a corresponding attribute on this
+data type. In order to consume a module's genesis configuration capabilities, you must include the
+`Config` element when adding the module to your runtime with
+[the `construct_runtime` macro](https://crates.parity.io/frame_support/macro.construct_runtime.html).
+All the `GenesisConfig` types for the modules that inform a runtime will be aggregated into a single
+`GenesisConfig` type for that runtime, which implements
+[the `sp_runtime::BuildStorage` trait](https://crates.parity.io/sp_runtime/trait.BuildStorage.html)
+(e.g.
+[`Struct node_template_runtime::GenesisConfig`](https://crates.parity.io/node_template_runtime/struct.GenesisConfig.html));
+each attribute on this type corresponds to a `GenesisConfig` from one of the runtime's modules.
+Ultimately, the runtime's `GenesisConfig` is exposed by way of
+[the `sc_chain_spec::ChainSpec` trait](https://crates.parity.io/sc_chain_spec/trait.ChainSpec.html).
+For a complete and concrete example of using Substrate's genesis storage configuration capabilities,
+refer to the `decl_storage` macro in
+[the Society pallet](https://github.com/paritytech/substrate/blob/master/frame/society/src/lib.rs)
+as well as the genesis configuration for the Society module's storage in
+[the chain specification that ships with the Substrate code base](https://github.com/paritytech/substrate/blob/master/bin/node/cli/src/chain_spec.rs).
+Keep reading for more detailed descriptions of these capabilities.
 
-// TODO
+#### `config`
+
+When you use the `decl_storage` macro to declare a storage item, you can provide an optional
+`config` extension that will add an attribute to the module's `GenesisConfig` data type; the value
+of this attribute will be used as the initial value of the storage item in your chain's genesis
+block. The `config` extension takes a parameter that will determine the name of the attribute on the
+`GenesisConfig` data type; this parameter is optional if [the `get` extension](#Getter-Methods) is
+provided (the name of the `get` function is used as the attribute's name).
+
+Here is an example that demonstrates using the `config` extension with a Storage Value named `MyVal`
+to create an attribute named `init_val` on the `GenesisConfig` data type for the Storage Value's
+module. This attribute is then used in an example that demonstrates using the `GenesisConfig` types
+to set the Storage Value's initial value in your chain's genesis block.
+
+In `my_module/src/lib.rs`:
+
+```rust
+decl_storage! {
+  trait Store for Module<T: Trait> as MyModule {
+    pub MyVal get(fn my_val) config(init_val): u64;
+  }
+}
+```
+
+In `chain_spec.rs`:
+
+```rust
+GenesisConfig {
+  my_module: Some(MyModuleConfig {
+    init_val: 221u64 + SOME_CONSTANT_VALUE,
+  }),
+}
+```
+
+#### `build`
+
+Whereas [the `config` extension](#config) to the `decl_storage` macro allows you to configure a
+module's genesis storage state within a chain specification, the `build` extension allows you to
+perform this same task within the module itself (this gives you access to the module's private
+functions). Like `config`, the `build` extension accepts a single parameter, but in this case the
+parameter is always required and must be a closure, which is essentially a function. The `build`
+closure will be invoked with a single parameter whose type will be the module's `GenesisConfig` type
+(this gives you easy access to all the attributes of the `GenesisConfig` type). You may use the
+`build` extension along with the `config` extension for a single storage item; in this case, the
+module's `GenesisConfig` type will have an attribute that corresponds to what was set using `config`
+whose value will be set in the chain specification, but it will be the value returned by the `build`
+closure that will be used to set the storage item's genesis value.
+
+Here is an example that demonstrates using `build` to set the initial value of a storage item. In
+this case, the example involves two storage items: one that represents a list of member account IDs
+and another that designates a special member from the list, the prime member. The list of members is
+provided by way of the `config` extension and the prime member, who is assumed to be the first
+element in the list of members, is set using the `build` extension.
+
+In `my_module/src/lib.rs`:
+
+```rust
+decl_storage! {
+  trait Store for Module<T: Trait> as MyModule {
+    pub Members config(orig_ids): Vec<T::AccountId>;
+    pub Prime build(|config: &GenesisConfig<T>| config.orig_ids.first().cloned()): T::AccountId;
+  }
+}
+```
+
+In `chain_spec.rs`:
+
+```rust
+GenesisConfig {
+  my_module: Some(MyModuleConfig {
+    orig_ids: LIST_OF_IDS,
+  }),
+}
+```
+
+#### `add_extra_genesis`
+
+The `add_extra_genesis` extension to the `decl_storage` macro allows you to define a scope where
+[`config`](#config) and [`build`](#build) extensions can be provided without the need to bind them
+to specific storage items. You can use `config` within an `add_extra_genesis` scope to add an
+attribute to the module's `GenesisConfig` data type that can be used within any `build` closure. The
+`build` closures that are defined within an `add_extra_genesis` scope can be used to execute logic
+without binding that logic's return value to the value of a particular storage item; this may be
+desireable if you wish to invoke a private helper function within your module that sets several
+storage items or invoke a function defined on some other module included within your module.
+
+Here is an example that encapsulates the same use case described above in the example for `build`: a
+module that maintains a list of member account IDs along with a designated prime member. In this
+case, however, the `add_extra_genesis` extension is used to define a `GenesisConfig` attribute that
+is not bound to particular storage item as well as a `build` closure that will call a private
+function on the module to set the values of multiple storage items. For the purposes of this
+example, the implementation of the private helper function (`initialize_members`) is left to your
+imagination.
+
+In `my_module/src/lib.rs`:
+
+```js
+decl_storage! {
+  trait Store for Module<T: Trait> as MyModule {
+    pub Members: Vec<T::AccountId>;
+    pub Prime: T::AccountId;
+  }
+  add_extra_genesis {
+    config(orig_ids): Vec<T::AccountId>;
+    build(|config| Module::<T>::initialize_members(&config.members))
+  }
+}
+```
+
+In `chain_spec.rs`:
+
+```rust
+GenesisConfig {
+  my_module: Some(MyModuleConfig {
+    orig_ids: LIST_OF_IDS,
+  }),
+}
+```
 
 ## Accessing Storage Items
 
