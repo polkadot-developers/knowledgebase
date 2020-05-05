@@ -94,14 +94,13 @@ Depending on [the hashing algorithm](#Transparent-Hashing-Algorithms) that you s
 map's keys, you may be able to iterate across its keys and values. Because maps are often used to
 track unbounded sets of data (account balances, for example) it is especially likely to exceed block
 production time by iterating over maps in their entirety within the runtime. Furthermore, because
-accessing the elements of a map requires more pointer dereferencing than accessing the elements of a
-native list, maps are significantly _more_ costly than lists to iterate over with respect to time.
-This is not to say that it is "wrong" to iterate over maps in your runtime; in general Substrate
-focuses on "[first principles](#Best-Practices)" as opposed to hard and fast rules of right and
-wrong. Being efficient within the runtime of a blockchain is an important first principle of
-Substrate and this information is designed to help you understand _all_ of Substrate's storage
-capabilities and use them in a way that respects the important first principles around which they
-were designed.
+accessing the elements of a map requires more database reads than accessing the elements of a native
+list, maps are significantly _more_ costly than lists to iterate over with respect to time. This is
+not to say that it is "wrong" to iterate over maps in your runtime; in general Substrate focuses on
+"[first principles](#Best-Practices)" as opposed to hard and fast rules of right and wrong. Being
+efficient within the runtime of a blockchain is an important first principle of Substrate and this
+information is designed to help you understand _all_ of Substrate's storage capabilities and use
+them in a way that respects the important first principles around which they were designed.
 
 ##### Iterable Storage Map Methods
 
@@ -200,8 +199,8 @@ used.
 In the example above, all the storage items except `SomePrivateValue` are made public by way of the
 `pub` keyword. Blockchain storage is always publicly
 [visible from _outside_ of the runtime](#Accessing-Storage-Items); the visibility of Substrate
-storage items only impacts whether or not other runtime pallets will be able to access the storage
-item.
+storage items only impacts whether or not other pallets _within_ the runtime will be able to access
+the storage item.
 
 ### Getter Methods
 
