@@ -109,22 +109,78 @@ Some transactions warrant limiting resources with other strategies. For example:
 It is important to note that if you query the chain for a transaction fee, it will only return the
 inclusion fee.
 
-## Default Weight Fees
+## Default Weight Annotations
 
-All dispatchable functions in Substrate must specify a weight. Substrate provides flexible
-mechanisms for defining custom weight logic as well as a default weight system that lets you combine
-fixed values for database read/write weight and/or fixed values based on benchmarks.
+All dispatchable functions in Substrate must specify a weight. The way of doing that
+is using the annotation based system that lets you combine fixed values for database read/write
+weight and/or fixed values based on benchmarks. The most basic example would look like this:
 
-Dispatches are broken into three classes: `Normal`, `Operational`, and `Mandatory`.
+```rust
+#[weight = 100_000]
+fn my_dispatchable() {
+  // ...
+}
+```
 
-### Normal Dispatches
+Please note that the `ExtrinsicBaseWeight` is automatically added to the declared weight in order
+to account for the costs of simply including an empty extrinsic into a block.
+
+### Parameterizing over Database Accesses
+
+In order to make weight annotations independend of the deployed database backend they are defined
+as a constant and then used in the annotations when expressing database accesses performed by
+the dispatchable:
+
+```rust
+#[weight = T::DbWeight::get().reads_writes(1, 2) + 20_000]
+fn my_dispatchable() {
+  // ...
+}
+```
+
+This dispatchable does one database read and two database writes in addition to other things
+that add the rest that is 20_000 weight. A database access is general every time when a value
+is accessed that is declared inside the `decl_storage!` block. However, only unique accesses are
+counted as once a value is accessed it is cached and accessing it again does not result in a
+database operation.
+
+Multiple reads of the same value count as one read.Multiple writes of the same value are only
+counted as one write. Multiple reads of the same value followed by a write to that value count as
+one read and one write. A write followed by a read does only count as a write.
+
+### Dispatch Classes
+
+Dispatches are broken into three classes: `Normal`, `Operational`, and `Mandatory`. When not defined
+otherwise in the weight annotation the `Normal` class is used. The developer can specify that the
+dispatchable uses another class like this:
+
+```rust
+#[weight = (100_000, DispatchClass::Operational)]
+fn my_dispatchable() {
+  // ...
+}
+```
+
+This tuple notation also allows specifying a final argument that determines whether or not the user
+is charged based on the annotated weight. When not defined otherwise `Pays::Yes` is assumed:
+
+```rust
+#[weight = (100_000, DispatchClass::Normal, Pays::No)]
+fn my_dispatchable() {
+  // ...
+}
+```
+
+In the following the different dispatch classes are described.
+
+#### Normal Dispatches
 
 Dispatches in this class represent normal user-triggered transactions. These types of dispatches may
 only consume a portion of a block's total weight limit; this portion can be found by examining the
 [`AvailableBlockRatio`](https://substrate.dev/rustdocs/master/frame_system/trait.Trait.html#associatedtype.AvailableBlockRatio).
 Normal dispatches are sent to the [transaction pool](../learn-substrate/tx-pool).
 
-### Operational Dispatches
+#### Operational Dispatches
 
 As opposed to normal dispatches, which represent _usage_ of network capabilities, operational
 dispatches are those that _provide_ network capabilities. These types of dispatches may consume the
@@ -132,7 +188,7 @@ entire weight limit of a block, which is to say that they are not bound by the
 [`AvailableBlockRatio`](https://substrate.dev/rustdocs/master/frame_system/trait.Trait.html#associatedtype.AvailableBlockRatio).
 Dispatches in this class are given maximum priority and are exempt from paying the `length_fee`.
 
-### Mandatory Dispatches
+#### Mandatory Dispatches
 
 Mandatory dispatches will be included in a block even if they cause the block to surpass its weight
 limit. This dispatch class may only be applied to
@@ -146,15 +202,53 @@ validators to abuse these types of dispatches, they may not be included in block
 errors. This dispatch class exists to serve the assumption that it is better to allow an overweight
 block to be created than to not allow any block to be created at all.
 
+### Dynamic Weights
+
+In addition to purely fixed weights and constants it is possible to base the weight calculation
+on the input arguments of the dispatchable in question. It is important to understand that the
+weight should be trivially computable from the input arguments with some basic arithmetic:
+
+```rust
+#[weight = FunctionOf(
+  |args: (&Vec<User>,)| args.0.len().saturating_mul(10_000),
+  DispatchClass::Normal,
+  Pays::Yes,
+)]
+fn handle_users(origin, calls: Vec<User>) {
+  // Do something per user
+}
+```
+
+## Post Dispatch Weight Correction
+
+A dispatchable can decide that its actual weight is smaller than the ahead of dispatch calculated
+weight. Why this is useful is explained in the
+[weights chapter](../learn-substrate/weights#Post_Dispatch_Weight_Correction). In order to do so
+the dispatchable declares a different return type and then returns its actual weight:
+
+```rust
+#[weight = 10_000 + 500_000_000]
+fn expensive_or_cheap(input: u64) -> DispatchResultWithPostInfo {
+  let was_heavy = do_calculation(input);
+
+  if (was_heavy) {
+    // None means "no correction" from the weight annocation.
+    Ok(None.into())
+  } else {
+    // Return the actual weight consumed.
+    Ok(Some(10_000).into())
+  }
+}
+```
+
 ## Custom Fees
 
 You can also define custom fee systems through custom weight functions or inclusion fee functions.
 
 ### Custom Weights
 
-Implementing a custom weight calculation function can vary in complexity.
-
-A weight calculation function must provide two trait implementations:
+Instead of using the default weight annotations described above one can create a custom weight
+calculation type. This type must implement the follow traits:
 
 - [`WeighData<T>`]: To determine the weight of the dispatch.
 - [`ClassifyDispatch<T>`]: To determine the class of the dispatch.
@@ -213,6 +307,7 @@ impl WeighData<(&u32, &u64)> for CustomWeight {
 
 // given dispatch:
 decl_module! {
+    #[weight = CustomWeight]
     fn foo(a: u32, b: u64) { ... }
 }
 ```
@@ -262,7 +357,7 @@ impl transaction_payment::Trait {
 
 struct TargetedFeeAdjustment<T>(sp_std::marker::PhantomData<T>);
 impl<T: Get<Perquintill>> Convert<Fixed128, Fixed128> for TargetedFeeAdjustment<T> {
-	  fn convert(multiplier: Fixed128) -> Fixed128 {
+    fn convert(multiplier: Fixed128) -> Fixed128 {
         // Don't change anything. Put any fee update info here.
         multiplier
     }

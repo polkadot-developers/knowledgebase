@@ -19,6 +19,13 @@ used in mandatory inherent extrinsics) will generally be limited through economi
 simple terms, through transaction fees. The fee implications of the weight system are covered in the
 [Transaction Fees document](../runtime/fees).
 
+Substrates defines one unit of weight as one picosecond of execution time on some reference machine.
+Currently, that is an Intel Core i7-7700K CPU with 64GB of RAM and a NVMe SSD. Which reference
+machine is used ultimately depends on what are the hardware requirements the runtime developer
+wants to put on the validators. Weights are determined by benchmarking every dispatchable on this
+reference machine. Over time, the weight values will be adjusted to keep up with hardware
+and software improvements.
+
 ## Weight Fundamentals
 
 Weights represent the _limited_ time that your blockchain has to validate a block. This includes
@@ -53,12 +60,37 @@ are available:
   ensure the weighing parameters correspond accurately to on-chain state and if they don't then the
   operation should gracefully error.
 
+One factor that contributes greatly to the execution time of a dispatchable is the amount of
+database accesses that are performed by that dispatchable. At the same time the cost of a database
+access is greatly depended on the employed database backend and storage hardware. For that reason
+the weight calculations are parameterized over the weight costs of database reads and writes. These
+costs are determined by benchmarking each available database backend on some reference hardware.
+This allows switching the database backend without changing all weight calculations.
+
+In addition to only using constants for the ahead of dispatch weight calculation the developer
+has the ability to factor in the input parameters of the given dispatchable. This can be useful
+when the execution time depends on for example the length of one parameter. It is important that
+these calculations do not entail any meaningful work itself. The ahead of dispatch maximum weight
+should be trivially computable from the input arguments with some basic arithmetic.
+
 The [System pallet](https://substrate.dev/rustdocs/master/frame_system/struct.Module.html) is
 responsible for accumulating the weight of each block as it gets executed and making sure that it
 does not exceed the limit. The
 [Transaction Payment pallet](https://substrate.dev/rustdocs/master/pallet_transaction_payment/index.html)
 is responsible for interpreting these weights and deducting fees based upon them. The weighing
 function is part of the runtime so it can be upgraded if needed.
+
+## Post Dispatch Weight Correction
+
+There are cases where the actual weight of a dispatchable is not trivially computable from it's inputs
+and is therefore only known after the dispatchable is executed. Without any means of correcting the
+weight after the dispatch we would be constantly over estimating and subsequently overcharging
+for those dispatchables as we must assume the worst case ahead of dispatch for the chain to be safe.
+
+The post dispatch weight correction allows any dispatchable to return it's _actual weight_ after
+it was executed. This weight must be less or equal than the ahead of dispatch worst case weight. For
+a user to be allowed to include a extrinsic they still must be able to pay for the ahead of
+dispatch maximum weight even though the actual payment is based on the actual weight.
 
 ## Block Weight and Length Limit
 
