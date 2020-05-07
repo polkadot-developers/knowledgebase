@@ -252,12 +252,13 @@ calculation type. This type must implement the follow traits:
 
 - [`WeighData<T>`]: To determine the weight of the dispatch.
 - [`ClassifyDispatch<T>`]: To determine the class of the dispatch.
+- [`PaysFee<T>`]: To determine whether dispatchable pays fees.
 
 Substrate then bundles the output information of the two traits into the [`DispatchInfo`] struct and
 provides it by implementing the [`GetDispatchInfo`] for all `Call` variants and opaque extrinsic
 types. This is used internally by the System and Executive modules; you probably won't use it.
 
-Both `ClassifyDispatch` and `WeighData` are generic over `T`, which gets resolved into the tuple of
+Both `ClassifyDispatch`, `WeighData` and `PaysFee` are generic over `T`, which gets resolved into the tuple of
 all dispatch arguments except for the origin. To demonstrate, we will craft a struct that calculates
 the weight as `m * len(args)` where `m` is a given multiplier and `args` is the concatenated tuple
 of all dispatch arguments. Further, the dispatch class is `Operational` if the transaction has more
@@ -290,6 +291,17 @@ impl<T: Encode> ClassifyDispatch<T> for LenWeight {
             DispatchClass::Normal
         }
     }
+}
+
+impl<T: Encode> PaysFee<T> {
+  fn pays_fee(&self, target: T) -> Pays {
+    let encoded_len = target.encode().len() as u32;
+    if encoded_len > 10 {
+      Pays::Yes
+    } else {
+      Pays::No
+    }
+  }
 }
 ```
 
