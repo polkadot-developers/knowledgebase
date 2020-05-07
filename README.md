@@ -1,5 +1,7 @@
 # Substrate Knowledge Base
 
+The Knowledge Base is live on [substrate.io](https://www.substrate.io/).
+
 This repository holds documentation that goes in the Substrate Knowledge Base. The main website is
 hosted in [substrate-cms](https://github.com/substrate-developer-hub/substrate-cms).
 
