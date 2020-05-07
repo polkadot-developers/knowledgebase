@@ -266,24 +266,26 @@ For example, this comes from the Timestamp pallet:
 
 ```rust
 decl_module! {
-	pub struct Module<T: Trait> for enum Call where origin: T::Origin {
-    // ... snip
+    pub struct Module<T: Trait> for enum Call where origin: T::Origin {
+        // ... snip
 
-		/// Set the current time.
-		///
-		/// This call should be invoked exactly once per block. It will panic at the finalization
-		/// phase, if this call hasn't been invoked by that time.
-		///
-		/// The timestamp should be greater than the previous one by the amount specified by
-		/// `MinimumPeriod`.
-		///
-		/// The dispatch origin for this call must be `Inherent`.
-		#[weight = SimpleDispatchInfo::FixedOperational(10_000)]
-		fn set(origin, #[compact] now: T::Moment) {
-			// ... snip
-		}
-
-	}
+        /// Set the current time.
+        ///
+        /// This call should be invoked exactly once per block. It will panic at the finalization
+        /// phase, if this call hasn't been invoked by that time.
+        ///
+        /// The timestamp should be greater than the previous one by the amount specified by
+        /// `MinimumPeriod`.
+        ///
+        /// The dispatch origin for this call must be `Inherent`.
+        #[weight = (
+            T::DbWeight::get().reads_writes(2, 1) + 9_000_000,
+            DispatchClass::Mandatory
+        )]
+        fn set(origin, #[compact] now: T::Moment) {
+            // ... snip
+        }
+    }
 }
 ```
 

@@ -112,31 +112,10 @@ inclusion fee.
 ## Default Weight Fees
 
 All dispatchable functions in Substrate must specify a weight. Substrate provides flexible
-mechanisms for defining custom weight logic as well as a default weight system that uses _fixed_
-weights, which means that the arguments to a dispatch do not affect its weight. The tiers in the
-default system are represented by the following enum:
+mechanisms for defining custom weight logic as well as a default weight system that lets you combine
+fixed values for database read/write weight and/or fixed values based on benchmarks.
 
-```rust
-pub enum SimpleDispatchInfo {
-    FixedNormal(Weight),
-    MaxNormal,
-    InsecureFreeNormal,
-    FixedOperational(Weight),
-    MaxOperational,
-    FixedMandatory(Weight),
-}
-```
-
-In order to delineate their purposes, the enums in this group are separated into _dispatch classes_,
-which are also defined by an enum:
-
-```rust
-pub enum DispatchClass {
-    Normal,
-    Operational,
-    Mandatory,
-}
-```
+Dispatches are broken into three classes: `Normal`, `Operational`, and `Mandatory`.
 
 ### Normal Dispatches
 
