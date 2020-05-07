@@ -103,7 +103,5 @@ when to use them.
 
 ### References
 
-- Take a look at the
-  [Transaction Payment pallet](https://github.com/paritytech/substrate/blob/master/frame/transaction-payment/src/lib.rs).
-- Find info about weights including the `SimpleDispatchInfo` enum in
-  [weights.rs](https://github.com/paritytech/substrate/blob/master/frame/support/src/weights.rs).
+- [Transaction Payment pallet](https://github.com/paritytech/substrate/blob/master/frame/transaction-payment/src/lib.rs)
+- [Weights](https://github.com/paritytech/substrate/blob/master/frame/support/src/weights.rs)
