@@ -144,7 +144,7 @@ is accessed that is declared inside the `decl_storage!` block. However, only uni
 counted as once a value is accessed it is cached and accessing it again does not result in a
 database operation.
 
-Multiple reads of the same value count as one read.Multiple writes of the same value are only
+Multiple reads of the same value count as one read. Multiple writes of the same value are only
 counted as one write. Multiple reads of the same value followed by a write to that value count as
 one read and one write. A write followed by a read does only count as a write.
 

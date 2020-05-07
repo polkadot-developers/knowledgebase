@@ -67,10 +67,10 @@ the weight calculations are parameterized over the weight costs of database read
 costs are determined by benchmarking each available database backend on some reference hardware.
 This allows switching the database backend without changing all weight calculations.
 
-In addition to only using constants for the ahead of dispatch weight calculation the developer
+In addition to only using constants for the ahead-of-dispatch weight calculation the developer
 has the ability to factor in the input parameters of the given dispatchable. This can be useful
 when the execution time depends on for example the length of one parameter. It is important that
-these calculations do not entail any meaningful work itself. The ahead of dispatch maximum weight
+these calculations do not entail any meaningful work itself. The ahead-of-dispatch maximum weight
 should be trivially computable from the input arguments with some basic arithmetic.
 
 The [System pallet](https://substrate.dev/rustdocs/master/frame_system/struct.Module.html) is
@@ -89,7 +89,7 @@ for those dispatchables as we must assume the worst case ahead of dispatch for t
 
 The post dispatch weight correction allows any dispatchable to return it's _actual weight_ after
 it was executed. This weight must be less or equal than the ahead of dispatch worst case weight. For
-a user to be allowed to include a extrinsic they still must be able to pay for the ahead of
+a user to be allowed to include an extrinsic they still must be able to pay for the ahead-of-
 dispatch maximum weight even though the actual payment is based on the actual weight.
 
 ## Block Weight and Length Limit
