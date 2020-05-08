@@ -188,7 +188,7 @@ decl_storage! {
 	trait Store for Module<T: Trait> as Example {
 		SomePrivateValue: u32;
 		pub SomePrimitiveValue get(fn some_primitive_value): u32;
-		// complex types are prefaced by T::
+		// types can make use of generic `T: Trait`
 		pub SomeComplexValue: T::AccountId;
 		pub SomeMap get(fn some_map): map hasher(blake2_128_concat) T::AccountId => u32;
 		pub SomeDoubleMap: double_map hasher(blake2_128_concat) u32, hasher(blake2_128_concat) T::AccountId => u32;
