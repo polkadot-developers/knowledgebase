@@ -254,7 +254,7 @@ block of your blockchain. The genesis storage configuration APIs expose a number
 initializing storage, all of which have entry points in the `decl_storage` macro. These mechanisms
 all result in the creation of a `GenesisConfig` data type that implements
 [the `sp_runtime::BuildModuleGenesisStorage` trait](https://crates.parity.io/sp_runtime/trait.BuildModuleGenesisStorage.html)
-and will be added to the storage item's module (e.g.
+and will be added to the module that contains the storage items (e.g.
 [`Struct pallet_balances::GenesisConfig`](https://crates.parity.io/pallet_balances/struct.GenesisConfig.html));
 storage items that are tagged for genesis configuration will have a corresponding attribute on this
 data type. In order to consume a module's genesis configuration capabilities, you must include the
@@ -451,9 +451,9 @@ follows:
 {
   // all checks and throwing code go here
 
-  // all storage writes go here; no throwing code below this line
+  // ** no throwing code below this line **
 
-  // all event emissions go here
+  // all event emissions & storage writes go here
 }
 ```
 
