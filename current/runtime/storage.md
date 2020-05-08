@@ -155,7 +155,7 @@ concatenating the algorithm's input to its output. This makes it trivial for use
 key's original unhashed value and verify it if they'd like (by re-hashing it). The creators of
 Substrate have **deprecated the use of non-transparent hashers** within FRAME-based runtimes, so
 this information is provided primarily for completeness. In fact, it is _necessary_ to use a
-transparent hashing algorithm if you would like access [iterable map](#Iterable-Storage-Maps)
+transparent hashing algorithm if you would like to access [iterable map](#Iterable-Storage-Maps)
 capabilities. Refer to [the advanced storage documentation](../advanced/storage#Storage-Map-Keys) to
 learn more about the important capabilities that transparent hashing algorithms expose.
 
@@ -185,19 +185,19 @@ storage item:
 
 ```rust
 decl_storage! {
-	trait Store for Module<T: Trait> as Example {
-		SomePrivateValue: u32;
-		pub SomePrimitiveValue get(fn some_primitive_value): u32;
-		// types can make use of generic `T: Trait`
-		pub SomeComplexValue: T::AccountId;
-		pub SomeMap get(fn some_map): map hasher(blake2_128_concat) T::AccountId => u32;
-		pub SomeDoubleMap: double_map hasher(blake2_128_concat) u32, hasher(blake2_128_concat) T::AccountId => u32;
-	}
+    trait Store for Module<T: Trait> as Example {
+        SomePrivateValue: u32;
+        pub SomePrimitiveValue get(fn some_primitive_value): u32;
+        // types can make use of the generic `T: Trait`
+        pub SomeComplexValue: T::AccountId;
+        pub SomeMap get(fn some_map): map hasher(blake2_128_concat) T::AccountId => u32;
+        pub SomeDoubleMap: double_map hasher(blake2_128_concat) u32, hasher(blake2_128_concat) T::AccountId => u32;
+    }
 }
 ```
 
-Notice that the map storage items specify [the hashing algorithm](#Hashing-Algorithms) that will be
-used.
+Notice that the map's storage items specify [the hashing algorithm](#Hashing-Algorithms) that will
+be used.
 
 ### Visibility
 
@@ -205,7 +205,7 @@ In the example above, all the storage items except `SomePrivateValue` are made p
 `pub` keyword. Blockchain storage is always publicly
 [visible from _outside_ of the runtime](#Accessing-Storage-Items); the visibility of Substrate
 storage items only impacts whether or not other pallets _within_ the runtime will be able to access
-the storage item.
+a storage item.
 
 ### Getter Methods
 
@@ -225,9 +225,9 @@ Here is an example that implements a getter method named `some_value` for a Stor
 
 ```rust
 decl_storage! {
-	trait Store for Module<T: Trait> as Example {
-		pub SomeValue get(fn some_value): u64;
-	}
+    trait Store for Module<T: Trait> as Example {
+        pub SomeValue get(fn some_value): u64;
+    }
 }
 ```
 
@@ -241,9 +241,9 @@ Here is an example of specifying the default value for all items in a map:
 
 ```rust
 decl_storage! {
-	trait Store for Module<T: Trait> as Example {
-		pub SomeMap: map u64 => u64 = 1337;
-	}
+    trait Store for Module<T: Trait> as Example {
+        pub SomeMap: map u64 => u64 = 1337;
+    }
 }
 ```
 
@@ -253,7 +253,7 @@ Substrate's runtime storage APIs include capabilities to initialize storage item
 block of your blockchain. The genesis storage configuration APIs expose a number of mechanisms for
 initializing storage, all of which have entry points in the `decl_storage` macro. These mechanisms
 all result in the creation of a `GenesisConfig` data type that implements
-[the `sp_runtime::BuildModuleGenesisStorage` trait](https://crates.parity.io/sp_runtime/trait.BuildModuleGenesisStorage.html)
+[the `BuildModuleGenesisStorage` trait](https://crates.parity.io/sp_runtime/trait.BuildModuleGenesisStorage.html)
 and will be added to the module that contains the storage items (e.g.
 [`Struct pallet_balances::GenesisConfig`](https://crates.parity.io/pallet_balances/struct.GenesisConfig.html));
 storage items that are tagged for genesis configuration will have a corresponding attribute on this
@@ -262,23 +262,22 @@ data type. In order to consume a module's genesis configuration capabilities, yo
 [the `construct_runtime` macro](https://crates.parity.io/frame_support/macro.construct_runtime.html).
 All the `GenesisConfig` types for the modules that inform a runtime will be aggregated into a single
 `GenesisConfig` type for that runtime, which implements
-[the `sp_runtime::BuildStorage` trait](https://crates.parity.io/sp_runtime/trait.BuildStorage.html)
-(e.g.
+[the `BuildStorage` trait](https://crates.parity.io/sp_runtime/trait.BuildStorage.html) (e.g.
 [`Struct node_template_runtime::GenesisConfig`](https://crates.parity.io/node_template_runtime/struct.GenesisConfig.html));
 each attribute on this type corresponds to a `GenesisConfig` from one of the runtime's modules.
 Ultimately, the runtime's `GenesisConfig` is exposed by way of
-[the `sc_chain_spec::ChainSpec` trait](https://crates.parity.io/sc_chain_spec/trait.ChainSpec.html).
-For a complete and concrete example of using Substrate's genesis storage configuration capabilities,
-refer to the `decl_storage` macro in
+[the `ChainSpec` trait](https://crates.parity.io/sc_chain_spec/trait.ChainSpec.html). For a complete
+and concrete example of using Substrate's genesis storage configuration capabilities, refer to the
+`decl_storage` macro in
 [the Society pallet](https://github.com/paritytech/substrate/blob/master/frame/society/src/lib.rs)
-as well as the genesis configuration for the Society module's storage in
+as well as the genesis configuration for the Society pallet's storage in
 [the chain specification that ships with the Substrate code base](https://github.com/paritytech/substrate/blob/master/bin/node/cli/src/chain_spec.rs).
 Keep reading for more detailed descriptions of these capabilities.
 
 #### `config`
 
 When you use the `decl_storage` macro to declare a storage item, you can provide an optional
-`config` extension that will add an attribute to the module's `GenesisConfig` data type; the value
+`config` extension that will add an attribute to the pallet's `GenesisConfig` data type; the value
 of this attribute will be used as the initial value of the storage item in your chain's genesis
 block. The `config` extension takes a parameter that will determine the name of the attribute on the
 `GenesisConfig` data type; this parameter is optional if [the `get` extension](#Getter-Methods) is
@@ -293,9 +292,9 @@ In `my_module/src/lib.rs`:
 
 ```rust
 decl_storage! {
-  trait Store for Module<T: Trait> as MyModule {
-    pub MyVal get(fn my_val) config(init_val): u64;
-  }
+    trait Store for Module<T: Trait> as MyModule {
+        pub MyVal get(fn my_val) config(init_val): u64;
+    }
 }
 ```
 
@@ -303,9 +302,9 @@ In `chain_spec.rs`:
 
 ```rust
 GenesisConfig {
-  my_module: Some(MyModuleConfig {
-    init_val: 221u64 + SOME_CONSTANT_VALUE,
-  }),
+    my_module: Some(MyModuleConfig {
+        init_val: 221u64 + SOME_CONSTANT_VALUE,
+    }),
 }
 ```
 
@@ -316,10 +315,10 @@ module's genesis storage state within a chain specification, the `build` extensi
 perform this same task within the module itself (this gives you access to the module's private
 functions). Like `config`, the `build` extension accepts a single parameter, but in this case the
 parameter is always required and must be a closure, which is essentially a function. The `build`
-closure will be invoked with a single parameter whose type will be the module's `GenesisConfig` type
+closure will be invoked with a single parameter whose type will be the pallet's `GenesisConfig` type
 (this gives you easy access to all the attributes of the `GenesisConfig` type). You may use the
 `build` extension along with the `config` extension for a single storage item; in this case, the
-module's `GenesisConfig` type will have an attribute that corresponds to what was set using `config`
+pallet's `GenesisConfig` type will have an attribute that corresponds to what was set using `config`
 whose value will be set in the chain specification, but it will be the value returned by the `build`
 closure that will be used to set the storage item's genesis value.
 
@@ -333,10 +332,10 @@ In `my_module/src/lib.rs`:
 
 ```rust
 decl_storage! {
-  trait Store for Module<T: Trait> as MyModule {
-    pub Members config(orig_ids): Vec<T::AccountId>;
-    pub Prime build(|config: &GenesisConfig<T>| config.orig_ids.first().cloned()): T::AccountId;
-  }
+    trait Store for Module<T: Trait> as MyModule {
+        pub Members config(orig_ids): Vec<T::AccountId>;
+        pub Prime build(|config: &GenesisConfig<T>| config.orig_ids.first().cloned()): T::AccountId;
+    }
 }
 ```
 
@@ -344,18 +343,18 @@ In `chain_spec.rs`:
 
 ```rust
 GenesisConfig {
-  my_module: Some(MyModuleConfig {
-    orig_ids: LIST_OF_IDS,
-  }),
+    my_module: Some(MyModuleConfig {
+        orig_ids: LIST_OF_IDS,
+    }),
 }
 ```
 
 #### `add_extra_genesis`
 
-The `add_extra_genesis` extension to the `decl_storage` macro allows you to define a scope where
+The `add_extra_genesis` extension to the `decl_storage` macro allows you to define a scope where the
 [`config`](#config) and [`build`](#build) extensions can be provided without the need to bind them
 to specific storage items. You can use `config` within an `add_extra_genesis` scope to add an
-attribute to the module's `GenesisConfig` data type that can be used within any `build` closure. The
+attribute to the pallet's `GenesisConfig` data type that can be used within any `build` closure. The
 `build` closures that are defined within an `add_extra_genesis` scope can be used to execute logic
 without binding that logic's return value to the value of a particular storage item; this may be
 desireable if you wish to invoke a private helper function within your module that sets several
@@ -373,14 +372,14 @@ In `my_module/src/lib.rs`:
 
 ```js
 decl_storage! {
-  trait Store for Module<T: Trait> as MyModule {
-    pub Members: Vec<T::AccountId>;
-    pub Prime: T::AccountId;
-  }
-  add_extra_genesis {
-    config(orig_ids): Vec<T::AccountId>;
-    build(|config| Module::<T>::initialize_members(&config.members))
-  }
+    trait Store for Module<T: Trait> as MyModule {
+        pub Members: Vec<T::AccountId>;
+        pub Prime: T::AccountId;
+    }
+    add_extra_genesis {
+        config(orig_ids): Vec<T::AccountId>;
+        build(|config| Module::<T>::initialize_members(&config.members))
+    }
 }
 ```
 
@@ -388,9 +387,9 @@ In `chain_spec.rs`:
 
 ```rust
 GenesisConfig {
-  my_module: Some(MyModuleConfig {
-    orig_ids: LIST_OF_IDS,
-  }),
+    my_module: Some(MyModuleConfig {
+        orig_ids: LIST_OF_IDS,
+    }),
 }
 ```
 
@@ -411,7 +410,7 @@ directly by way of the RPC server.
 Substrate's goal is to provide a flexible framework that allows people to build the blockchain that
 suits their needs - the creators of Substrate tend not to think in terms of "right" or "wrong". That
 being said, the Substrate codebase adheres to a number of best practices in order to promote the
-creation of blockchain networks that are secure, performant and maintainable in the long-term. The
+creation of blockchain networks that are secure, performant, and maintainable in the long-term. The
 following sections outline best practices for using Substrate storage and also describe the
 important first principles that motivated them.
 
@@ -424,7 +423,7 @@ capabilities (e.g.
 [the Democracy pallet's `propose` dispatchable](https://crates.parity.io/pallet_democracy/enum.Call.html#variant.propose))
 allow network participants to vote on the _hash_ of a dispatchable call, which is always bounded in
 size, as opposed to the call itself, which may be unbounded in length. This is especially true in
-the case of runtime upgrades where the dispatchable call takes an entire runtime WASM blob as its
+the case of runtime upgrades where the dispatchable call takes an entire runtime Wasm blob as its
 parameter. Because these governance mechanisms are implemented _on-chain_, all the information that
 is needed to come to consensus on the state of a given proposal must also be stored on-chain - this
 includes _what_ is being voted on. However, by binding an on-chain proposal to its hash, Substrate's
@@ -433,7 +432,7 @@ with a proposal on-chain until _after_ it has been approved. This means that sto
 on proposals that fail. Once a proposal has passed, someone can initiate the actual dispatchable
 call (including all its parameters), which will be hashed and compared to the hash in the proposal.
 Another common pattern for using hashes to minimize data that is stored on-chain is to store the
-metadata associated with an object in [IPFS](https://ipfs.io/); this means that only the IPFS
+pre-image associated with an object in [IPFS](https://ipfs.io/); this means that only the IPFS
 location (a hash that is bounded in size) needs to be stored on-chain.
 
 Hashes are only one mechanism that can be used to control the size of runtime storage. An example of
@@ -441,11 +440,10 @@ another mechanism is [bounds](#Create-Bounds).
 
 ### Verify First, Write Last
 
-The state of a blockchain network's storage is immutable; data can be changed, but there will always
-be a record of these changes, and making them typically incurs costs. Because of this, it is
-important that data is only persisted to runtime storage when it is certain that all preconditions
-have been met. In general, code blocks that may result in mutating storage should be structured as
-follows:
+Substrate does not cache state prior to extrinsic dispatch. Instead, it applies changes directly as
+they are invoked. If an extrinsic fails, any state changes will persist. Because of this, it is
+important not to make any storage mutations until it is certain that all preconditions have been
+met. In general, code blocks that may result in mutating storage should be structured as follows:
 
 ```rust
 {
@@ -482,10 +480,6 @@ developers control over how much space in storage these lists may occupy, the Ut
 requires users to configure a bound on this number that will be included as a
 [precondition](#Verify-First-Write-Last) before anything is written to storage.
 
-## Child Storage Tries
-
-TODO
-
 ## Next Steps
 
 ### Learn More
@@ -502,7 +496,6 @@ Check out
 - Visit the reference docs for the
   [`decl_storage!` macro](https://crates.parity.io/frame_support/macro.decl_storage.html) for more
   details about the available storage declarations.
-
 - Visit the reference docs for
   [StorageValue](https://crates.parity.io/frame_support/storage/trait.StorageValue.html),
   [StorageMap](https://crates.parity.io/frame_support/storage/trait.StorageMap.html) and

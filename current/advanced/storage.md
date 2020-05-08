@@ -11,9 +11,10 @@ simple key-value store.
 ## Key-Value Database
 
 Substrate implements its storage database with [RocksDB](https://rocksdb.org/), a persistent
-key-value store for fast storage environments.
+key-value store for fast storage environments. It also supports an experimental
+[Parity DB](https://github.com/paritytech/parity-db).
 
-This is used for all the components of Substrate that require persistent storage, such as:
+The DB is used for all the components of Substrate that require persistent storage, such as:
 
 - Substrate clients
 - Substrate light-clients
@@ -36,14 +37,13 @@ simply comparing their trie roots.
 Accessing trie data is costly. Each read operation takes O(log N) time, where N is the number of
 elements stored in the trie. To mitigate this, we use a key-value cache.
 
-All trie nodes are stored in RocksDB and part of the trie state can get pruned, i.e. a key-value
-pair can be deleted from the storage when it is out of pruning range for non-archive nodes. We do
-not use [reference counting](http://en.wikipedia.org/wiki/Reference_counting) for performance
-reasons.
+All trie nodes are stored in the DB and part of the trie state can get pruned, i.e. a key-value pair
+can be deleted from storage when it is out of pruning range for non-archive nodes. We do not use
+[reference counting](http://en.wikipedia.org/wiki/Reference_counting) for performance reasons.
 
 ### State Trie
 
-Substrate based chains have a single main trie, called the state trie, whose root hash is placed in
+Substrate-based chains have a single main trie, called the state trie, whose root hash is placed in
 each block header. This is used to easily verify the state of the blockchain and provide a basis for
 light clients to verify proofs.
 
@@ -173,6 +173,7 @@ represents a key in the same map, and that map is identified by concatenating tw
 each of which are 128-bits or 32 hexadecimal characters. After discarding this portion of the second
 element in the list, you are left with
 `0x32a5935f6edc617ae178fef9eb1e211fbe5ddb1579b72e84524fc29e78609e3caf42e85aa118ebfe0b0ad404b5bdd25f`.
+
 You saw in the previous example that this represents the Blake2 128 Concat hash of some
 [SCALE](./codec)-encoded account ID. The Blake 128 Concat hashing algorithm consists of appending
 (concatenating) the hashing algorithm's input to its Blake 128 hash. This means that the first 128
@@ -189,7 +190,7 @@ example, after you remove the first 32 hexadecimal characters that represent the
 
 Substrate's [FRAME Support crate](https://substrate.dev/rustdocs/master/frame_support/index.html)
 provides utilities for generating unique, deterministic keys for your runtime's storage items. These
-storage items are placed in the state trie[#Trie-Abstraction] and are accessible by
+storage items are placed in the [state trie](#Trie-Abstraction) and are accessible by
 [querying the trie by key](#Querying-Storage).
 
 ## Next Steps
