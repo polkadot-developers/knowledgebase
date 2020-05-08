@@ -66,7 +66,7 @@ are available:
   ensure the weighing parameters correspond accurately to on-chain state and if they don't then the
   operation should gracefully error.
 
-One factor that contributes greatly to the execution time of a dispatchable is the amount of
+One factor that contributes greatly to the execution time of a dispatchable is the number of
 database accesses that are performed by that dispatchable. At the same time the cost of a database
 access is greatly depended on the employed database backend and storage hardware. For that reason
 the weight calculations are parameterized over the weight costs of database reads and writes. These
