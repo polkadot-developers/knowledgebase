@@ -111,67 +111,67 @@ inclusion fee.
 
 ## Default Weight Annotations
 
-All dispatchable functions in Substrate must specify a weight. The way of doing that
-is using the annotation based system that lets you combine fixed values for database read/write
-weight and/or fixed values based on benchmarks. The most basic example would look like this:
+All dispatchable functions in Substrate must specify a weight. The way of doing that is using the
+annotation-based system that lets you combine fixed values for database read/write weight and/or
+fixed values based on benchmarks. The most basic example would look like this:
 
 ```rust
 #[weight = 100_000]
 fn my_dispatchable() {
-  // ...
+    // ...
 }
 ```
 
-Please note that the `ExtrinsicBaseWeight` is automatically added to the declared weight in order
-to account for the costs of simply including an empty extrinsic into a block.
+Please note that the `ExtrinsicBaseWeight` is automatically added to the declared weight in order to
+account for the costs of simply including an empty extrinsic into a block.
 
 ### Parameterizing over Database Accesses
 
-In order to make weight annotations independend of the deployed database backend they are defined
-as a constant and then used in the annotations when expressing database accesses performed by
-the dispatchable:
+In order to make weight annotations independent of the deployed database backend, they are defined
+as a constant and then used in the annotations when expressing database accesses performed by the
+dispatchable:
 
 ```rust
 #[weight = T::DbWeight::get().reads_writes(1, 2) + 20_000]
 fn my_dispatchable() {
-  // ...
+    // ...
 }
 ```
 
-This dispatchable does one database read and two database writes in addition to other things
-that add the rest that is 20_000 weight. A database access is general every time when a value
-is accessed that is declared inside the `decl_storage!` block. However, only unique accesses are
-counted as once a value is accessed it is cached and accessing it again does not result in a
-database operation.
+This dispatchable does one database read and two database writes in addition to other things that
+add the additional 20,000. A database access is generally every time a value that is declared inside
+the `decl_storage!` block is accessed. However, only unique accesses are counted because once a
+value is accessed it is cached and accessing it again does not result in a database operation. That
+is:
 
-Multiple reads of the same value count as one read. Multiple writes of the same value are only
-counted as one write. Multiple reads of the same value followed by a write to that value count as
-one read and one write. A write followed by a read does only count as a write.
+- Multiple reads of the same value count as one read.
+- Multiple writes of the same value count as one write.
+- Multiple reads of the same value, followed by a write to that value, count as one read and one
+  write.
+- A write followed by a read only counts as one write.
 
 ### Dispatch Classes
 
 Dispatches are broken into three classes: `Normal`, `Operational`, and `Mandatory`. When not defined
-otherwise in the weight annotation the `Normal` class is used. The developer can specify that the
+otherwise in the weight annotation, a dispatch is `Normal`. The developer can specify that the
 dispatchable uses another class like this:
 
 ```rust
 #[weight = (100_000, DispatchClass::Operational)]
 fn my_dispatchable() {
-  // ...
+    // ...
 }
 ```
 
 This tuple notation also allows specifying a final argument that determines whether or not the user
-is charged based on the annotated weight. When not defined otherwise `Pays::Yes` is assumed:
+is charged based on the annotated weight. When not defined otherwise, `Pays::Yes` is assumed:
 
 ```rust
 #[weight = (100_000, DispatchClass::Normal, Pays::No)]
 fn my_dispatchable() {
-  // ...
+    // ...
 }
 ```
-
-In the following the different dispatch classes are described.
 
 #### Normal Dispatches
 
@@ -204,9 +204,9 @@ block to be created than to not allow any block to be created at all.
 
 ### Dynamic Weights
 
-In addition to purely fixed weights and constants it is possible to base the weight calculation
-on the input arguments of the dispatchable in question. It is important to understand that the
-weight should be trivially computable from the input arguments with some basic arithmetic:
+In addition to purely fixed weights and constants, the weight calculation can consider the input
+arguments of a dispatchable. The weight should be trivially computable from the input arguments with
+some basic arithmetic:
 
 ```rust
 #[weight = FunctionOf(
@@ -215,29 +215,29 @@ weight should be trivially computable from the input arguments with some basic a
   Pays::Yes,
 )]
 fn handle_users(origin, calls: Vec<User>) {
-  // Do something per user
+    // Do something per user
 }
 ```
 
 ## Post Dispatch Weight Correction
 
-A dispatchable can decide that its actual weight is smaller than the ahead of dispatch calculated
-weight. Why this is useful is explained in the
-[weights chapter](../learn-substrate/weights#Post_Dispatch_Weight_Correction). In order to do so
-the dispatchable declares a different return type and then returns its actual weight:
+Depending on the execution logic, a dispatchable may consume less weight than was prescribed
+pre-dispatch. Why this is useful is explained in the
+[weights article](../learn-substrate/weights#post-dispatch-weight-correction). In order to correct
+weight, the dispatchable declares a different return type and then returns its actual weight:
 
 ```rust
 #[weight = 10_000 + 500_000_000]
 fn expensive_or_cheap(input: u64) -> DispatchResultWithPostInfo {
-  let was_heavy = do_calculation(input);
+    let was_heavy = do_calculation(input);
 
-  if (was_heavy) {
-    // None means "no correction" from the weight annocation.
-    Ok(None.into())
-  } else {
-    // Return the actual weight consumed.
-    Ok(Some(10_000).into())
-  }
+    if (was_heavy) {
+        // None means "no correction" from the weight annotation.
+        Ok(None.into())
+    } else {
+        // Return the actual weight consumed.
+        Ok(Some(10_000).into())
+    }
 }
 ```
 
@@ -247,22 +247,23 @@ You can also define custom fee systems through custom weight functions or inclus
 
 ### Custom Weights
 
-Instead of using the default weight annotations described above one can create a custom weight
+Instead of using the default weight annotations described above, one can create a custom weight
 calculation type. This type must implement the follow traits:
 
 - [`WeighData<T>`]: To determine the weight of the dispatch.
 - [`ClassifyDispatch<T>`]: To determine the class of the dispatch.
-- [`PaysFee<T>`]: To determine whether dispatchable pays fees.
+- [`PaysFee<T>`]: To determine whether the dispatchable's sender pays fees.
 
 Substrate then bundles the output information of the two traits into the [`DispatchInfo`] struct and
 provides it by implementing the [`GetDispatchInfo`] for all `Call` variants and opaque extrinsic
 types. This is used internally by the System and Executive modules; you probably won't use it.
 
-Both `ClassifyDispatch`, `WeighData` and `PaysFee` are generic over `T`, which gets resolved into the tuple of
-all dispatch arguments except for the origin. To demonstrate, we will craft a struct that calculates
-the weight as `m * len(args)` where `m` is a given multiplier and `args` is the concatenated tuple
-of all dispatch arguments. Further, the dispatch class is `Operational` if the transaction has more
-than 100 bytes of length in arguments.
+`ClassifyDispatch`, `WeighData`, and `PaysFee` are generic over `T`, which gets resolved into the
+tuple of all dispatch arguments except for the origin. To demonstrate, we will craft a struct that
+calculates the weight as `m * len(args)` where `m` is a given multiplier and `args` is the
+concatenated tuple of all dispatch arguments. Further, the dispatch class is `Operational` if the
+transaction has more than 100 bytes of length in arguments and will pay fees if the encoded length
+is greater than 10 bytes.
 
 ```rust
 use coded::Encode;
@@ -294,14 +295,14 @@ impl<T: Encode> ClassifyDispatch<T> for LenWeight {
 }
 
 impl<T: Encode> PaysFee<T> {
-  fn pays_fee(&self, target: T) -> Pays {
-    let encoded_len = target.encode().len() as u32;
-    if encoded_len > 10 {
-      Pays::Yes
-    } else {
-      Pays::No
+    fn pays_fee(&self, target: T) -> Pays {
+        let encoded_len = target.encode().len() as u32;
+        if encoded_len > 10 {
+            Pays::Yes
+        } else {
+            Pays::No
+        }
     }
-  }
 }
 ```
 
