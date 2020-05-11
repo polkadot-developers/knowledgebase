@@ -95,6 +95,13 @@ As an exception, in the case that the type is a boolean, then it is always one b
 - `0x01` if it is the `false` value.
 - `0x02` if it is the `true` value.
 
+### Results
+
+Results indicate whether certain operations were successful or unsuccessful. Each variant can contain additional data, such as a resulting value or an error message.
+
+- `0x00` if the operation was successful, followed by the encoded value.
+- `0x01` if the operation was unsuccessful, followed by the encoded value.
+
 ### Vectors (lists, series, sets)
 
 A collection of same-typed values is encoded, prefixed with a _compact_ encoding of the number of
@@ -113,6 +120,10 @@ SCALE Bytes:
 ```
 0x18040008000f00100017002a00
 ```
+
+### Strings
+
+Strings are Vectors containing a valid UTF8 sequence.
 
 ### Tuples
 
