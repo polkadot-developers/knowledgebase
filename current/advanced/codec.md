@@ -171,7 +171,7 @@ The Parity SCALE Codec is currently implemented for:
 - Rust: [`paritytech/parity-scale-codec`](https://github.com/paritytech/parity-scale-codec)
 - Python: [`polkascan/py-scale-codec`](https://github.com/polkascan/py-scale-codec)
 - Golang: [`ChainSafe/gossamer`](https://github.com/ChainSafe/gossamer)
-- C++: [`soramitsu/scale`](https://github.com/soramitsu/scale)
+- C++: [`soramitsu/scale`](https://github.com/soramitsu/kagome/tree/master/core/scale)
 - JavaScript: [`polkadot-js/api`](https://github.com/polkadot-js/api)
 
 ## Next Steps
