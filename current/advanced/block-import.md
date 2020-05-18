@@ -30,7 +30,7 @@ In the simplest cases, such as manual-seal nodes, blocks are imported directly i
 
 An example of this wrapping is the [`PowBlockImport`](https://substrate.dev/rustdocs/v2.0.0-alpha.8/sc_consensus_pow/struct.PowBlockImport.html) which holds a reference to another type that is `BlockImport`. This allows the PoW consensus engine to do it's own import-related bookkeeping and then pass the block to the nested `BlockImport`, probably the client. This pattern is also demonstrated in the `AuraBlockImport`, `BabeBlockImport`, and `GrandpaBlockImport`.
 
-This nesting need not be limited to one level. In fact it is common for nodes that use both an authoring engine and a finality gadget to layer the nesting even more deeply. For example Polkadot's block import pipeline consists of a `GrandpaBlockImport` which wraps a `BabeBlokImport` which, itself, wraps the `Client`.
+This nesting need not be limited to one level. In fact it is common for nodes that use both an authoring engine and a finality gadget to layer the nesting even more deeply. For example Polkadot's block import pipeline consists of a `GrandpaBlockImport` which wraps a `BabeBlockImport` which, itself, wraps the `Client`.
 
 ## Learn More
 
