@@ -8,7 +8,7 @@ title: The Block Import Pipeline
 
 The import queue is an abstract worker queue present in every Substrate node. It is not part of the runtime. The Import Queue is responsible for processing pieces of incoming information, verifying them, and if they are valid, importing them into the node's state. The most fundamental piece of information that the import queue processes is blocks themselves, but it is also responsible for importing consensus-related messages such as Justifications and, in light clients, finality proofs.
 
-The Import queue collects incoming blocks from the network and stores them in a pool. The blocks are later checked for validity and discarded if they are not valid. Blocks that are valid are then imported into the node's local state.
+The import queue collects incoming blocks from the network and stores them in a pool. The blocks are later checked for validity and discarded if they are not valid. Blocks that are valid are then imported into the node's local state.
 
 The import queue is codified abstractly in Substrate by means of the [`ImportQueue` trait](https://substrate.dev/rustdocs/v2.0.0-alpha.8/sp_consensus/import_queue/trait.ImportQueue.html). The use of a trait allows each consensus engine to provide its own specialized implementation of the Import Queue which may take advantage of optimization opportunities such as verifying multiple blocks in parallel as they come in across the network.
 
