@@ -16,7 +16,7 @@ The import queue is codified abstractly in Substrate by means of the [`ImportQue
 ## The Basic Queue
 Substrate also provides a default implementation known as the [`BasicQueue`](https://substrate.dev/rustdocs/v2.0.0-alpha.8/sp_consensus/import_queue/struct.BasicQueue.html). The `BasicQueue` does not do any kind of optimization, rather it performs the verification and import steps sequentially. It does, however, abstract the notion of verification through the use of the [`Verifier`](https://substrate.dev/rustdocs/v2.0.0-alpha.8/sp_consensus/import_queue/trait.Verifier.html) trait.
 
-Any consensus engine that relies on the `BasicQueue` must implement the `Verifier` trait. In the simplest cases, such as Sunstrate's instant seal consensus, the `Verifier` is simple declares all blocks as valid. In slot-based engines check that the blocks timestamp actually falls in the correct time window for the slot it is claiming.
+Any consensus engine that relies on the `BasicQueue` must implement the `Verifier` trait. In the simplest cases, such as Substrate's instant seal consensus, the `Verifier` is simple declares all blocks as valid. In slot-based engines check that the blocks timestamp actually falls in the correct time window for the slot it is claiming.
 
 ## The Block Import Trait
 
