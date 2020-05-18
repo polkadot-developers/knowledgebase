@@ -20,7 +20,7 @@ Any consensus engine that relies on the `BasicQueue` must implement the `Verifie
 
 ## The Block Import Trait
 
-When the import queue is instructed to import a block, it passes the block in question to a method provided by the [`BlockImport` trait](https://substrate.dev/rustdocs/v2.0.0-alpha.8/sp_consensus/block_import/trait.BlockImport.html). This `Block Import` trait provides the behavior of importing a block into the node's local state.
+When the import queue is instructed to import a block, it passes the block in question to a method provided by the [`BlockImport` trait](https://substrate.dev/rustdocs/v2.0.0-alpha.8/sp_consensus/block_import/trait.BlockImport.html). This `BlockImport` trait provides the behavior of importing a block into the node's local state database.
 
 One implementor of the `BlockImport` trait that is used in every Substrate node is the [`Client`](https://substrate.dev/rustdocs/v2.0.0-alpha.8/sc_service/client/index.html) which contains the node's entire block database. When a block is imported into the client it is added to the main database of blocks that the node knows about.
 
