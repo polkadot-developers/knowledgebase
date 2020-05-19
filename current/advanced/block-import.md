@@ -64,7 +64,7 @@ also `BlockImport`. This nesting leads to the term "block import pipeline".
 
 An example of this wrapping is the
 [`PowBlockImport`](https://substrate.dev/rustdocs/v2.0.0-alpha.8/sc_consensus_pow/struct.PowBlockImport.html)
-which holds a reference to another type that is also `BlockImport`. This allows the PoW consensus
+which holds a reference to another type that also implements `BlockImport`. This allows the PoW consensus
 engine to do it's own import-related bookkeeping and then pass the block to the nested
 `BlockImport`, probably the client. This pattern is also demonstrated in the
 [`AuraBlockImport`](https://substrate.dev/rustdocs/v2.0.0-alpha.8/sc_consensus_aura/struct.AuraBlockImport.html),
