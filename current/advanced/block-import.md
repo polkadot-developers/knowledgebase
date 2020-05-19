@@ -24,18 +24,15 @@ blocks in parallel as they come in across the network.
 
 The import queue also provides some hooks via the
 [`Link` trait](https://crates.parity.io/sp_consensus/import_queue/trait.Link.html) that can be used
-to follow its progress. A typical consumer of these hooks is the sync module which uses data from
-the import queue to adjust its sync algorithm.
+to follow its progress.
 
 ## The Basic Queue
 
 Substrate provides a default in-memory implementation of the `ImportQueue` known as the
-[`BasicQueue`](https://crates.parity.io/sp_consensus/import_queue/struct.BasicQueue.html).
-The `BasicQueue` does not do any kind of optimization, rather it performs the verification and
-import steps sequentially. It does, however, abstract the notion of verification through the use of
-the
-[`Verifier`](https://crates.parity.io/sp_consensus/import_queue/trait.Verifier.html)
-trait.
+[`BasicQueue`](https://crates.parity.io/sp_consensus/import_queue/struct.BasicQueue.html). The
+`BasicQueue` does not do any kind of optimization, rather it performs the verification and import
+steps sequentially. It does, however, abstract the notion of verification through the use of the
+[`Verifier`](https://crates.parity.io/sp_consensus/import_queue/trait.Verifier.html) trait.
 
 Any consensus engine that relies on the `BasicQueue` must implement the `Verifier` trait. The
 `Verifier` is typically responsible for tasks such as checking
@@ -51,30 +48,31 @@ This `BlockImport` trait provides the behavior of importing a block into the nod
 database.
 
 One implementor of the `BlockImport` trait that is used in every Substrate node is the
-[`Client`](https://crates.parity.io/sc_service/client/index.html) which
-contains the node's entire block database. When a block is imported into the client it is added to
-the main database of blocks that the node knows about.
+[`Client`](https://crates.parity.io/sc_service/client/index.html) which contains the node's entire
+block database. When a block is imported into the client it is added to the main database of blocks
+that the node knows about.
 
 ## The Block Import Pipeline
 
-In the simplest cases, blocks are imported directly into the client. But most consensus engines will need to perform
-additional verification on incoming blocks, update their own local auxiliary databases, or both. To
-allow consensus engines this opportunity, it is common to wrap the client in another struct that
-also implements `BlockImport`. This nesting leads to the term "block import pipeline".
+In the simplest cases, blocks are imported directly into the client. But most consensus engines will
+need to perform additional verification on incoming blocks, update their own local auxiliary
+databases, or both. To allow consensus engines this opportunity, it is common to wrap the client in
+another struct that also implements `BlockImport`. This nesting leads to the term "block import
+pipeline".
 
 An example of this wrapping is the
-[`PowBlockImport`](https://crates.parity.io/sc_consensus_pow/struct.PowBlockImport.html)
-which holds a reference to another type that also implements `BlockImport`. This allows the PoW consensus
-engine to do it's own import-related bookkeeping and then pass the block to the nested
-`BlockImport`, probably the client. This pattern is also demonstrated in the
+[`PowBlockImport`](https://crates.parity.io/sc_consensus_pow/struct.PowBlockImport.html) which holds
+a reference to another type that also implements `BlockImport`. This allows the PoW consensus engine
+to do it's own import-related bookkeeping and then pass the block to the nested `BlockImport`,
+probably the client. This pattern is also demonstrated in the
 [`AuraBlockImport`](https://crates.parity.io/sc_consensus_aura/struct.AuraBlockImport.html),
-[`BabeBlockImport`](https://crates.parity.io/sc_consensus_babe/struct.BabeBlockImport.html),
-and [`GrandpaBlockImport`](https://crates.parity.io/sc_finality_grandpa/struct.GrandpaBlockImport.html).
+[`BabeBlockImport`](https://crates.parity.io/sc_consensus_babe/struct.BabeBlockImport.html), and
+[`GrandpaBlockImport`](https://crates.parity.io/sc_finality_grandpa/struct.GrandpaBlockImport.html).
 
 `BlockImport` nesting need not be limited to one level. In fact, it is common for nodes that use
 both an authoring engine and a finality gadget to layer the nesting even more deeply. For example
-Polkadot's block import pipeline consists of a `GrandpaBlockImport`, which wraps a `BabeBlockImport`,
-which wraps the `Client`.
+Polkadot's block import pipeline consists of a `GrandpaBlockImport`, which wraps a
+`BabeBlockImport`, which wraps the `Client`.
 
 ## Learn More
 
