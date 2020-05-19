@@ -19,7 +19,7 @@ imported into the node's local state.
 The import queue is codified abstractly in Substrate by means of the
 [`ImportQueue` trait](https://substrate.dev/rustdocs/v2.0.0-alpha.8/sp_consensus/import_queue/trait.ImportQueue.html).
 The use of a trait allows each consensus engine to provide its own specialized implementation of the
-Import Queue which may take advantage of optimization opportunities such as verifying multiple
+import queue which may take advantage of optimization opportunities such as verifying multiple
 blocks in parallel as they come in across the network.
 
 The import queue also provides some hooks via the
