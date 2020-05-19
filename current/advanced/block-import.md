@@ -48,8 +48,8 @@ This `BlockImport` trait provides the behavior of importing a block into the nod
 database.
 
 One implementor of the `BlockImport` trait that is used in every Substrate node is the
-[`Client`](https://crates.parity.io/sc_service/client/index.html) which contains the node's entire
-block database. When a block is imported into the client it is added to the main database of blocks
+[`Client`](https://crates.parity.io/sc_service/client/index.html), which contains the node's entire
+block database. When a block is imported into the client, it is added to the main database of blocks
 that the node knows about.
 
 ## The Block Import Pipeline
