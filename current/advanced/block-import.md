@@ -12,8 +12,8 @@ them, and if they are valid, importing them into the node's state. The most fund
 information that the import queue processes is blocks themselves, but it is also responsible for
 importing consensus-related messages such as justifications and, in light clients, finality proofs.
 
-The import queue collects incoming blocks from the network and stores them in a pool. The blocks are
-later checked for validity and discarded if they are not valid. Blocks that are valid are then
+The import queue collects incoming elements from the network and stores them in a pool. The elements
+are later checked for validity and discarded if they are not valid. Elements that are valid are then
 imported into the node's local state.
 
 The import queue is codified abstractly in Substrate by means of the
