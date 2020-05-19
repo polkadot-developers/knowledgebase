@@ -57,10 +57,8 @@ the main database of blocks that the node knows about.
 
 ## The Block Import Pipeline
 
-In the simplest cases, such as
-[manual-seal](https://substrate.dev/rustdocs/v2.0.0-alpha.8/sc_consensus_manual_seal/index.html)
-nodes, blocks are imported directly into the client. But most consensus engines will need to perform
-additional verification on incoming blocks, update their own local state databases, or both. To
+In the simplest cases, blocks are imported directly into the client. But most consensus engines will need to perform
+additional verification on incoming blocks, update their own local auxiliary databases, or both. To
 allow consensus engines this opportunity, it is common to wrap the client in another struct that is
 also `BlockImport`. This nesting leads to the term "block import pipeline".
 
