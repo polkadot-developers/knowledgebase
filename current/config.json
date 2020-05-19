@@ -75,6 +75,7 @@
       "menu_items": [
         { "title": "SCALE Codec", "slug": "codec" },
         { "title": "Consensus", "slug": "consensus" },
+        { "title": "Block Import Pipeline", "slug": "block-import" },
         { "title": "Executor", "slug": "executor" },
         { "title": "Cryptography", "slug": "cryptography" },
         { "title": "Storage", "slug": "storage" },
