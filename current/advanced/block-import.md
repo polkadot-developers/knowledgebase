@@ -63,7 +63,7 @@ pipeline".
 An example of this wrapping is the
 [`PowBlockImport`](https://crates.parity.io/sc_consensus_pow/struct.PowBlockImport.html), which holds
 a reference to another type that also implements `BlockImport`. This allows the PoW consensus engine
-to do it's own import-related bookkeeping and then pass the block to the nested `BlockImport`,
+to do its own import-related bookkeeping and then pass the block to the nested `BlockImport`,
 probably the client. This pattern is also demonstrated in the
 [`AuraBlockImport`](https://crates.parity.io/sc_consensus_aura/struct.AuraBlockImport.html),
 [`BabeBlockImport`](https://crates.parity.io/sc_consensus_babe/struct.BabeBlockImport.html), and
