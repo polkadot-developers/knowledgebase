@@ -17,7 +17,7 @@ later checked for validity and discarded if they are not valid. Blocks that are 
 imported into the node's local state.
 
 The import queue is codified abstractly in Substrate by means of the
-[`ImportQueue` trait](https://substrate.dev/rustdocs/v2.0.0-alpha.8/sp_consensus/import_queue/trait.ImportQueue.html).
+[`ImportQueue` trait](https://crates.parity.io/sp_consensus/import_queue/trait.ImportQueue.html).
 The use of a trait allows each consensus engine to provide its own specialized implementation of the
 import queue, which may take advantage of optimization opportunities such as verifying multiple
 blocks in parallel as they come in across the network.
@@ -30,11 +30,11 @@ the import queue to adjust its sync algorithm.
 ## The Basic Queue
 
 Substrate provides a default in-memory implementation of the `ImportQueue` known as the
-[`BasicQueue`](https://substrate.dev/rustdocs/v2.0.0-alpha.8/sp_consensus/import_queue/struct.BasicQueue.html).
+[`BasicQueue`](https://crates.parity.io/sp_consensus/import_queue/struct.BasicQueue.html).
 The `BasicQueue` does not do any kind of optimization, rather it performs the verification and
 import steps sequentially. It does, however, abstract the notion of verification through the use of
 the
-[`Verifier`](https://substrate.dev/rustdocs/v2.0.0-alpha.8/sp_consensus/import_queue/trait.Verifier.html)
+[`Verifier`](https://crates.parity.io/sp_consensus/import_queue/trait.Verifier.html)
 trait.
 
 Any consensus engine that relies on the `BasicQueue` must implement the `Verifier` trait. The
@@ -46,12 +46,12 @@ the block is signed by the appropriate authority.
 
 When the import queue is ready to import a block, it passes the block in question to a method
 provided by the
-[`BlockImport` trait](https://substrate.dev/rustdocs/v2.0.0-alpha.8/sp_consensus/block_import/trait.BlockImport.html).
+[`BlockImport` trait](https://crates.parity.io/sp_consensus/block_import/trait.BlockImport.html).
 This `BlockImport` trait provides the behavior of importing a block into the node's local state
 database.
 
 One implementor of the `BlockImport` trait that is used in every Substrate node is the
-[`Client`](https://substrate.dev/rustdocs/v2.0.0-alpha.8/sc_service/client/index.html) which
+[`Client`](https://crates.parity.io/sc_service/client/index.html) which
 contains the node's entire block database. When a block is imported into the client it is added to
 the main database of blocks that the node knows about.
 
@@ -63,13 +63,13 @@ allow consensus engines this opportunity, it is common to wrap the client in ano
 also implements `BlockImport`. This nesting leads to the term "block import pipeline".
 
 An example of this wrapping is the
-[`PowBlockImport`](https://substrate.dev/rustdocs/v2.0.0-alpha.8/sc_consensus_pow/struct.PowBlockImport.html)
+[`PowBlockImport`](https://crates.parity.io/sc_consensus_pow/struct.PowBlockImport.html)
 which holds a reference to another type that also implements `BlockImport`. This allows the PoW consensus
 engine to do it's own import-related bookkeeping and then pass the block to the nested
 `BlockImport`, probably the client. This pattern is also demonstrated in the
-[`AuraBlockImport`](https://substrate.dev/rustdocs/v2.0.0-alpha.8/sc_consensus_aura/struct.AuraBlockImport.html),
-[`BabeBlockImport`](https://substrate.dev/rustdocs/v2.0.0-alpha.8/sc_consensus_babe/struct.BabeBlockImport.html),
-and `GrandpaBlockImport`.
+[`AuraBlockImport`](https://crates.parity.io/sc_consensus_aura/struct.AuraBlockImport.html),
+[`BabeBlockImport`](https://crates.parity.io/sc_consensus_babe/struct.BabeBlockImport.html),
+and [`GrandpaBlockImport`](https://crates.parity.io/sc_finality_grandpa/struct.GrandpaBlockImport.html).
 
 `BlockImport` nesting need not be limited to one level. In fact, it is common for nodes that use
 both an authoring engine and a finality gadget to layer the nesting even more deeply. For example
