@@ -59,8 +59,8 @@ the main database of blocks that the node knows about.
 
 In the simplest cases, blocks are imported directly into the client. But most consensus engines will need to perform
 additional verification on incoming blocks, update their own local auxiliary databases, or both. To
-allow consensus engines this opportunity, it is common to wrap the client in another struct that is
-also `BlockImport`. This nesting leads to the term "block import pipeline".
+allow consensus engines this opportunity, it is common to wrap the client in another struct that
+also implements `BlockImport`. This nesting leads to the term "block import pipeline".
 
 An example of this wrapping is the
 [`PowBlockImport`](https://substrate.dev/rustdocs/v2.0.0-alpha.8/sc_consensus_pow/struct.PowBlockImport.html)
