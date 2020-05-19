@@ -70,7 +70,7 @@ probably the client. This pattern is also demonstrated in the
 [`GrandpaBlockImport`](https://crates.parity.io/sc_finality_grandpa/struct.GrandpaBlockImport.html).
 
 `BlockImport` nesting need not be limited to one level. In fact, it is common for nodes that use
-both an authoring engine and a finality gadget to layer the nesting even more deeply. For example
+both an authoring engine and a finality gadget to layer the nesting even more deeply. For example,
 Polkadot's block import pipeline consists of a `GrandpaBlockImport`, which wraps a
 `BabeBlockImport`, which wraps the `Client`.
 
