@@ -10,7 +10,7 @@ The import queue is an abstract worker queue present in every Substrate node. It
 runtime. The Import Queue is responsible for processing pieces of incoming information, verifying
 them, and if they are valid, importing them into the node's state. The most fundamental piece of
 information that the import queue processes is blocks themselves, but it is also responsible for
-importing consensus-related messages such as Justifications and, in light clients, finality proofs.
+importing consensus-related messages such as justifications and, in light clients, finality proofs.
 
 The import queue collects incoming blocks from the network and stores them in a pool. The blocks are
 later checked for validity and discarded if they are not valid. Blocks that are valid are then
