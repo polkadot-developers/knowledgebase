@@ -19,7 +19,7 @@ imported into the node's local state.
 The import queue is codified abstractly in Substrate by means of the
 [`ImportQueue` trait](https://substrate.dev/rustdocs/v2.0.0-alpha.8/sp_consensus/import_queue/trait.ImportQueue.html).
 The use of a trait allows each consensus engine to provide its own specialized implementation of the
-import queue which may take advantage of optimization opportunities such as verifying multiple
+import queue, which may take advantage of optimization opportunities such as verifying multiple
 blocks in parallel as they come in across the network.
 
 The import queue also provides some hooks via the
@@ -61,7 +61,7 @@ In the simplest cases, such as
 [manual-seal](https://substrate.dev/rustdocs/v2.0.0-alpha.8/sc_consensus_manual_seal/index.html)
 nodes, blocks are imported directly into the client. But most consensus engines will need to perform
 additional verification on incoming blocks, update their own local state databases, or both. To
-allow consensus engines this opportunity, it is common to wrap the client in another struct which is
+allow consensus engines this opportunity, it is common to wrap the client in another struct that is
 also `BlockImport`. This nesting leads to the term "block import pipeline".
 
 An example of this wrapping is the
@@ -75,8 +75,8 @@ and `GrandpaBlockImport`.
 
 `BlockImport` nesting need not be limited to one level. In fact, it is common for nodes that use
 both an authoring engine and a finality gadget to layer the nesting even more deeply. For example
-Polkadot's block import pipeline consists of a `GrandpaBlockImport` which wraps a `BabeBlockImport`
-which, itself, wraps the `Client`.
+Polkadot's block import pipeline consists of a `GrandpaBlockImport`, which wraps a `BabeBlockImport`,
+which wraps the `Client`.
 
 ## Learn More
 
