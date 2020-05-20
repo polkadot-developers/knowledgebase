@@ -97,10 +97,22 @@ As an exception, in the case that the type is a boolean, then it is always one b
 
 ### Results
 
-Results indicate whether certain operations were successful or unsuccessful. Each variant can contain additional data, such as a resulting value or an error message.
+Results are commonly used Enumerations which indicate whether certain operations were successful or unsuccessful. Each variant can contain additional data, such as a resulting value or an error message.
 
 - `0x00` if the operation was successful, followed by the encoded value.
 - `0x01` if the operation was unsuccessful, followed by the encoded value.
+
+#### Example
+
+```rust
+enum Result {
+  Ok(u8),
+  Err(bool),
+}
+```
+
+- `Ok(42)`: `0x002a`
+- `Err(false)`: `0x0100`
 
 ### Vectors (lists, series, sets)
 
