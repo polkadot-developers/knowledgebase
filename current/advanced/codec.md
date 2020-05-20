@@ -105,10 +105,8 @@ Results are commonly used enumerations which indicate whether certain operations
 #### Example
 
 ```rust
-enum Result {
-  Ok(u8),
-  Err(bool),
-}
+// A custom result type used in a crate.
+let Result = std::result::Result<u8, bool>;
 ```
 
 - `Ok(42)`: `0x002a`
