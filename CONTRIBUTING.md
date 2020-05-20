@@ -82,22 +82,49 @@ explanation about how something works.**
 It is important to create documentation that follows similar guidelines. This allows documentation
 to be clear and concise while allowing users to easily find necessary information.
 
-These are general style guidelines that can help create clearer documentation:
+### Substrate-Specific Style
+
+This section is for terminology specifically related to Substrate.
+
+- **WebAssembly:** It's "WebAssembly" or "Wasm".
+
+- **FRAME, Pallets, and Modules:** A module is a generic term for a piece of software that expresses
+  domain-specific logic. A pallet is a special type of module that is meant to operate in the
+  context of FRAME. FRAME is a system that provides the abstractions necessary for building a
+  runtime on the Substrate client. If you don't know if you should call something a module or a
+  pallet, check its `Cargo.toml` file for its name; pallets have a `pallet-*` prefix.
+
+- **Capitalization:**
+  - Substrate is always capitalized.
+  - Pallet names are capitalized, e.g. the Balances pallet.
+
+### General Style
+
+These are style guidelines that can help create clearer documentation. For anything not addessed
+here, use
+[The Economist](https://bordeure.files.wordpress.com/2008/11/the-economist-style-guide.pdf).
 
 - **Write in plain U.S. English.** You should write in plain U.S. English and try to avoid
   complicated words when you describe something.
+
+- **Except for quotation marks.** Follow The Economist's guidance.
+
+  - Use single ones only for quotations within quotations.
+  - If the quotation does not include any punctuation, the closing quotation marks should precede
+    any punctuation that the sentence requires.
+  - If a quoted section would naturally end with a period or comma, put the punctuation mark inside
+    the quotation mark.
 
 - **Avoid using pronouns such as "I" or "we".** These can be quite ambiguous when someone reads the
   documentation. It is OK to use "you" as this allows the documentation to speak to a user.
 
 - **Know your relative pronouns.**
 
-      	- "That" introduces a restrictive clause. It isn't preceded by a comma.
-      	- "Which" introduces a nonrestrictive clause and is preceded by a comma.
-      	- Quick tip that works 90% of the time: Every time you write "which", put a comma in front of
-      	  it and see if it makes sense. If it does, then leave the comma. If it doesn't, change it to
-      	  "that".
-      	- See: https://www.quickanddirtytips.com/education/grammar/which-versus-that
+  - "That" introduces a restrictive clause. It isn't preceded by a comma.
+  - "Which" introduces a nonrestrictive clause and is preceded by a comma.
+  - Quick tip that works 90% of the time: Every time you write "which", put a comma in front of it
+    and see if it makes sense. If it does, then leave the comma. If it doesn't, change it to "that".
+  - See: https://www.quickanddirtytips.com/education/grammar/which-versus-that
 
 - **If you plan on using acronyms, you should define them the first time you write about them.** For
   example, looks good to me (LGTM). Don't assume that everyone will understand all acronyms. You do

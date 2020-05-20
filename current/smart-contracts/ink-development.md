@@ -30,8 +30,8 @@ You will learn how to:
 ## Example Contracts
 
 ink! provides a
-[set of example smart contracts](https://github.com/paritytech/ink/tree/master/examples) that
-can help you understand how it is similar and different to other smart contract languages.
+[set of example smart contracts](https://github.com/paritytech/ink/tree/master/examples) that can
+help you understand how it is similar and different to other smart contract languages.
 
 This includes:
 
@@ -73,8 +73,8 @@ When building a smart contract with ink!, you can define a set of tests that can
 off-chain test environment.
 
 For example, in the minimal
-[flipper contract](https://github.com/paritytech/ink/blob/master/examples/flipper/src/lib.rs),
-you can find a small off-chain test at the bottom of the contract.
+[flipper contract](https://github.com/paritytech/ink/blob/master/examples/flipper/src/lib.rs), you
+can find a small off-chain test at the bottom of the contract.
 
 You should run this test just like you would any other Rust test:
 

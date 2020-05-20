@@ -71,11 +71,11 @@ are available:
 ### Weight Factors
 
 Several factors impact execution time, and therefore weight calculation. One large contributor is
-the number of database accesses that are performed by a dispatchable. Because the cost of a
-database access is greatly dependent on the database backend and storage hardware, the weight
-calculations are parameterized over the weight costs of database reads and writes. These costs are
-determined by benchmarking each available database backend on some reference hardware. This allows
-switching database backends without changing all weight calculations.
+the number of database accesses that are performed by a dispatchable. Because the cost of a database
+access is greatly dependent on the database backend and storage hardware, the weight calculations
+are parameterized over the weight costs of database reads and writes. These costs are determined by
+benchmarking each available database backend on some reference hardware. This allows switching
+database backends without changing all weight calculations.
 
 In addition to only using constants for the pre-dispatch weight calculation, the developer has the
 ability to factor in the input parameters of the given dispatchable. This can be useful when the
