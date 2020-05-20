@@ -100,7 +100,7 @@ As an exception, in the case that the type is a boolean, then it is always one b
 Results are commonly used enumerations which indicate whether certain operations were successful or unsuccessful. Encoded as:
 
 - `0x00` if the operation was successful, followed by the encoded value.
-- `0x01` if the operation was unsuccessful, followed by the encoded value.
+- `0x01` if the operation was unsuccessful, followed by the encoded error.
 
 #### Example
 
