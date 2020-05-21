@@ -11,7 +11,7 @@ This document offers a conceptual overview of the cryptography used in Substrate
 Hash functions are used in Substrate to map arbitrary sized data to fixed-sized values.
 
 Substrate provides two hash algorithms out of the box, but can support any hash algorithm which
-implements the [`Hasher` trait](https://substrate.dev/rustdocs/master/sp_core/trait.Hasher.html).
+implements the [`Hasher` trait](https://docs.rs/substrate-primitives/1.0.0/substrate_primitives/trait.Hasher.html).
 
 ### xxHash
 
