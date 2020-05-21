@@ -41,7 +41,7 @@ Public-key cryptography is used in Substrate to provide a robust authentication 
 
 Substrate provides multiple different cryptographic schemes and is generic such that it can support
 anything which implements the
-[`Pair` trait](https://substrate.dev/rustdocs/master/sp_core/crypto/trait.Pair.html).
+[`Pair` trait](https://docs.rs/substrate-primitives/1.0.0/substrate_primitives/crypto/trait.Pair.html).
 
 ### ECDSA
 
