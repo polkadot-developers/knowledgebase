@@ -69,7 +69,7 @@ calculated.
 
 ### References
 
-- [FRAME executive](https://substrate.dev/rustdocs/master/frame_executive/index.html)
-- [`decl_event!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.decl_event.html)
-- [`decl_storage!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.decl_storage.html)
-- [`construct_runtime!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.construct_runtime.html)
+- [FRAME executive](https://crates.parity.io/frame_executive/index.html)
+- [`decl_event!` macro](https://crates.parity.io/frame_support/macro.decl_event.html)
+- [`decl_storage!` macro](https://crates.parity.io/frame_support/macro.decl_storage.html)
+- [`construct_runtime!` macro](https://crates.parity.io/frame_support/macro.construct_runtime.html)

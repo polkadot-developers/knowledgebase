@@ -4,7 +4,7 @@ lang: en
 title: Contracts Pallet
 ---
 
-The [Contracts pallet](https://substrate.dev/rustdocs/master/pallet_contracts/index.html) provides
+The [Contracts pallet](https://crates.parity.io/pallet_contracts/index.html) provides
 the ability for the runtime to deploy and execute [WebAssembly (Wasm)](https://webassembly.org/)
 smart contracts.
 
@@ -120,6 +120,6 @@ or upgradeable contracts on a Substrate based blockchain.
 ### References
 
 - Visit the reference docs for the
-  [Contracts module](https://substrate.dev/rustdocs/master/pallet_contracts/index.html).
+  [Contracts module](https://crates.parity.io/pallet_contracts/index.html).
 - Take a look at the [repository for `wasmi`](https://github.com/paritytech/wasmi).
 - Take a look at the [repository for ink!](https://github.com/paritytech/ink).
