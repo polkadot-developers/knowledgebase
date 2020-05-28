@@ -74,7 +74,7 @@ FRAME:
 ### References
 
 - View the
-  [primitive types defined in `node-primitives`](https://substrate.dev/rustdocs/master/node_primitives/index.html).
+  [primitive types defined in `node-primitives`](https://crates.parity.io/node_primitives/index.html).
 
 - View the
-  [`traits` defined in `sp-runtime`](https://substrate.dev/rustdocs/master/sp_runtime/traits/index.html)
+  [`traits` defined in `sp-runtime`](https://crates.parity.io/sp_runtime/traits/index.html)
