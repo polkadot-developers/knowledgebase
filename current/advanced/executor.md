@@ -130,7 +130,7 @@ TODO
 ### References
 
 - Check out the different
-  [Execution Strategies](https://crates.parity.io/sc_client/struct.ExecutionStrategies.html).
+  [Execution Strategies](https://crates.parity.io/sc_client_api/execution_extensions/struct.ExecutionStrategies.html).
 
 - Take a look at the different
   [Execution Strategy Options](https://crates.parity.io/sp_state_machine/enum.ExecutionStrategy.html)

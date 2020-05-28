@@ -10,7 +10,7 @@ and what consensus-critical state it must have at genesis.
 
 ## Structure of a Chain Spec
 
-The [`ChainSpec` struct](https://crates.parity.io/sc_service/struct.ChainSpec.html)
+The [`ChainSpec` struct](https://crates.parity.io/sc_service/struct.GenericChainSpec.html)
 separates the information contained in a chain spec into two parts. A node can use a `ChainSpec`
 instance to create a genesis block.
 
@@ -149,7 +149,7 @@ After the conversion process, the above snippet looks like this:
 ### Learn More
 
 - Rustdocs for the
-  [`ChainSpec` struct](https://crates.parity.io/sc_service/struct.ChainSpec.html)
+  [`ChainSpec` struct](https://crates.parity.io/sc_service/struct.GenericChainSpec.html)
 - Rustdocs for the
   [`ProtocolId` struct](https://crates.parity.io/sc_network/config/struct.ProtocolId.html)
 

@@ -44,7 +44,7 @@ mod app {
 > Refer to the runtime for the most up-to-date implementation.
 
 The default Substrate node implements Session keys in the
-[Session pallet](https://crates.parity.io/pallet_session/).
+[Session pallet](https://crates.parity.io/pallet_session/index.html).
 
 ## Generation and Use
 

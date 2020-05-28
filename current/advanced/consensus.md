@@ -61,7 +61,7 @@ example:
 
 The longest chain rule simply says that the best chain is the longest chain. Substrate provides this
 chain selection rule with the
-[`LongestChain` struct](https://crates.parity.io/sc_client/struct.LongestChain.html).
+[`LongestChain` struct](https://crates.parity.io/sc_consensus/struct.LongestChain.html).
 GRANDPA uses the longest chain rule for voting.
 
 ![longest chain rule](../assets/consensus-longest-chain.png)
