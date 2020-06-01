@@ -45,7 +45,7 @@ Substrate is designed to be used in one of three ways:
 ### Learn More
 
 - View our developer documentation for
-  [using the FRAME for module development](/current/runtime/frame.md).
+  [using the FRAME for module development](../runtime/frame).
 
 ### Examples
 
