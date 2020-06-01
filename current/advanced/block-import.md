@@ -71,8 +71,8 @@ probably the client. This pattern is also demonstrated in
 
 `BlockImport` nesting need not be limited to one level. In fact, it is common for nodes that use
 both an authoring engine and a finality gadget to layer the nesting even more deeply. For example,
-Polkadot's block import pipeline consists of a `GrandpaBlockImport`, which wraps a
-`BabeBlockImport`, which wraps the `Client`.
+Polkadot's block import pipeline consists of a `BabeBlockImport`, which wraps a
+`GrandpaBlockImport`, which wraps the `Client`.
 
 ## Learn More
 
