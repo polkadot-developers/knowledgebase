@@ -5,15 +5,17 @@ title: Getting Started on Windows
 ---
 
 If you are trying to set up a Windows computer to build Substrate, do the following:
+     
+     Note: Windows 10 is not supported.
 
-1. Download and install "Build Tools for Visual Studio:"
+1. Downloading and Installing 'Build Tools for Visual Studio':
 
-   - You can get it at this link: https://aka.ms/buildtools.
+   - Download from: https://aka.ms/buildtools.
    - Run the installation file: `vs_buildtools.exe`.
-   - Ensure the "Windows 10 SDK" component is included when installing the Visual C++ Build Tools.
+   - Ensure that all "Windows 10 SDK" components are checked when installing the "C++ build tools".
    - Restart your computer.
 
-2. Install Rust:
+2. Installing 'Rust':
 
    - Detailed instructions are provided by the
      [Rust Book](https://doc.rust-lang.org/book/ch01-01-installation.html#installing-rustup-on-windows).
@@ -21,7 +23,7 @@ If you are trying to set up a Windows computer to build Substrate, do the follow
      - Download from: https://www.rust-lang.org/tools/install.
      - Run the installation file: `rustup-init.exe`.
 
-       > Note that it should **not** prompt you to install `vs_buildtools` since you did it in
+       > Note: that it should **not** prompt you to install `vs_buildtools` since you did it in
        > step 1.
 
      - Choose "Default Installation."
@@ -29,7 +31,7 @@ If you are trying to set up a Windows computer to build Substrate, do the follow
        environment variable. Future applications will automatically have the correct environment,
        but you may need to restart your current shell.
 
-3. Run these commands in Command Prompt (`CMD`) to set up your Wasm Build Environment:
+3. Running commands in Command Prompt (`CMD`) to set up your Wasm Build Environment:
 
    ```bash
    rustup update nightly
@@ -37,9 +39,9 @@ If you are trying to set up a Windows computer to build Substrate, do the follow
    rustup target add wasm32-unknown-unknown --toolchain nightly
    ```
 
-4. Install LLVM: https://releases.llvm.org/download.html
+4. Installing 'LLVM': https://releases.llvm.org/download.html
 
-5. Install OpenSSL with `vcpkg`:
+5. Installing OpenSSL with `vcpkg`:
 
    ```bash
    mkdir C:\Tools
@@ -50,7 +52,7 @@ If you are trying to set up a Windows computer to build Substrate, do the follow
    .\vcpkg.exe install openssl:x64-windows-static
    ```
 
-6. Add OpenSSL to your System Variables using PowerShell:
+6. Adding OpenSSL to your System Variables using PowerShell:
 
    ```powershell
    $env:OPENSSL_DIR = 'C:\Tools\vcpkg\installed\x64-windows-static'
@@ -59,7 +61,7 @@ If you are trying to set up a Windows computer to build Substrate, do the follow
    [System.Environment]::SetEnvironmentVariable('OPENSSL_STATIC', $env:OPENSSL_STATIC, [System.EnvironmentVariableTarget]::User)
    ```
 
-7. Finally, install `cmake`: https://cmake.org/download/
+7. Installing `cmake`
+- Download and install 'cmake' from: https://cmake.org/download/
 
-You can now jump back to [Get the Source](#get-the-source) to learn how to download and compile
-Substrate!
+8. Restart the system to complete the process.
