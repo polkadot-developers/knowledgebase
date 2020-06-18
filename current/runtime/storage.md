@@ -417,7 +417,7 @@ important first principles that motivated them.
 ### What to Store
 
 Remember, the fundamental principle of blockchain runtime storage is to minimize its use. Only
-_consensus-critical_ data should be stored in your runtime. Runtime Storage should only be used only for deterministic values. 
+_consensus-critical_ data should be stored in your runtime. Runtime Storage should only be used for deterministic values. 
 When possible, use techniques like
 hashing to reduce the amount of data you must store. For instance, many of Substrate's governance
 capabilities (e.g.
