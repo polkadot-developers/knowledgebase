@@ -39,7 +39,8 @@ If you are trying to set up a Windows computer to build Substrate, do the follow
    rustup target add wasm32-unknown-unknown --toolchain nightly
    ```
 
-4. Installing 'LLVM': https://releases.llvm.org/download.html
+4. Installing 'LLVM'
+- Download and install 'LLVM' from: https://releases.llvm.org/download.html
 
 5. Installing OpenSSL with `vcpkg`:
 
