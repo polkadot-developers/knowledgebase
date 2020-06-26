@@ -79,6 +79,7 @@
         { "title": "Executor", "slug": "executor" },
         { "title": "Cryptography", "slug": "cryptography" },
         { "title": "Storage", "slug": "storage" },
+        { "title": "Runtime Macros", "slug": "runtime-macros" },
         { "title": "SS58 Address Format", "slug": "ss58-address-format" }
       ]
     }
