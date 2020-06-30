@@ -8,7 +8,7 @@ When developing for the Substrate runtime and doing calculations it is appealing
 
 ## Problems with Floating Point Numbers in Runtime
 
-The standard way of handling floating points is dependent on the need for decimal places by using one of the in-built primitive types of handlingfix point arithmetic. Floating point numbers are not deterministic and fixed point computation is safe for Substrate since it represents all rationals as a fraction thus resolving a deterministic result. The two types which are used to handle large fixed point arithmetic are Permill and Perbill, you can refer to [safe math](https://substrate.dev/recipes/3-entrees/safemath.html)for further information and implementation.
+Floating point numbers are not deterministic and thus cannot be used to run a deterministic block production algorithm. The standard way of handling rational (or real) numbers depends on how many decimal places are needed and then choosing one of the in-built primitive types in Substrate providing fixed point arithmetic. Fixed point computation is safe for Substrate since it represents all rationals as a fraction thus resolving to a deterministic result. The two types which are used to handle large fixed point arithmetic are `Permill` and `Perbill`, you can refer to [safe math](https://substrate.dev/recipes/3-entrees/safemath.html) for further information and implementation.
 
 ## Alternatives
 
