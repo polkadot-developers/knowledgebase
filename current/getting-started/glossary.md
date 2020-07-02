@@ -29,7 +29,7 @@ it. See GRANDPA.
 
 Used in the context of "module aggregation", this means combining analogous types from multiple
 runtime modules into a single `enum` type with variants allowing each module's analogous type to be
-represented. Currently there are five such datatypes:
+represented. Currently there are five such data types:
 
 - `Log` (an extensible header item)
 - `Event` (an indicator of some particular state-transition)
@@ -39,7 +39,7 @@ represented. Currently there are five such datatypes:
 
 ## Approval Voting
 
-Voting system where voter can vote for as many candidates as desired. The candidate with highest
+Voting system where voters can vote for as many candidates as desired. The candidate with the highest
 overall amount of votes wins. Notably:
 
 - voting for all candidates is exactly equivalent to voting for none; and
@@ -131,12 +131,12 @@ https://medium.com/polkadot-network/grandpa-block-finality-in-polkadot-an-introd
 The signature scheme and hashing algorithm. These are used for:
 
 - The blockchain: blocks must be hashed under some algorithm and reference their parent block's
-  hash.
+  hash.
 - State: the storage is encoded as a trie allowing a cryptographic reference to any given state of
-  it, which uses a hashing algorithm.
+  it, which uses a hashing algorithm.
 - Consensus: authorities must often use digital signature schemes of some kind.
 - Transaction authentication: in runtimes where transactions and accounts are used, accounts must be
-  associated with some digital identity.
+  associated with some digital identity.
 
 In the SRML, SR25519 and ED25519 is favoured over ECDSA/SECP256k1.
 
@@ -163,7 +163,7 @@ A Mnemonic phrase which is intentionally made public. All of the well-known deve
 is: `bottom drive obey lake curtain smoke basket hold race lonely fit walk`.
 
 Many tools in the Substrate ecosystem, such as subkey, allow users to implicitly specify the dev
-phrase with by only specifying a derivation path such as `//Alice`.
+phrase by only specifying a derivation path such as `//Alice`.
 
 ## Digest
 
@@ -172,11 +172,11 @@ clients for chain synchronisation.
 
 ## Dispatch
 
-The execution of a function with a pre-defined set of arguments. In the context of the SRML, this
+The execution of a function with a predefined set of arguments. In the context of the SRML, this
 refers specifically to the "runtime dispatch" system, a means of taking some pure data (the type is
 known as `Call` by convention) and interpreting it in order to call a published function in a
 runtime module with some arguments. Such published functions take one additional parameter known as
-`origin` allowing the function to securely determine the provenance of its execution.
+`origin` allows the function to securely determine the provenance of its execution.
 
 ---
 
@@ -193,7 +193,7 @@ Originally developed for, and used in, Ethereum by a team led by Tim Hughes.
 ## Events
 
 A means of recording, for the benefit of the off-chain world, that some particular state transition
-has happened. Within the context of the SRML, events are one of a number of amalgamatable datatypes
+has happened. Within the context of the SRML, events are one of a number of amalgamated data types
 that each module defines individually and which are aggregated together into a single overall `enum`
 type that can represent all module's types. Events are implemented through a transient set of
 storage items which are inspected immediately after a block has executed and reset during
@@ -247,7 +247,7 @@ amount, then it is removed entirely from the system.
 ## Finality
 
 A part of consensus dealing with making a progression be irreversible. If a block is finalised, then
-any real-world repercussions can be effected. The consensus algorithm must guarantee that finalised
+any real-world repercussions can be affected. The consensus algorithm must guarantee that finalised
 blocks never need reverting.
 
 One example of a work in progress provable finality gadget is being used in Polkadot:
@@ -260,7 +260,7 @@ See also: [Aurand+GRANDPA](#aurand-grandpa), [Instant Finality](#instant-finalit
 ## Full Client
 
 A node able to synchronise a block chain in a maximally secure manner through execution (and thus
-verification) of all logic. Compare to Light Client.
+verification) of all logic. Compared to Light Client.
 
 ---
 
@@ -420,7 +420,7 @@ interchain data is not ubiquitously distributed. See: [GRANDPA](#grandpa)
 
 ## Rhododendron
 
-An Instant-Finality BFT consensus algorithm, one of a number of adaptions of PBFT for the
+An Instant-Finality BFT consensus algorithm, one of a number of adaptations of PBFT for the
 blockchain. Others include Stellar's consensus algorithm and Tendermint. See the
 [Rhododendron crate](https://github.com/paritytech/rhododendron).
 
@@ -495,7 +495,7 @@ Ethereum.
 
 ## Transaction Era
 
-A definable period, expressed as a range of block numbers, where a transaction may validly be
+A definable period expressed as a range of block numbers where a transactions validly might be
 included in a block. Eras are a backstop against transaction replay attacks in the case that an
 account is reaped and its (replay-protecting) nonce is reset to zero. Eras are efficiently
 expressible in transactions and cost only two bytes.
@@ -520,7 +520,7 @@ An immutable cryptographic data-structure typically used to express maps or sets
 
 - a cryptographic digest of the dataset is needed; and/or
 - it is cheap to recompute the digest with incremental changes to the dataset even when it is very
-  large; and/or
+  large; and/or
 - a concise proof that the dataset contains some item/pair (or lacks it) is needed.
 
 ---
