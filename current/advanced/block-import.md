@@ -8,9 +8,9 @@ title: The Block Import Pipeline
 
 The import queue is an abstract worker queue present in every Substrate node. It is not part of the
 runtime. The import queue is responsible for processing pieces of incoming information, verifying
-them, and if they are valid, importing them into the node's state. The most fundamental piece of
-information that the import queue processes is blocks themselves, but it is also responsible for
-importing consensus-related messages such as justifications and, in light clients, finality proofs.
+them, and if valid, importing the information into the node's state. The most fundamental piece of
+information that the import queue processes is blocks themselves. It is also responsible for
+importing consensus-related messages such as justifications or in light clients finality proofs.
 
 The import queue collects incoming elements from the network and stores them in a pool. The elements
 are later checked for validity and discarded if they are not valid. Elements that are valid are then
@@ -47,7 +47,7 @@ provided by the
 This `BlockImport` trait provides the behavior of importing a block into the node's local state
 database.
 
-One implementor of the `BlockImport` trait that is used in every Substrate node is the
+One implementer of the `BlockImport` trait that is used in every Substrate node is the
 [`Client`](https://crates.parity.io/sc_service/client/index.html), which contains the node's entire
 block database. When a block is imported into the client, it is added to the main database of blocks
 that the node knows about.
@@ -56,7 +56,7 @@ that the node knows about.
 
 In the simplest cases, blocks are imported directly into the client. But most consensus engines will
 need to perform additional verification on incoming blocks, update their own local auxiliary
-databases, or both. To allow consensus engines this opportunity, it is common to wrap the client in
+databases, or perform both. To allow consensus engines to execute this, it is common to wrap the client in
 another struct that also implements `BlockImport`. This nesting leads to the term "block import
 pipeline".
 
@@ -79,8 +79,8 @@ Polkadot's block import pipeline consists of a `BabeBlockImport`, which wraps a
 Several of the Recipes' nodes demonstrate the block import pipeline:
 
 - [Manual Seal](https://substrate.dev/recipes/3-entrees/manual-seal.html) - all blocks are valid so
-  the block import pipeline is just the client
+  the block import pipeline is just the client
 - [Basic PoW](https://substrate.dev/recipes/3-entrees/basic-pow.html) - the import pipeline includes
-  PoW and the client
+  PoW and the client
 - [Hybrid Consensus](https://substrate.dev/recipes/3-entrees/hybrid-consensus.html) - the import
-  pipeline is PoW, then Grandpa, then the client
+  pipeline is PoW, then Grandpa, then the client
