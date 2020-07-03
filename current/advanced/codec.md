@@ -4,13 +4,9 @@ lang: en
 title: SCALE Codec
 ---
 
-The SCALE (Simple Concatenated Aggregate Little-Endian) Codec is a lightweight, efficient, binary
-serialization and deserialization codec.
-
-It is designed for high-performance, copy-free encoding and decoding of data in resource-constrained
-execution contexts, like the [Substrate runtime](/current/runtime/index.md). It is not
-self-describing in any way and assumes the decoding context has all type knowledge about the encoded
-data.
+The SCALE (Simple Concatenated Aggregate Little-Endian) is a lightweight, efficient, binary
+serialization and deserialization codec. SCALE allows encoding and decoding of data. It is highly suitable for resource-constrained execution environments like blockchain runtimes and resource-constrained execution contexts, like the [Substrate runtime](/current/runtime/index.md). It is not
+self-describing in any way and assumes the decoding context has all type knowledge about the encoded data.
 
 ## SCALE for Substrate
 
@@ -19,7 +15,7 @@ implementation of the SCALE Codec. This library and the SCALE codec are advantag
 and blockchain systems because:
 
 - It is lightweight relative to generic serialization frameworks like [serde](https://serde.rs/),
-  which add significant boilerplate that can bloat the size of the binary.
+  which adds a significant boilerplate that can bloat the size of the binary.
 - It does not use Rust STD, and thus can compile to Wasm for the Substrate runtime.
 - It is built to have great support in Rust for deriving codec logic for new types:
   ```
@@ -195,15 +191,6 @@ The Parity SCALE Codec is currently implemented for:
 - C++: [`soramitsu/scale`](https://github.com/soramitsu/kagome/tree/master/core/scale)
 - JavaScript: [`polkadot-js/api`](https://github.com/polkadot-js/api)
 
-## Next Steps
-
-### Learn More
-
-TODO
-
-### Examples
-
-TODO
 
 ### References
 
