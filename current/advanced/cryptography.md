@@ -18,7 +18,7 @@ implements the [`Hasher` trait](https://crates.parity.io/sp_core/trait.Hasher.ht
 xxHash is a fast [non-cryptographic hash function](https://en.wikipedia.org/wiki/Hash_function),
 working at speeds close to RAM limits. Because xxHash is not cryptographically secure, it is
 possible that the output of the hash algorithm can be reasonably controlled by modifying the input.
-This can allow a user to attack this algorithm by creating key collisions, hash collisions, and
+This can allow a user to attack the algorithm by creating key collisions, hash collisions, and
 imbalanced storage tries.
 
 xxHash is used in places where outside parties cannot manipulate the input of the hash function. For
@@ -30,7 +30,7 @@ Substrate uses the [`twox-hash`](https://github.com/shepmaster/twox-hash) implem
 ### Blake2
 
 [Blake2](<https://en.wikipedia.org/wiki/BLAKE_(hash_function)#BLAKE2>) is a cryptographic hash
-function. It is considered to be very fast and is also used in
+function. It is considered to be optimized and is also used in
 [Zcash](https://en.wikipedia.org/wiki/Zcash).
 
 Substrate uses the [`blake2`](https://docs.rs/blake2/) implementation in Rust.
