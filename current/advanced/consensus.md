@@ -26,14 +26,14 @@ In order to agree on the resulting state after a transition, all operations with
 
 ## Conflict Exclusion
 
-In centralized systems, the central authority chooses among mutually exclusive alternatives by
+In centralized systems, the central authority defines mutually exclusive alternatives by
 recording state transitions in the order it sees them, and choosing the first of the competing
 alternatives when a conflict arises. In decentralized systems, the nodes will see transactions in
 different orders, and thus they must use a more elaborate method to exclude transactions. As a
 further complication, blockchain networks strive to be fault tolerant, which means that they should
 continue to provide consistent data even if some participants are not following the rules.
 
-Blockchains batch transactions into blocks and have some method to select which participant has the
+Blockchains batch transactions into blocks and have defined methodologies to select which participants have the
 right to submit a block. For example, in a proof-of-work chain, the node that finds a valid proof of
 work first has the right to submit a block to the chain.
 
@@ -116,7 +116,7 @@ fork.
 > Some consensus systems couple block production and finality, as in, finalization is part of the
 > block production process and a new block `N+1` cannot be authored until block `N` is finalize.
 > Substrate, however, isolates the two processes and allows you to use any block production engine
-> on its own with probabilistic finality or couple it with a finality gadget to have determinsitic
+> on its own with probabilistic finality or couple it with a finality gadget to have deterministic
 > finality.
 
 In systems that use a finality gadget, the fork choice rule must be modified to consider the results
