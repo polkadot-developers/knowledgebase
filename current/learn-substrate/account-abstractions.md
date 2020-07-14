@@ -32,7 +32,7 @@ These abstractions are:
 ## Account Keys
 
 A key pair can represent an account and control funds, like normal accounts that you would expect
-from other blockchains. In the context of Substrate's
+from other blockchains. In the context of Substrate
 [Balances module](https://crates.parity.io/pallet_balances/index.html), these accounts
 must have a minimum amount (an "existential deposit") to exist in storage.
 
@@ -123,3 +123,5 @@ for increased security.
 - Take a look at
   [`substrate_application_crypto`](https://crates.parity.io/sp_application_crypto/index.html),
   used for constructing application specific strongly typed crypto wrappers.
+
+
