@@ -27,7 +27,7 @@ easily access on-chain state for their computations.
 
 ## APIs
 
-Offchain workers have access to extended APIs for communicating with the external world:
+Off-chain workers have access to extended APIs for communicating with the external world:
 
 - Ability to submit transactions (either signed or unsigned) to the chain to publish computation
   results.
@@ -48,3 +48,5 @@ should be implemented to determine what information gets into the chain.
 
 For more information on how to use off-chain workers in your next runtime development project,
 please refer to our [Development Guide](../runtime/off-chain-workers).
+
+
