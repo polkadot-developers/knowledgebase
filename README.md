@@ -1,9 +1,11 @@
 # Substrate Knowledge Base
 
-The Knowledge Base is live on [substrate.io](https://www.substrate.io/).
+The Knowledge Base is live on [substrate.io](https://www.substrate.io/). The Knowledge Base empowers developers to make informed design decisions so they can make the most of Substrate and its robust vast set of flexible, powerful capabilities.
 
 This repository holds documentation that goes in the Substrate Knowledge Base. The main website is
 hosted in [substrate-cms](https://github.com/substrate-developer-hub/substrate-cms).
+
+If you have feedback or suggestions for improvement, please don't keep quiet about it. You can contact us [via our Riot channels](https://riot.im/app/#/room/#watercooler:matrix.parity.io) or drop a pull request. 
 
 ## Structure
 
